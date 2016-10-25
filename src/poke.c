@@ -3,15 +3,6 @@
 
 #include "poke.h"
 
-char *tabc_string[]={"PARFLOR","ISMAR","RIGOLAMOR","PROCRASTINO","COUCHTAR",
-							"NUIDEBOU","BUCHAFON","BELMENTION","PROMOMAJOR",
-							"ENSEIGNANT_DRESSEUR","NO_EVOLUTION"};
-
-char * stringVariete(variete ele){
-	return tabc_string[ele];
-}
-	
-
 Poke tab_variete[NB_VARIETE]={
 	{PARFLOR,NOISY,1,NO_EVOLUTION,{60,40,60}},
 	{ISMAR,NOISY,1,RIGOLAMOR,{50,30,40}},

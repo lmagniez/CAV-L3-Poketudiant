@@ -1,15 +1,13 @@
+#ifndef _POKE_H
+#define _POKE_H
+
 #define NB_VARIETE 10
 
-typedef enum{
-	PARFLOR,ISMAR,RIGOLAMOR,PROCRASTINO,COUCHTAR,NUIDEBOU,BUCHAFON,BELMENTION,PROMOMAJOR,ENSEIGNANT_DRESSEUR,NO_EVOLUTION
-}variete;
-
-typedef enum{
-	NOISY,LAZY,MOTIVATED,TEACHER
-}type;
+#include "type.h"
+#include "variete.h"
 
 typedef struct statistique{
-	int attaque;
+	int att;
 	int defense;
 	int pv_max;
 }statistique;
@@ -22,6 +20,6 @@ typedef struct Poke{
 	statistique stat_base;
 }Poke;
 
-char * stringVariete(variete ele);
-
 Poke newPoke(variete v);
+
+#endif

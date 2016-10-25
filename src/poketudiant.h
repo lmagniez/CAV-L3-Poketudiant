@@ -1,10 +1,16 @@
+#ifndef _POKETUDIANT_H
+#define _POKETUDIANT_H
+
+#include "poke.h"
 
 typedef struct Poketudiant{
 	Poke pokemon;
-	statistique stat_base;
+	statistique stat_cur;
 
 	int experience;
 	
 }Poketudiant;
 
-char * stringVariete(variete ele);
+Poketudiant newPoketudiant(int lvl);
+
+#endif
