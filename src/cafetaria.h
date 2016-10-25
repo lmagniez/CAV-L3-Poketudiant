@@ -4,9 +4,7 @@
 #include "poketudiant.h"
 
 typedef struct Cafetariat{
-	Poketudiant p;
-	Poketudiant * next;
-	
+	Poketudiant p[3][4] ;
 }Cafetariat;
 
 void ajout_cafe(Cafetariat * s);
