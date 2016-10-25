@@ -4,20 +4,20 @@ SRCDIR=src/
 CC=gcc
 CFLAGS=-Wall -g
 
-jeux : poketudiant.o poke.o main.o
+jeux : $(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o
 	@$(CC) -o jeux  $(BINDIR)*.o
 	
-main.o: $(SRCDIR)*.c $(SRCDIR)*.h
-	@$(CC) $(CFLAGS) -c  -o $(BINDIR)$@ $(SRCDIR)main.c 	
+$(BINDIR)main.o: $(SRCDIR)*.c $(SRCDIR)*.h
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)main.c 	
 	
-poketudiant.o : $(SRCDIR)poketudiant.c $(SRCDIR)poketudiant.h
-	@$(CC) $(CFLAGS) -c  -o $(BINDIR)$@ $(SRCDIR)poketudiant.c 	
+$(BINDIR)poketudiant.o : $(SRCDIR)poketudiant.c $(SRCDIR)poketudiant.h
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)poketudiant.c 	
 
-poke.o : $(SRCDIR)poke.c $(SRCDIR)poke.h 
-	@$(CC) $(CFLAGS) -c  -o $(BINDIR)$@ $(SRCDIR)poke.c 
+$(BINDIR)poke.o : $(SRCDIR)poke.c $(SRCDIR)poke.h 
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)poke.c 
 	
 clean:
-	@rm -rf $(SRCDIR)*.o 
+	@rm -rf $(BINDIR)*.o 
 	@echo "Cleaning done :)"
 
 
