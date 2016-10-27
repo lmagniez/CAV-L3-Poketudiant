@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "attaque.h"
+#include "../lib/attaque.h"
 
 attaque tab_attaque[NB_ATTACK]={
 	{"BAVARDAGE",NOISY,10},
@@ -21,4 +21,8 @@ attaque tab_attaque[NB_ATTACK]={
 
 attaque * recupAttaque(type t){
 	return NULL;
+}
+
+int domageattaque(int k,int att_attack,int def_defender,int power){
+	return k*(att_attack/def_defender)*power;
 }

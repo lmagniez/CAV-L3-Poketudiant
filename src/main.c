@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
-#include "poketudiant.h"
+
+#include "../lib/poketudiant.h"
 
 int main(){
 }

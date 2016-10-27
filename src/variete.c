@@ -1,5 +1,5 @@
 
-#include "variete.h"
+#include "../lib/variete.h"
 
 char *tabc_string[]={"PARFLOR","ISMAR","RIGOLAMOR","PROCRASTINO","COUCHTAR",
 							"NUIDEBOU","BUCHAFON","BELMENTION","PROMOMAJOR",

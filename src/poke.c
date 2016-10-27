@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "poke.h"
+#include "../lib/poke.h"
 
 Poke tab_variete[NB_VARIETE]={
 	{PARFLOR,NOISY,1,NO_EVOLUTION,{60,40,60}},
@@ -20,17 +20,3 @@ Poke newPoke(variete v){
 	Poke new=tab_variete[v];
 	return new;
 }
-
-/*
- 	variete nom;
-	type spe;
-	
-	int capturable;
-	
-	variete evolution;
-	
-	statistique stat_courante;
-	statistique stat_base;
-
-	int experience;
-	* */
