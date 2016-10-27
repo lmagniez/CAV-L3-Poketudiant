@@ -7,7 +7,7 @@
 
 
 typedef struct Cafetariat{
-	Poketudiant p[NB_TABLE][NB_CHAISE] ;
+	Poketudiant p[NB_TABLE*NB_CHAISE];
 }Cafetariat;
 
 //ajout un pokemon a la cafet
