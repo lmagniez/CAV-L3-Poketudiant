@@ -9,7 +9,7 @@
 typedef struct statistique{
 	int att;
 	int defense;
-	int pv_max;
+	int pv_max_poke;
 }statistique;
 
 typedef struct Poke{

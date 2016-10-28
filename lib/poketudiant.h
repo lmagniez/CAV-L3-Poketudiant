@@ -2,7 +2,6 @@
 #define _POKETUDIANT_H
 
 #include "poke.h"
-
 #include "inventaire.h"
 #include "attaque.h"
 
@@ -17,7 +16,11 @@ typedef struct Poketudiant{
 	
 	Inventaire inv;
 	
-	int pv;
+	int pv_cur;
+	int pv_max;
+	
+	int coef;
+	
 	int lvl;
 	
 	int experience_cur;
@@ -38,4 +41,8 @@ int probaCapture(int pv_eff , int pv_max);
 //revoie 1 si on peut s'enfuir 
 int fuite(int lvl_poke, int lvl_enemy);
 
+void soigne_Poketudiant(Poketudiant * p);
+
+//echange les poketudiants
+void swap_poketudiant(Poketudiant * a , Poketudiant * b);
 #endif

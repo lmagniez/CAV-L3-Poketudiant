@@ -1,7 +1,8 @@
 #ifndef _ATTAQUE_H
 #define _ATTAQUE_H
 
-#define NB_ATTACK 12 
+#define NB_ATTACK 12
+#define N_ATTACK 2 
 
 #include "type.h"
 

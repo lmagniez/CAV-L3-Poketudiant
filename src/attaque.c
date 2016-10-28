@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
 
+#include "../lib/globale.h"
 #include "../lib/attaque.h"
 
 attaque tab_attaque[NB_ATTACK]={
@@ -19,10 +19,28 @@ attaque tab_attaque[NB_ATTACK]={
 	{"FATAL-INTERRO",TEACHER,20}
 };
 
+//retourne un tab de 2 attaque pour le pokemon
 attaque * recupAttaque(type t){
-	return NULL;
-}
+	attaque tab[N_ATTACK];
+	attaque tmp;
+	int indice;
+	for(int i=0;i<N_ATTACK;i++){
+		indice=myrand(0,NB_ATTACK);
+		tmp=tab_attaque[indice];
+		if(i==0){
+			if(!comparaisontype(tmp.t,t))
+				i--;
+		}
+		else{
+			if(comparaisontype(tmp.t,t))
+				i--;
+		}
+		tab[i]=tmp;
+	}
+	return tab;
+} 
 
+//renvoie les dommages d'une attaque 
 int domageattaque(int k,int att_attack,int def_defender,int power){
-	return k*(att_attack/def_defender)*power;
+	return (k*(att_attack/def_defender)*power);
 }

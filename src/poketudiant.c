@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 
-
+#include "../lib/globale.h"
 #include "../lib/poketudiant.h"
 
 
@@ -31,5 +30,13 @@ int fuite(int lvl_poke, int lvl_enemy){
 }
 
 int probaCapture(int pv_eff , int pv_max){
-	return 2*max((1/2)-(pv_eff/pv_max),0);
+	return 2*max(((1/2)-(pv_eff/pv_max)),0);
 }
+
+void soigne_Poketudiant(Poketudiant * p){
+	p->pv_cur=p->pv_max;
+}
+
+
+//echange les poketudiants
+void swap_poketudiant(Poketudiant * a , Poketudiant * b);

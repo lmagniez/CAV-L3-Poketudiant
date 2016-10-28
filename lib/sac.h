@@ -6,9 +6,9 @@
 #include "poketudiant.h"
 
 typedef struct Sac{
-	Poketudiant p[TAILLE_SAC];
-	int cur; //indice du poketudiant 1
-	int cpt; //nb poketudiant dans le sac
+	Poketudiant * p[TAILLE_SAC];
+	int p1; //indice du poketudiant 1
+	int cur; //nb poketudiant dans le sac
 }Sac;
 
 //ajout un pokemon dans le sac
@@ -27,6 +27,8 @@ void supprimierPoke_sac(Sac * s,int i);
 void switch_sac(Sac * s,int i,int j);
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac  * sac);
+int remplisSac(Sac  sac){
+	return 0;
+}
 
 #endif
