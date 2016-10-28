@@ -3,6 +3,13 @@
 
 #include "../lib/type.h"
 
+static char * tabc_string_type[]={"NOISY","LAZY","MOTIVATED","TEACHER"};
+
+char * stringType(type t){
+	return tabc_string_type[t];
+}
+
+
 int comparaisontype(type t1,type t2){
 	return (t1==t2);
 }

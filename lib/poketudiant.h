@@ -12,12 +12,14 @@ typedef struct Poketudiant{
 	
 	statistique stat_cur;
 	
+	
 	attaque base;
 	
 	//Inventaire inv;
 	
 	int pv_cur;
 	int pv_max;
+
 	
 	int coef;
 	
@@ -48,4 +50,6 @@ void soigne_Poketudiant(Poketudiant * p);
 
 //echange les poketudiants
 void swap_poketudiant(Poketudiant * a , Poketudiant * b);
+
+void affichePoketudiant(Poketudiant * p);
 #endif

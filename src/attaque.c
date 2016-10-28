@@ -21,7 +21,7 @@ attaque tab_attaque[NB_ATTACK]={
 
 //retourne un tab de 2 attaque pour le pokemon
 attaque * recupAttaque(type t){
-	attaque tab[N_ATTACK];
+	attaque * tab=(attaque *)malloc(N_ATTACK*sizeof(attaque));
 	attaque tmp;
 	int indice;
 	for(int i=0;i<N_ATTACK;i++){

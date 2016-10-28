@@ -5,6 +5,8 @@ typedef enum{
 	NOISY,LAZY,MOTIVATED,TEACHER
 }type;
 
+char * stringType(type t);
+
 //compare 2 types (generations attaques)
 int comparaisontype(type t1,type t2);
 

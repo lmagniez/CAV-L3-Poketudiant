@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 #include "../lib/globale.h"
 #include "../lib/poketudiant.h"
 
@@ -47,6 +48,12 @@ void soigne_Poketudiant(Poketudiant * p){
 
 //echange les poketudiants
 void swap_poketudiant(Poketudiant * a , Poketudiant * b){
-	
 	//--------------------------------
+}
+
+void affichePoketudiant(Poketudiant * p){
+	char * var=stringVariete(p->pokemon.nom);
+	char * type=stringType(p->pokemon.spe);
+	printf("Nom : %s  Type : %s\n  Level : %d \n",var,type,p->lvl);
+	printf("Statistique :\n      Attaque : %d \n       Defense : %d \n ",p->stat_cur.att,p->stat_cur.defense);
 }
