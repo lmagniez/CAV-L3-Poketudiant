@@ -27,4 +27,6 @@ void drop_pokemon(Inventaire * inv,int indice);
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Inventaire * inv,int indice);
 
+//ajoute le pokemon soit dans la cafet soit dans le sac
+void ajout_inv(Inventaire * inv,Poketudiant p);
 #endif

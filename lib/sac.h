@@ -11,6 +11,9 @@ typedef struct Sac{
 	int cur; //nb poketudiant dans le sac
 }Sac;
 
+//Initialise le sac
+Sac initsac();
+
 //ajout un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant p);
 

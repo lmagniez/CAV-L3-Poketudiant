@@ -5,8 +5,15 @@
 #include "../lib/poketudiant.h"
 
 
-Poketudiant * newPoketudiant(int borne1, int borne2){
+Poketudiant * newPoketudiant_random(int borne1, int borne2){
 	
+	//--------------------------------
+	return NULL;
+}
+
+Poketudiant * newPoketudiant_type(type t){
+	
+	//--------------------------------
 	return NULL;
 }
 
@@ -39,4 +46,7 @@ void soigne_Poketudiant(Poketudiant * p){
 
 
 //echange les poketudiants
-void swap_poketudiant(Poketudiant * a , Poketudiant * b);
+void swap_poketudiant(Poketudiant * a , Poketudiant * b){
+	
+	//--------------------------------
+}

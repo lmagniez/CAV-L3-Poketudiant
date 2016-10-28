@@ -4,7 +4,12 @@
 #include "../lib/inventaire.h"
 
 //initialise l'inventaire
-Inventaire initinv();
+Inventaire initinv(){
+	Inventaire inv;
+	inv.s=initsac();
+	inv.c=initcaf();
+	return inv;
+}
 
 //soigne tous les poketudiants du sac
 void soigne_sac(Inventaire * inv){
@@ -22,12 +27,13 @@ void soigne_caf(Inventaire * inv){
 
 //depose le poketudiant de l'equipe vers la cafet
 void drop_pokemon(Inventaire * inv,int indice){
-	
+	//-------------------------------------
 }
 
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Inventaire * inv,int indice){
-	if(0){
+	
+	if(remplisSac(inv->s)){
 		printf("Impossible l'equipe est pleine\n");
 		return;
 	}
@@ -36,5 +42,17 @@ void pick_pokemon(Inventaire * inv,int indice){
 		return;
 	}
 	
+	swap_poketudiant(inv->s.p[inv->s.cur],inv->c.p[inv->c.cur]);
+	inv->c.cur--;
 }
 
+//ajoute le pokemon soit dans la cafet soit dans le sac
+void ajout_inv(Inventaire * inv,Poketudiant p){
+	if(remplisSac( (inv->s) ) ){
+		if(!remplisCafet((inv->c)))
+			ajout_cafe( &(inv->c),p);
+		else
+			printf("Le sac et La cafetaria est plein\n");
+	}
+	ajout_sac(&(inv->s),p);
+}

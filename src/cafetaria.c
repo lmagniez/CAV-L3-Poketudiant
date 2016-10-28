@@ -3,50 +3,60 @@
 
 #include "../lib/cafetaria.h"
 
+
+//initialise la cafet
+Cafetariat initcaf(){
+	Cafetariat c;
+	c.cur=0;
+	for(int i=0;i<NB_TOTAL;i++)
+		c.p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
+	return c;
+}
+
 //ajout un pokemon a la cafet
-void ajout_cafe(Cafetariat * s,Poketudiant p){
-	if(s->cur==NB_TOTAL){
+void ajout_cafe(Cafetariat * c,Poketudiant p){
+	if(c->cur==NB_TOTAL){
 		printf("La Cafetaria est pleine\n");
 		return;
 	}
-	*(s->p[s->cur])=p;
-	s->cur++;
+	*(c->p[c->cur])=p;
+	c->cur++;
 }
 
 //lance l'affichage de toutes la cafet
-void showCafetaria(Cafetariat * s){
+void showCafetaria(Cafetariat * c){
 	for(int i=0;i<NB_TABLE;i++){
-		showRevision(s,i);
+		showRevision(c,i);
 	}
 }
 
 //Lance l'affichage d'une table de la cafet
-void showRevision(Cafetariat * s,int table){
+void showRevision(Cafetariat * c,int table){
 	for(int i=(table*NB_CHAISE)-NB_CHAISE;i<(table*NB_CHAISE);i++){
-		//affichePoketudiant(*(s->p[i])); ---------------------------------------
+		//affichePoketudiant(*(c->p[i])); ---------------------------------------
 	}
 }
 
 //Retourne si la cafet est plaine ou pas
-int remplisCafet(Cafetariat  * caf){
-	return NB_TOTAL==caf->cur;
+int remplisCafet(Cafetariat c){
+	return NB_TOTAL==c.cur;
 }
 
 //relache le poketudiant a l'indice i
-void release(Cafetariat * caf,int indice){
-	caf->p[indice]=NULL;
+void release(Cafetariat * c,int indice){
+	c->p[indice]=NULL;
 	
 	if(indice == NB_TOTAL){
-		caf->cur--;
+		c->cur--;
 		return;
 	}
 	
 	int car=indice+1;
 	
-	for(int i=indice;car<caf->cur;car++,i++){
-		//swap_poketudiant(caf->p[i],caf->p[car]); ---------------------------------------
+	for(int i=indice;car<c->cur;car++,i++){
+		//swap_poketudiant(c->p[i],caf->p[car]); ---------------------------------------
 	}
 	
-	caf->cur--;
+	c->cur--;
 }
 

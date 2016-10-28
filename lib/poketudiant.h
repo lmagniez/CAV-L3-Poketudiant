@@ -30,7 +30,10 @@ typedef struct Poketudiant{
 
 
 //creer un poketudiant entre 2 niveau
-Poketudiant * newPoketudiant(int borne1, int borne2);
+Poketudiant * newPoketudiant_random(int borne1, int borne2);
+
+//creer un poketudiant entre en fonction du type
+Poketudiant * newPoketudiant_type(type t);
 
 //calcul l'exp pour le niveau suivant
 int xp_next(int lvl);
