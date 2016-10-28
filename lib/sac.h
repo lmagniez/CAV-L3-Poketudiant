@@ -27,8 +27,6 @@ void supprimierPoke_sac(Sac * s,int i);
 void switch_sac(Sac * s,int i,int j);
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac  sac){
-	return 0;
-}
+int remplisSac(Sac sac);
 
 #endif

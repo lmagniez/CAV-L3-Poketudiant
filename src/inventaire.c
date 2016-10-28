@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 #include "../lib/inventaire.h"
 
 //initialise l'inventaire

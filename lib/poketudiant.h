@@ -2,7 +2,7 @@
 #define _POKETUDIANT_H
 
 #include "poke.h"
-#include "inventaire.h"
+//#include "inventaire.h"
 #include "attaque.h"
 
 #define CONST_LEVEL 500
@@ -14,7 +14,7 @@ typedef struct Poketudiant{
 	
 	attaque base;
 	
-	Inventaire inv;
+	//Inventaire inv;
 	
 	int pv_cur;
 	int pv_max;
