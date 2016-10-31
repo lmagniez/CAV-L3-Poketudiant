@@ -26,6 +26,5 @@ Poke newPokeRand(){
 	if(tab_variete[r].capturable!=0){
 		return tab_variete[r];
 	}
-	//A revoir 
 	return tab_variete[0];
 }
