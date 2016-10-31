@@ -17,14 +17,14 @@ Sac initsac();
 //ajout un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p);
 
-//change la valeur de cur en combat
-void changerPrem(Sac * s);
+//change la valeur de p1 en combat
+void changerPrem(Sac * s, int indice);
 
 //recup le premier poketudiant 
-Poketudiant recupPremier(Sac * s);
+Poketudiant* recupPremier(Sac * s);
 
 //supprime  poketudiant a l'indice i
-void supprimierPoke_sac(Sac * s,int i);
+Poketudiant* supprimerPoke_sac(Sac * s,int i);
 
 //inverse les positions de deux poketudiant dans le tab
 void switch_sac(Sac * s,int i,int j);

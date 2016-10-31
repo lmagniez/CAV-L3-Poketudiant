@@ -27,7 +27,10 @@ void soigne_caf(Inventaire * inv){
 
 //depose le poketudiant de l'equipe vers la cafet
 void drop_pokemon(Inventaire * inv,int indice){
-	//-------------------------------------
+	
+	Poketudiant *p=supprimerPoke_sac(&(inv->s),indice);
+	ajout_cafe(&(inv->c),p);
+	
 }
 
 //depose le poketudiant de la cafet vers l'equipe
