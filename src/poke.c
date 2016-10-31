@@ -3,7 +3,7 @@
 
 #include "../lib/poke.h"
 
-Poke tab_variete[NB_VARIETE]={
+static Poke tab_variete[NB_VARIETE]={
 	{PARFLOR,NOISY,1,NO_EVOLUTION,{60,40,60}},
 	{ISMAR,NOISY,1,RIGOLAMOR,{50,30,40}},
 	{RIGOLAMOR,NOISY,0,NO_EVOLUTION,{85,55,70}},
@@ -22,9 +22,15 @@ Poke newPoke(variete v){
 }
 
 Poke newPokeRand(){
-	int r=myrand(0,NB_VARIETE);
-	Poke k = tab_variete[r];
-	if(k.capturable==1)
+	printf("Poke rand\n");
+	int r=2;
+	printf("random : %d\n",r);
+	Poke k =tab_variete[r];
+	
+	
+	printf("%s\n",stringVariete(tab_variete[r].nom));
+	if(k.capturable!=0){
 		return k;
+	}
 	return newPokeRand();
 }

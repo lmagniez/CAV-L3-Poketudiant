@@ -19,13 +19,15 @@ Poketudiant * newPoketudiant_random(int borne1, int borne2){
 		borne2=borne1;
 		borne1=tmp;
 	}
-		
+
 	
 	Poketudiant * newP=(Poketudiant *)malloc(sizeof(Poketudiant));
+	
 	newP->pokemon=newPokeRand();
 	
 	//Calcul du coef on divise par 10 pour avoir un nombre decimal (3 coef differents un att , def et pv max
 	
+	printf("Coef\n");
 	newP->coef=(float *)malloc(sizeof(float)*NB_COEF);
 	
 	for(int i=0;i<NB_COEF;i++){
@@ -33,10 +35,13 @@ Poketudiant * newPoketudiant_random(int borne1, int borne2){
 		newP->coef[i]=newP->coef[i]/10;
 	}
 	
+	printf("Attaque\n");
 	newP->base=recupAttaque(newP->pokemon.spe);
 	
+	printf("Lvl\n");
 	newP->lvl=(int)myrand(borne1,borne2);
 	
+	printf("Stat\n");
 	//Niveau 1 des stats
 	newP->stat_cur=calculStat(newP->coef,newP->pokemon.stat_base);
 	
