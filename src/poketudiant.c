@@ -111,3 +111,9 @@ void affichePoketudiant(Poketudiant * p){
 int calculexp(int lvl){
 	return 500*((1+lvl)/2);
 }
+
+void freePoketudiant(Poketudiant *p)
+{
+	free(p->base);
+	free(p);
+}

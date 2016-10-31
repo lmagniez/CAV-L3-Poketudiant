@@ -8,5 +8,8 @@
 int main(){
 	Poketudiant * tmp=newPoketudiant_random(1,3);
 	affichePoketudiant(tmp);
+	
+	freePoketudiant(tmp);
+	
 	return 0;
 }

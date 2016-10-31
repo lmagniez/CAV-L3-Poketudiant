@@ -35,7 +35,8 @@ attaque * recupAttaque(type t){
 			if(comparaisontype(tmp.t,t))
 				i--;
 		}
-		tab[i]=tmp;
+		if(i!=-1)
+			tab[i]=tmp;
 	}
 	return tab;
 } 

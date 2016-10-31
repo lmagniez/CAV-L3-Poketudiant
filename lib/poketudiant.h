@@ -55,4 +55,7 @@ void swap_poketudiant(Poketudiant * a , Poketudiant * b);
 void affichePoketudiant(Poketudiant * p);
 
 int calculexp(int lvl);
+
+void freePoketudiant(Poketudiant *p);
+
 #endif
