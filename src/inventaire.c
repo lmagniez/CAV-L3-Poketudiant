@@ -47,7 +47,7 @@ void pick_pokemon(Inventaire * inv,int indice){
 }
 
 //ajoute le pokemon soit dans la cafet soit dans le sac
-void ajout_inv(Inventaire * inv,Poketudiant p){
+void ajout_inv(Inventaire * inv,Poketudiant * p){
 	if(remplisSac( (inv->s) ) ){
 		if(!remplisCafet((inv->c)))
 			ajout_cafe( &(inv->c),p);

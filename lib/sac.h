@@ -15,7 +15,7 @@ typedef struct Sac{
 Sac initsac();
 
 //ajout un pokemon dans le sac
-void ajout_sac(Sac * s,Poketudiant p);
+void ajout_sac(Sac * s,Poketudiant * p);
 
 //change la valeur de cur en combat
 void changerPrem(Sac * s);

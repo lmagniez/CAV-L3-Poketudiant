@@ -6,28 +6,28 @@
 #include "attaque.h"
 
 #define CONST_LEVEL 500
+#define B_COEF_MIN 9
+#define B_COEF_MAX 11
+#define NB_COEF 3
 
 typedef struct Poketudiant{
 	Poke pokemon;
+		
+	float * coef;
 	
 	statistique stat_cur;
 	
-	
-	attaque base;
-	
-	//Inventaire inv;
-	
-	int pv_cur;
-	int pv_max;
+	attaque * base;
 
-	
-	int coef;
-	
 	int lvl;
+		
+	int pv_cur;
+
 	
 	int experience_cur;
 	int experience_niveau_sup;
 	
+	//Inventaire inv;
 }Poketudiant;
 
 
@@ -52,4 +52,6 @@ void soigne_Poketudiant(Poketudiant * p);
 void swap_poketudiant(Poketudiant * a , Poketudiant * b);
 
 void affichePoketudiant(Poketudiant * p);
+
+int calculexp(int lvl);
 #endif

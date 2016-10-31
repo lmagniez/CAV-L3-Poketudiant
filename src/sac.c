@@ -13,7 +13,7 @@ Sac initsac(){
 }
 
 //ajout un pokemon dans le sac
-void ajout_sac(Sac * s,Poketudiant p){
+void ajout_sac(Sac * s,Poketudiant * p){
 	
 }
 

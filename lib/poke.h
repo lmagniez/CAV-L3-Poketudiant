@@ -5,12 +5,7 @@
 
 #include "type.h"
 #include "variete.h"
-
-typedef struct statistique{
-	int att;
-	int defense;
-	int pv_max_poke;
-}statistique;
+#include "statistique.h"
 
 typedef struct Poke{
 	variete nom;
@@ -22,4 +17,5 @@ typedef struct Poke{
 
 Poke newPoke(variete v);
 
+Poke newPokeRand();
 #endif

@@ -14,12 +14,12 @@ Cafetariat initcaf(){
 }
 
 //ajout un pokemon a la cafet
-void ajout_cafe(Cafetariat * c,Poketudiant p){
+void ajout_cafe(Cafetariat * c,Poketudiant * p){
 	if(c->cur==NB_TOTAL){
 		printf("La Cafetaria est pleine\n");
 		return;
 	}
-	*(c->p[c->cur])=p;
+	c->p[c->cur]=p;
 	c->cur++;
 }
 
@@ -33,7 +33,7 @@ void showCafetaria(Cafetariat * c){
 //Lance l'affichage d'une table de la cafet
 void showRevision(Cafetariat * c,int table){
 	for(int i=(table*NB_CHAISE)-NB_CHAISE;i<(table*NB_CHAISE);i++){
-		//affichePoketudiant(*(c->p[i])); ---------------------------------------
+		affichePoketudiant(c->p[i]);
 	}
 }
 
@@ -54,6 +54,7 @@ void release(Cafetariat * c,int indice){
 	int car=indice+1;
 	
 	for(int i=indice;car<c->cur;car++,i++){
+		//a FAIRE 
 		//swap_poketudiant(c->p[i],caf->p[car]); ---------------------------------------
 	}
 	

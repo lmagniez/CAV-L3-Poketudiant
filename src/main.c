@@ -6,4 +6,5 @@
 #include "../lib/poketudiant.h"
 
 int main(){
+	return 0;
 }

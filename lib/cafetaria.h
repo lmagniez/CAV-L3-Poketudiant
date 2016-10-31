@@ -17,7 +17,7 @@ typedef struct Cafetariat{
 Cafetariat initcaf();
 
 //ajout un pokemon a la cafet
-void ajout_cafe(Cafetariat * c,Poketudiant p);
+void ajout_cafe(Cafetariat * c,Poketudiant * p);
 
 //lance l'affichage de toutes la cafet
 void showCafetaria(Cafetariat * c);
