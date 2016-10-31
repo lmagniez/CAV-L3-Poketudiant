@@ -5,7 +5,7 @@
 
 static char * tabc_string_type[]={"NOISY","LAZY","MOTIVATED","TEACHER"};
 
-char * stringType(type t){
+char * chaineType(type t){
 	return tabc_string_type[t];
 }
 

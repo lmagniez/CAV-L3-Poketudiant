@@ -1,7 +1,7 @@
 #ifndef _POKE_H
 #define _POKE_H
 
-#define NB_VARIETE 10
+#define NB_VARIETE 11
 
 #include "type.h"
 #include "variete.h"

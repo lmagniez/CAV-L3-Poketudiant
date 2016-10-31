@@ -8,6 +8,6 @@
 	#define max(a,b) ( ((a) > (b)) ? (a) : (b) )
 #endif
 
-float myrand(int a,int b);
+int myrand(int a,int b);
 
 #endif

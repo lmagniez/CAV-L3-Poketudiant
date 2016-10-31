@@ -8,7 +8,7 @@
 
 
 Poketudiant * newPoketudiant_random(int borne1, int borne2){
-	
+	srand(time(NULL));
 	if( borne1 < 1 || borne2 < 1){
 		printf("Creation Poketudiant Impossible \n");
 		return NULL;
@@ -19,29 +19,26 @@ Poketudiant * newPoketudiant_random(int borne1, int borne2){
 		borne2=borne1;
 		borne1=tmp;
 	}
-
 	
 	Poketudiant * newP=(Poketudiant *)malloc(sizeof(Poketudiant));
 	
 	newP->pokemon=newPokeRand();
 	
+	
 	//Calcul du coef on divise par 10 pour avoir un nombre decimal (3 coef differents un att , def et pv max
 	
-	printf("Coef\n");
 	newP->coef=(float *)malloc(sizeof(float)*NB_COEF);
 	
 	for(int i=0;i<NB_COEF;i++){
-		newP->coef[i]=myrand(B_COEF_MIN,B_COEF_MAX);
+		newP->coef[i]=(float)myrand(B_COEF_MIN,B_COEF_MAX);
 		newP->coef[i]=newP->coef[i]/10;
 	}
 	
-	printf("Attaque\n");
 	newP->base=recupAttaque(newP->pokemon.spe);
 	
-	printf("Lvl\n");
+
 	newP->lvl=(int)myrand(borne1,borne2);
-	
-	printf("Stat\n");
+
 	//Niveau 1 des stats
 	newP->stat_cur=calculStat(newP->coef,newP->pokemon.stat_base);
 	
@@ -49,12 +46,13 @@ Poketudiant * newPoketudiant_random(int borne1, int borne2){
 		newP->stat_cur=calculStat(newP->coef,newP->pokemon.stat_base);
 	}
 
+
 	newP->pv_cur=newP->stat_cur.pv_max_poke;
 	
 	newP->experience_cur=calculexp(newP->lvl-1);
+		
 	newP->experience_niveau_sup=calculexp(newP->lvl);
-	
-	
+			
 	return newP;
 }
 
@@ -98,10 +96,11 @@ void swap_poketudiant(Poketudiant * a , Poketudiant * b){
 }
 
 void affichePoketudiant(Poketudiant * p){
-	char * var=stringVariete(p->pokemon.nom);
-	char * type=stringType(p->pokemon.spe);
-	printf("Nom : %s  Type : %s\n  Level : %d \n",var,type,p->lvl);
-	printf("Statistique :\n      Attaque : %d \n       Defense : %d \n ",p->stat_cur.att,p->stat_cur.defense);
+	char * var=chaineVariete(p->pokemon.nom);
+	char * type=chaineType(p->pokemon.spe);
+	
+	printf("Nom : %s  Type : %s\n   Level : %d \n",var,type,p->lvl);
+	printf("Statistique :\n   Attaque : %d \n   Defense : %d \n",p->stat_cur.att,p->stat_cur.defense);
 }
 
 

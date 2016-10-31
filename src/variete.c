@@ -5,6 +5,6 @@ static char * tabc_string_var[]={"PARFLOR","ISMAR","RIGOLAMOR","PROCRASTINO","CO
 							"NUIDEBOU","BUCHAFON","BELMENTION","PROMOMAJOR",
 							"ENSEIGNANT_DRESSEUR","NO_EVOLUTION"};
 
-char * stringVariete(variete ele){
+char * chaineVariete(variete ele){
 	return tabc_string_var[ele];
 }

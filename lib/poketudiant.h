@@ -4,10 +4,13 @@
 #include "poke.h"
 //#include "inventaire.h"
 #include "attaque.h"
+#include "type.h"
+#include "variete.h"
+
 
 #define CONST_LEVEL 500
 #define B_COEF_MIN 9
-#define B_COEF_MAX 11
+#define B_COEF_MAX 12
 #define NB_COEF 3
 
 typedef struct Poketudiant{

@@ -1,4 +1,3 @@
-
 #include "../lib/statistique.h"
 
 statistique calculStat(float * coef,statistique b){
