@@ -6,6 +6,7 @@
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 #define ERR_EMPTYBAG	"erreur, sac vide\n"
 #define ERR_FULLBAG		"erreur, sac plein\n"
+#define ERR_USED		"erreur, poketudiant en tete d'equipe\n"
 
 
 Sac initsac(){
@@ -26,8 +27,8 @@ void ajout_sac(Sac * s,Poketudiant * p){
 		exit(1);
 	}
 	
-	*(s->p[cur])=*p;
-	cur++;
+	*(s->p[s->cur])=*p;
+	s->cur++;
 }
 
 //change la valeur de p1 en combat
@@ -58,14 +59,14 @@ Poketudiant* recupPremier(Sac * s)
 //on ne peut pas avoir un sac vide
 Poketudiant* supprimerPoke_sac(Sac * s,int i)
 {
-	if(s->cur<i){
-		printf("erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n",i);
+	if(i>s->cur-1){
+		printf(ERR_OVERFLOW,i);
 		exit(1);
 	}
 	
 	if(s->p1!=i)
 	{
-		printf("erreur, poketudiant en tete d'equipe\n");
+		printf(ERR_USED);
 		exit(1);
 	}
 	

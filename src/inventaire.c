@@ -3,6 +3,11 @@
 
 #include "../lib/inventaire.h"
 
+#define ERR_TEAMFULL "Impossible l'equipe est pleine\n"
+#define ERR_NOPKTD "Il n'y a pas de poketudiants a cette place\n"
+#define ERR_BOTHFULL "Le sac et La cafetaria sont pleins\n"
+
+
 //initialise l'inventaire
 Inventaire initinv(){
 	Inventaire inv;
@@ -37,11 +42,11 @@ void drop_pokemon(Inventaire * inv,int indice){
 void pick_pokemon(Inventaire * inv,int indice){
 	
 	if(remplisSac(inv->s)){
-		printf("Impossible l'equipe est pleine\n");
+		printf(ERR_TEAMFULL);
 		return;
 	}
 	if(inv->c.p[indice]==NULL){
-		printf("Il n'y a pas de poketudiants a cette place\n");
+		printf(ERR_NOPKTD);
 		return;
 	}
 	
@@ -55,7 +60,7 @@ void ajout_inv(Inventaire * inv,Poketudiant * p){
 		if(!remplisCafet((inv->c)))
 			ajout_cafe( &(inv->c),p);
 		else
-			printf("Le sac et La cafetaria est plein\n");
+			printf(ERR_BOTHFULL);
 	}
 	ajout_sac(&(inv->s),p);
 }

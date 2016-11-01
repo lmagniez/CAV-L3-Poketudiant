@@ -42,7 +42,6 @@ Poketudiant * newPoketudiant_random(int borne1, int borne2){
 	//Niveau 1 des stats
 	newP->stat_cur=calculStat(newP->coef,newP->pokemon.stat_base);
 
-
 	newP->pv_cur=newP->stat_cur.pv_max_poke;
 	
 	newP->experience_cur=calculexp(newP->lvl-1);
@@ -88,7 +87,9 @@ void soigne_Poketudiant(Poketudiant * p){
 
 //echange les poketudiants
 void swap_poketudiant(Poketudiant * a , Poketudiant * b){
-	//--------------------------------
+	Poketudiant p=*a;
+	*a=*b;
+	*b=p;
 }
 
 void affichePoketudiant(Poketudiant * p){
