@@ -44,18 +44,17 @@ int remplisCafet(Cafetariat c){
 
 //relache le poketudiant a l'indice i
 void release(Cafetariat * c,int indice){
+	int car;
 	c->p[indice]=NULL;
 	
 	if(indice == NB_TOTAL){
 		c->cur--;
 		return;
 	}
-	
-	int car=indice+1;
-	
-	for(int i=indice;car<c->cur;car++,i++){
-		//a FAIRE 
-		//swap_poketudiant(c->p[i],caf->p[car]); ---------------------------------------
+
+
+	for(int i=indice,car=indice+1;car<c->cur;car++,i++){
+		swap_poketudiant(c->p[i],c->p[car]);
 	}
 	
 	c->cur--;

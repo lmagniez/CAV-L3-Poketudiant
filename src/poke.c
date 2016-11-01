@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../lib/globale.h"
 #include "../lib/poke.h"
 
 static Poke tab_variete[NB_VARIETE]={
@@ -22,9 +23,18 @@ Poke newPoke(variete v){
 }
 
 Poke newPokeRand(){
+	printf("Poke\n");
 	int r=myrand(0,NB_VARIETE);
-	if(tab_variete[r].capturable!=0){
+	printf("random : %d\n",r);
+	if(tab_variete[r].capturable==1){
 		return tab_variete[r];
 	}
-	return tab_variete[0];
+	else {
+		while(tab_variete[r].capturable==0){
+			r++;
+			if(r==NB_VARIETE)
+				r=0;
+		}
+		return tab_variete[r];
+	}
 }

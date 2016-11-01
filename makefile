@@ -44,5 +44,3 @@ $(BINDIR)statistique.o: $(SRCDIR)statistique.c
 clean:
 	@rm -rf $(BINDIR)*.o 
 	@echo "Cleaning done :)"
-
-

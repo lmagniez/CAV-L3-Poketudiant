@@ -93,19 +93,26 @@ void swap_poketudiant(Poketudiant * a , Poketudiant * b){
 }
 
 void affichePoketudiant(Poketudiant * p){
+	printf("Deb Affiche \n");
+	printf("%d %d \n",p->pokemon.nom,p->pokemon.spe);
+	
 	char * var=chaineVariete(p->pokemon.nom);
+	printf("Apres NOM\n");
 	char * type=chaineType(p->pokemon.spe);
-	
+	printf("Recup chaine\n");
+	printf("------------------------------------\n");
 	printf("Nom : %s  Type : %s\n   Level : %d \n",var,type,p->lvl);
-	
+	printf("Nom Affiche \n");
+
 	printf("Attaque :\n");
 	for(int i=0;i<N_ATTACK;i++){
 		printf("   Nom: %s , Puissance : %d\n",p->base[i].nom,p->base[i].puissance);
 	}
-	printf("Attaque :\n");
-	
+	printf("Atta Affiche \n");
 	
 	printf("Statistique :\n   Attaque : %d \n   Defense : %d \n",p->stat_cur.att,p->stat_cur.defense);
+	printf("------------------------------------\n");
+	printf("fin Affiche \n");
 }
 
 
