@@ -23,9 +23,7 @@ Poke newPoke(variete v){
 }
 
 Poke newPokeRand(){
-	printf("Poke\n");
 	int r=myrand(0,NB_VARIETE);
-	printf("random : %d\n",r);
 	if(tab_variete[r].capturable==1){
 		return tab_variete[r];
 	}
