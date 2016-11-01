@@ -20,7 +20,6 @@ Sac initsac(){
 
 //ajoute un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
-	
 	if(remplisSac(*s))
 	{
 		printf(ERR_FULLBAG);

@@ -33,6 +33,7 @@ void showCafetaria(Cafetariat * c){
 //Lance l'affichage d'une table de la cafet
 void showRevision(Cafetariat * c,int table){
 	for(int i=(table*NB_CHAISE)-NB_CHAISE;i<(table*NB_CHAISE);i++){
+		printf("----------------------------------\n                  TABLE %d INDICE %d                  \n----------------------------------\n",table,i);
 		affichePoketudiant(c->p[i]);
 	}
 }
