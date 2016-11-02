@@ -9,13 +9,15 @@
 #define CONST_LEVEL 500
 #define B_COEF_MIN 9
 #define B_COEF_MAX 11
-#define NB_COEF 
+#define NB_COEF 3
 
 #define LVL_FIVE 5
 #define LVL_FOUR 4
 #define LVL_THREE 3
 #define POURC_THREE 20
 #define POURC_FOUR 375 //A revoir 
+
+#define POURC_LEVELUP 10
 
 
 typedef struct Poketudiant{
@@ -66,5 +68,9 @@ int calculexp(int lvl);
 void freePoketudiant(Poketudiant *p);
 
 int doitevoluer(int lvl);
+
+void lvlup(Poketudiant *p);
+
+void evolution(Poketudiant *p);
 
 #endif

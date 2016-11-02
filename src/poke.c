@@ -17,7 +17,7 @@ static Poke tab_variete[NB_VARIETE]={
 	{ENSEIGNANT_DRESSEUR,TEACHER,0,NO_EVOLUTION,{100,100,100}}
 };
 
-Poke newPoke(variete v){
+Poke recupPoke(variete v){
 	Poke new=tab_variete[v];
 	return new;
 }

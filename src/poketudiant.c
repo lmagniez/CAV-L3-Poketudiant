@@ -121,6 +121,26 @@ int doitevoluer(int lvl){
 	if(LVL_THREE == lvl)
 		if(r<POURC_FOUR)
 			return 1;
+	return 0;	
+}
+
+void lvlup(Poketudiant *p){
+	int att=((p->pokemon.stat_base.att*p->coef[0])*POURC_LEVELUP)/100;
+	int def=((p->pokemon.stat_base.defense*p->coef[1])*POURC_LEVELUP)/100;;
+	int pv_max=((p->pokemon.stat_base.pv_max_poke*p->coef[1])*POURC_LEVELUP)/100;;
+
+	p->stat_cur.att=p->stat_cur.att+att;
+	p->stat_cur.defense=p->stat_cur.defense+def;
+	p->stat_cur.pv_max_poke=p->stat_cur.pv_max_poke+pv_max;
+
+	soigne_Poketudiant(p);
+	p->lvl++;
+}
+
+void evolution(Poketudiant *p){
+	p->pokemon=recupPoke(p->pokemon.evolution);
+	p->stat_cur=calculStat(p->coef,p->pokemon.stat_base);
+	lvlup(p);
 }
 
 void freePoketudiant(Poketudiant *p)

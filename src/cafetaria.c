@@ -53,7 +53,6 @@ void release(Cafetariat * c,int indice){
 		return;
 	}
 
-
 	for(int i=indice,car=indice+1;car<c->cur;car++,i++){
 		swap_poketudiant(c->p[i],c->p[car]);
 	}
