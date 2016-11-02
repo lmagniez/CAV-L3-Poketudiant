@@ -2,8 +2,9 @@
 #define _INVENTAIRE_H
 
 #include "poketudiant.h"
+
+#include "cafetariat.h"
 #include "sac.h"
-#include "cafetaria.h"
 
 typedef struct Inventaire{
 	Sac s;

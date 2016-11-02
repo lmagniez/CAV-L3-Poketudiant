@@ -2,7 +2,6 @@
 #define _POKETUDIANT_H
 
 #include "poke.h"
-//#include "inventaire.h"
 #include "attaque.h"
 
 
@@ -40,12 +39,13 @@ typedef struct Poketudiant{
 	//Inventaire inv;
 }Poketudiant;
 
-
 //creer un poketudiant entre 2 niveau
 Poketudiant * newPoketudiant_random(int borne1, int borne2);
 
 //creer un poketudiant entre en fonction du type
-Poketudiant * newPoketudiant_type(type t);
+Poketudiant * newPoketudiant_type(variete t);
+
+void init(Poketudiant * p);
 
 //calcul l'exp pour le niveau suivant
 int xp_next(int lvl);
@@ -70,6 +70,8 @@ void freePoketudiant(Poketudiant *p);
 int doitevoluer(int lvl);
 
 void lvlup(Poketudiant *p);
+
+void calculstatlevelup(Poketudiant * p);
 
 void evolution(Poketudiant *p);
 

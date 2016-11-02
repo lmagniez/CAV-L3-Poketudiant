@@ -1,5 +1,6 @@
 #include "../lib/statistique.h"
 
+
 statistique calculStat(float * coef,statistique b){
 	statistique newS;
 	newS.att=b.att*coef[0];

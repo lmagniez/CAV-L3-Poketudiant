@@ -1,7 +1,6 @@
 #ifndef _CAFETARIA_H
 #define _CAFETARIA_H
 
-
 #define NB_TABLE 3
 #define NB_CHAISE 4
 #define NB_TOTAL NB_TABLE*NB_CHAISE
@@ -10,7 +9,7 @@
 
 typedef struct Cafetariat{
 	Poketudiant * p[NB_TOTAL];
-	int cur;
+	int cur; //nb poketudiant dans le sac
 }Cafetariat;
 
 //initialise la cafet

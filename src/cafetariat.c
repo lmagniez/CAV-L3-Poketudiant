@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../lib/cafetaria.h"
-
+#include "../lib/cafetariat.h"
 
 //initialise la cafet
 Cafetariat initcaf(){
@@ -45,7 +44,7 @@ int remplisCafet(Cafetariat c){
 
 //relache le poketudiant a l'indice i
 void release(Cafetariat * c,int indice){
-	int car;
+	int car=0;
 	c->p[indice]=NULL;
 	
 	if(indice == NB_TOTAL){
@@ -56,7 +55,6 @@ void release(Cafetariat * c,int indice){
 	for(int i=indice,car=indice+1;car<c->cur;car++,i++){
 		swap_poketudiant(c->p[i],c->p[car]);
 	}
-	
 	c->cur--;
 }
 
