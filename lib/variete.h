@@ -6,4 +6,5 @@ typedef enum{
 }variete;
 
 char * chaineVariete(variete ele);
+
 #endif

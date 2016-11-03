@@ -85,7 +85,7 @@ int choixJoueur(Poketudiant * p1, Poketudiant * p2){
 		case 4:
 			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
-			exit(0);
+			exit(0); //a voir avec loick 
 			return 2;
 		break;
 		default:

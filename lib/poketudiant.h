@@ -36,7 +36,6 @@ typedef struct Poketudiant{
 	int experience_cur;
 	int experience_niveau_sup;
 	
-	//Inventaire inv;
 }Poketudiant;
 
 //creer un poketudiant entre 2 niveau
