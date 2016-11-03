@@ -14,14 +14,15 @@ int comparaisontype(type t1,type t2){
 	return (t1==t2);
 }
 
+//retourne 2 pour doubler l'attaque
 int faiblesse(type t1,type t2){
 	if(t1==NOISY && t2==LAZY)
-		return 1;
+		return 2;
 	if(t1==LAZY && t2==MOTIVATED)
-		return 1;
+		return 2;
 	if(t1==MOTIVATED && t2==NOISY)
-		return 1;
+		return 2;
 	if(t1==TEACHER && (t2==NOISY || t2==LAZY))
-		return 1;
-	return 0;
+		return 2;
+	return 1;
 }

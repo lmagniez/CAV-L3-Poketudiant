@@ -50,12 +50,6 @@ void init(Poketudiant * p);
 //calcul l'exp pour le niveau suivant
 int xp_next(int lvl);
 
-//calcul la probabilite de capture
-int probaCapture(int pv_eff , int pv_max);
-
-//revoie 1 si on peut s'enfuir 
-int fuite(int lvl_poke, int lvl_enemy);
-
 void soigne_Poketudiant(Poketudiant * p);
 
 //echange les poketudiants

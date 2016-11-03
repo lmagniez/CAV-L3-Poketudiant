@@ -1,7 +1,7 @@
 BINDIR=bin/
 SRCDIR=src/
 
-OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o
+OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o
 CC=gcc
 CFLAGS=-Wall -g
 
@@ -39,7 +39,10 @@ $(BINDIR)globale.o : $(SRCDIR)globale.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)globale.c 
 	
 $(BINDIR)statistique.o: $(SRCDIR)statistique.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)statistique.c 
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)statistique.c
+
+$(BINDIR)combat.o: $(SRCDIR)combat.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)combat.c 
 
 clean:
 	@rm -rf $(BINDIR)*.o 
