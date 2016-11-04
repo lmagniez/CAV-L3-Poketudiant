@@ -38,7 +38,6 @@ void drop_pokemon(Inventaire * inv,int indice){
 
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Inventaire * inv,int indice){
-	
 	if(remplisSac(inv->s)){
 		printf(ERR_TEAMFULL);
 		return;

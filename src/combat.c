@@ -116,7 +116,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 		}
 
 		if(a==1){break;} //fuite
-		if(a==2){ajout_inv(&(j.inv),p2);} //capture
+		if(a==2){ajout_inv(&(j.inv),p2);break;} //capture
 		if(a==3){p1=j.inv.s->p[j.inv.s->p1];} //changement poketudiant
 
 		a=tourordi(&j,p2);
@@ -130,7 +130,6 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 		affichageentetour(p1,p2);
 	}
 }
-
 
 int probaCapture(int pv_eff , int pv_max){
 	float prob=0.5-(1.0*pv_eff/pv_max);
@@ -178,5 +177,4 @@ void affichageentetour(Poketudiant * p1, Poketudiant * p2){
 
 	printf("%s %d/%d ------ ",var1,p1->pv_cur,p1->stat_cur.pv_max_poke);
 	printf("%s %d/%d\n\n",var2,p2->pv_cur,p2->stat_cur.pv_max_poke);
-
 }
