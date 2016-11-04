@@ -9,3 +9,4 @@ Joueur initJoeur(){
 	j.inv=initinv();
 	return j;
 }
+

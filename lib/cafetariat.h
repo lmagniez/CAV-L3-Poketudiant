@@ -13,7 +13,7 @@ typedef struct Cafetariat{
 }Cafetariat;
 
 //initialise la cafet
-Cafetariat initcaf();
+Cafetariat * initcaf();
 
 //ajout un pokemon a la cafet
 void ajout_cafe(Cafetariat * c,Poketudiant * p);
@@ -25,7 +25,7 @@ void showCafetaria(Cafetariat * c);
 void showRevision(Cafetariat * c,int table);
 
 //Retourne si la cafet est plaine ou pas
-int remplisCafet(Cafetariat c);
+int remplisCafet(Cafetariat * c);
 
 //relache le poketudiant a l'indice i
 void release(Cafetariat * caf,int indice);

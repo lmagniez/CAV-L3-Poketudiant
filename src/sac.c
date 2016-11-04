@@ -9,18 +9,18 @@
 #define ERR_USED		"erreur, poketudiant en tete d'equipe\n"
 
 
-Sac initsac(){
-	Sac s;
-	s.cur=0;
-	s.p1=0;
+Sac * initsac(){
+	Sac * s=(Sac *)malloc(sizeof(Sac));
+	s->cur=0;
+	s->p1=0;
 	for(int i=0;i<TAILLE_SAC;i++)
-		s.p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
+		s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	return s;
 }
 
 //ajoute un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
-	if(remplisSac(*s))
+	if(remplisSac(s))
 	{
 		printf(ERR_FULLBAG);
 		exit(1);
@@ -40,7 +40,6 @@ void changerPrem(Sac * s, int indice)
 	}
 	
 	s->p1=indice;
-	
 }
 
 //recup le premier poketudiant (p1)
@@ -92,6 +91,16 @@ void switch_sac(Sac * s,int i,int j)
 }
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac sac){
-	return (sac.cur==TAILLE_SAC);
+int remplisSac(Sac * sac){
+	return (sac->cur==TAILLE_SAC);
+}
+
+void afficheSac(Sac * sac){
+	printf("Sac : \n");
+	char * nom;
+	for(int i=0;i<sac->cur;i++){
+		nom=chaineVariete(sac->p[i]->pokemon.nom);
+		printf("  %d Nom: %s LVL: %d \n",i,nom,sac->p[i]->lvl);
+	}
+	printf("\n");
 }

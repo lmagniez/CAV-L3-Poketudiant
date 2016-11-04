@@ -12,7 +12,7 @@ typedef struct Sac{
 }Sac;
 
 //Initialise le sac
-Sac initsac();
+Sac * initsac();
 
 //ajout un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p);
@@ -30,6 +30,7 @@ Poketudiant* supprimerPoke_sac(Sac * s,int i);
 void switch_sac(Sac * s,int i,int j);
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac sac);
+int remplisSac(Sac * sac);
 
+void afficheSac(Sac * sac);
 #endif

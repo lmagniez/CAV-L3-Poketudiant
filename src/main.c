@@ -2,24 +2,20 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "../lib/inventaire.h"
+#include "../lib/joueur.h"
 #include "../lib/combat.h"
 
 int main(){
-	Poketudiant * tmp=newPoketudiant_random(1,5);
-	if(tmp->pokemon.evolution!=NO_EVOLUTION){
-		evolution(tmp);
-	}
-	//affichePoketudiant(tmp);
+	Poketudiant * tmp1=newPoketudiant_random(1,5);
+	Poketudiant * tmp2=newPoketudiant_type(PROCRASTINO);
 
-	Poketudiant * tmp2=newPoketudiant_type(2);
-	if(tmp->pokemon.evolution!=NO_EVOLUTION){
-		evolution(tmp2);
-	}
-	//affichePoketudiant(tmp2);
+	Poketudiant * tmp3=newPoketudiant_random(1,5);
 	
-	combatSauvage(tmp,tmp2);
-	freePoketudiant(tmp);
-	freePoketudiant(tmp2);
+	Joueur j=initJoeur();
+	ajout_sac(j.inv.s,tmp1);
+	ajout_sac(j.inv.s,tmp2);
+
+	combatSauvage(j,tmp3);
+
 	return 0;
 }

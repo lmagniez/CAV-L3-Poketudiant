@@ -3,13 +3,15 @@
 
 void combatRival(Poketudiant * p1, Poketudiant * p2);
 
-void combatSauvage(Poketudiant * p1, Poketudiant * p2);
+void combatSauvage(Joueur j, Poketudiant * p2);
 
-int tourjoueur(Poketudiant * p1, Poketudiant * p2);
+int tourjoueur(Joueur * j, Poketudiant * p2);
 
-int choixJoueur(Poketudiant * p1, Poketudiant * p2);
+int choixJoueur(Joueur * j, Poketudiant * p2);
 
-int tourordi(Poketudiant * p1, Poketudiant * p2);
+int tourordi(Joueur * j, Poketudiant * p2);
+
+void changemntPcombat(Joueur * j);
 
 //revoie 1 si on peut s'enfuir 
 int fuite(int lvl_poke, int lvl_enemy);

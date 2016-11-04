@@ -4,11 +4,11 @@
 #include "../lib/cafetariat.h"
 
 //initialise la cafet
-Cafetariat initcaf(){
-	Cafetariat c;
-	c.cur=0;
+Cafetariat * initcaf(){
+	Cafetariat * c=(Cafetariat *)malloc(sizeof(Cafetariat));
+	c->cur=0;
 	for(int i=0;i<NB_TOTAL;i++)
-		c.p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
+		c->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	return c;
 }
 
@@ -38,8 +38,8 @@ void showRevision(Cafetariat * c,int table){
 }
 
 //Retourne si la cafet est plaine ou pas
-int remplisCafet(Cafetariat c){
-	return NB_TOTAL==c.cur;
+int remplisCafet(Cafetariat * c){
+	return NB_TOTAL==c->cur;
 }
 
 //relache le poketudiant a l'indice i

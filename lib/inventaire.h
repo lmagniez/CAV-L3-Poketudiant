@@ -2,13 +2,12 @@
 #define _INVENTAIRE_H
 
 #include "poketudiant.h"
-
 #include "cafetariat.h"
 #include "sac.h"
 
 typedef struct Inventaire{
-	Sac s;
-	Cafetariat c;
+	Sac * s;
+	Cafetariat * c;
 }Inventaire;
 
 //initialise l'inventaire

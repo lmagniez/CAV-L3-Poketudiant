@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 #include "../lib/globale.h"
 #include "../lib/poketudiant.h"
 
@@ -60,7 +59,7 @@ Poketudiant * newPoketudiant_type(variete t){
 	
 	newP->pokemon=recupPoke(t);	
 	
-	newP->lvl=(int)myrand(0,10);
+	newP->lvl=(int)myrand(1,10);
 
 	init(newP);
 
