@@ -53,20 +53,23 @@ int choixJoueur(Joueur * j, Poketudiant * p2){
 			affichageTour(p1,p1->base[reponse]);
 		break;
 		case 3:
-			if(!fuite(p1->lvl,p2->lvl))return 1;
+			if(!fuite(p1->lvl,p2->lvl)){
+				printf("Fuite Impossible !\n");
+				return 0;
+			}
 			printf("Vous prenez la Fuite !\n");
-			return 1;
+			return FUITE;
 		break;
 		case 4:
 			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
 			exit(0); //a voir avec loick 
-			return 2;
+			return CAPTURE;
 		break;
 		case 5:
 			afficheSac(j->inv.s);
 			changemntPcombat(j);
-			return 3;
+			return CHANG_POKE;
 		break;
 		default:
 			printf("Mauvaise Entrée ! ");
@@ -106,8 +109,11 @@ void combatRival(Poketudiant * p1, Poketudiant * p2){
 
 void combatSauvage(Joueur j, Poketudiant * p2){
 	int a=0;
+	
 	Poketudiant * p1=j.inv.s->p[j.inv.s->p1];
+	
 	affichagecombat(p1,p2);
+
 	while(!a){
 		a=tourjoueur(&j,p2);
 		if(p2->pv_cur<1){
@@ -115,9 +121,9 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 			break;
 		}
 
-		if(a==1){break;} //fuite
-		if(a==2){ajout_inv(&(j.inv),p2);break;} //capture
-		if(a==3){p1=j.inv.s->p[j.inv.s->p1];} //changement poketudiant
+		if(a==FUITE){break;} //fuite
+		if(a==CAPTURE){ajout_inv(&(j.inv),p2);break;} //capture
+		if(a==CHANG_POKE){p1=j.inv.s->p[j.inv.s->p1];} //changement poketudiant
 
 		a=tourordi(&j,p2);
 
@@ -125,7 +131,6 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 			printf("Votre Poketudiant est KO \n");
 			afficheSac(j.inv.s);
 			changemntPcombat(&j);
-			break;
 		}
 		affichageentetour(p1,p2);
 	}

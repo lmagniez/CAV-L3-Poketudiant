@@ -1,6 +1,10 @@
 #ifndef _COMBAT_H
 #define _COMBAT_H
 
+#define FUITE 1
+#define CAPTURE 2
+#define CHANG_POKE 3
+
 void combatRival(Poketudiant * p1, Poketudiant * p2);
 
 void combatSauvage(Joueur j, Poketudiant * p2);
