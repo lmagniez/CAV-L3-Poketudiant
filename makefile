@@ -1,7 +1,7 @@
 BINDIR=bin/
 SRCDIR=src/
 
-OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)joueur.o
+OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)joueur.o $(BINDIR)commande.o
 CC=gcc
 CFLAGS=-Wall -g
 
@@ -9,7 +9,10 @@ jeux : $(OBJET)
 	@$(CC) -o jeux  $(BINDIR)*.o
 	
 $(BINDIR)main.o: $(SRCDIR)*.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)main.c 	
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)main.c
+
+$(BINDIR)commande.o : $(SRCDIR)commande.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)commande.c
 	
 $(BINDIR)poketudiant.o : $(SRCDIR)poketudiant.c $(SRCDIR)poke.c $(SRCDIR)attaque.c $(SRCDIR)globale.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)poketudiant.c
@@ -22,12 +25,6 @@ $(BINDIR)poke.o : $(SRCDIR)poke.c $(SRCDIR)type.c $(SRCDIR)variete.c $(SRCDIR)st
 
 $(BINDIR)joueur.o : $(SRCDIR)joueur.c $(SRCDIR)poketudiant.c $(SRCDIR)inventaire.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)joueur.c 
-	
-$(BINDIR)type.o : $(SRCDIR)type.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)type.c 
-
-$(BINDIR)variete.o : $(SRCDIR)variete.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)variete.c 
 	
 $(BINDIR)inventaire.o : $(SRCDIR)inventaire.c $(SRCDIR)sac.c $(SRCDIR)cafetariat.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)inventaire.c 
@@ -44,8 +41,14 @@ $(BINDIR)globale.o : $(SRCDIR)globale.c
 $(BINDIR)statistique.o: $(SRCDIR)statistique.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)statistique.c
 
-$(BINDIR)combat.o: $(SRCDIR)combat.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)combat.c 
+$(BINDIR)combat.o: $(SRCDIR)combat.c $(SRCDIR)globale.c $(SRCDIR)joueur.c 
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)combat.c
+
+$(BINDIR)type.o : $(SRCDIR)type.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)type.c 
+
+$(BINDIR)variete.o : $(SRCDIR)variete.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)variete.c 
 
 clean:
 	@rm -rf $(BINDIR)*.o 

@@ -93,7 +93,7 @@ void affichePoketudiant(Poketudiant * p){
 int doitevoluer(int lvl){
 	if(LVL_FIVE == lvl)
 		return 1;
-	int r=myrand(0,100);
+	int r=myrand(POURCENT_MINI,POURCENT_MAXI);
 	if(LVL_FOUR == lvl)
 		if(r<POURC_THREE)
 			return 1;

@@ -63,7 +63,7 @@ int choixJoueur(Joueur * j, Poketudiant * p2){
 		case 4:
 			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
-			k=myrand(0,100);
+			k=myrand(POURCENT_MINI,POURCENT_MAXI);
 			if(k<probCapt){
 				printf("Vous avez Attrape le Poketudiant ! \n");
 				return CAPTURE;
@@ -145,11 +145,11 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 int probaCapture(int pv_eff , int pv_max){
 	float prob=0.5-(1.0*pv_eff/pv_max);
 	prob=fabs(prob);
-	return 2*max(prob,0)*100;
+	return 2*max(prob,POURCENT_MINI)*POURCENT_MAXI;
 }
 
 int fuite(int lvl_poke, int lvl_enemy){
-	float r=myrand(0,100);
+	float r=myrand(POURCENT_MINI,POURCENT_MAXI);
 	
 	if(lvl_enemy-3 >= lvl_poke)
 		return 0;

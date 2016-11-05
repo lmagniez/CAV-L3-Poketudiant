@@ -43,6 +43,6 @@ attaque * recupAttaque(type t){
 
 //renvoie les dommages d'une attaque 
 int domageattaque(float k,int att_attack,int def_defender,int power){
-	float res= (k*(att_attack*1.0/def_defender)*power);
+	float res=(k*(att_attack*1.0/def_defender)*power);
 	return (int)res;
 }
