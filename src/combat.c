@@ -63,8 +63,13 @@ int choixJoueur(Joueur * j, Poketudiant * p2){
 		case 4:
 			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
-			exit(0); //a voir avec loick 
-			return CAPTURE;
+			k=myrand(0,100);
+			if(k<probCapt){
+				printf("Vous avez Attrape le Poketudiant ! \n");
+				return CAPTURE;
+			}
+			printf("Le Poketudiant c'est echape ! \n");
+			return 0;
 		break;
 		case 5:
 			afficheSac(j->inv.s);
@@ -122,7 +127,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 		}
 
 		if(a==FUITE){break;} //fuite
-		if(a==CAPTURE){ajout_inv(&(j.inv),p2);break;} //capture
+		if(a==CAPTURE){ajout_inv(&(j.inv),p2);afficheSac(j.inv.s);break;} //capture
 		if(a==CHANG_POKE){p1=j.inv.s->p[j.inv.s->p1];} //changement poketudiant
 
 		a=tourordi(&j,p2);
@@ -131,6 +136,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 			printf("Votre Poketudiant est KO \n");
 			afficheSac(j.inv.s);
 			changemntPcombat(&j);
+			p1=j.inv.s->p[j.inv.s->p1];
 		}
 		affichageentetour(p1,p2);
 	}
@@ -139,7 +145,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 int probaCapture(int pv_eff , int pv_max){
 	float prob=0.5-(1.0*pv_eff/pv_max);
 	prob=fabs(prob);
-	return 2*max(prob,0);
+	return 2*max(prob,0)*100;
 }
 
 int fuite(int lvl_poke, int lvl_enemy){
