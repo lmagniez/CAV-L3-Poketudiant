@@ -4,6 +4,7 @@
 
 #include "../lib/joueur.h"
 #include "../lib/combat.h"
+#include "../lib/commande.h"
 
 int main(){
 	Poketudiant * tmp1=newPoketudiant_random(1,5);

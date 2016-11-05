@@ -106,7 +106,7 @@ void changemntPcombat(Joueur * j){
 	printf("\n");
 }
 
-void combatRival(Poketudiant * p1, Poketudiant * p2){
+void combatRival(Joueur j,Joueur rival){
 	while(1){
 
 	}
@@ -123,6 +123,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 		a=tourjoueur(&j,p2);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
+			gestionLevelUp(p1,p2->experience_cur);
 			break;
 		}
 
@@ -134,6 +135,7 @@ void combatSauvage(Joueur j, Poketudiant * p2){
 
 		if(p1->pv_cur<1){
 			printf("Votre Poketudiant est KO \n");
+			j.inv.s->p[j.inv.s->p1]->pv_cur=0;
 			afficheSac(j.inv.s);
 			changemntPcombat(&j);
 			p1=j.inv.s->p[j.inv.s->p1];

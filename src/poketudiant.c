@@ -125,6 +125,22 @@ void evolution(Poketudiant *p){
 	lvlup(p);
 }
 
+void gestionLevelUp(Poketudiant * p,int xp_add){
+	p->experience_cur+=xp_add;
+
+	if(p->experience_cur<p->experience_niveau_sup) return ;
+
+	if(doitevoluer(p->lvl)){
+		evolution(p);
+		p->experience_niveau_sup=xp_next(p->lvl);
+		return;
+	}
+
+	lvlup(p);
+	p->experience_niveau_sup=xp_next(p->lvl);
+
+}
+
 void freePoketudiant(Poketudiant *p){
 	free(p->base);
 	free(p);

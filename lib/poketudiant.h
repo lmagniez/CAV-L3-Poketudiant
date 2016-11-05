@@ -66,6 +66,8 @@ void lvlup(Poketudiant *p);
 
 void calculstatlevelup(Poketudiant * p);
 
+void gestionLevelUp(Poketudiant * p,int xp_add);
+
 void evolution(Poketudiant *p);
 
 #endif

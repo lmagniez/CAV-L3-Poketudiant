@@ -100,7 +100,7 @@ void afficheSac(Sac * sac){
 	char * nom;
 	for(int i=0;i<sac->cur;i++){
 		nom=chaineVariete(sac->p[i]->pokemon.nom);
-		printf("  %d Nom: %s LVL: %d \n",i,nom,sac->p[i]->lvl);
+		printf("  %d Name: %s LVL: %d Life : %d/%d \n",i,nom,sac->p[i]->lvl,sac->p[i]->pv_cur,sac->p[i]->stat_cur.pv_max_poke);
 	}
 	printf("\n");
 }

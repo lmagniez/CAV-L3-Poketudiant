@@ -5,7 +5,7 @@
 #define CAPTURE 2
 #define CHANG_POKE 3
 
-void combatRival(Poketudiant * p1, Poketudiant * p2);
+void combatRival(Joueur j,Joueur rival);
 
 void combatSauvage(Joueur j, Poketudiant * p2);
 
