@@ -104,3 +104,10 @@ void afficheSac(Sac * sac){
 	}
 	printf("\n");
 }
+
+int verifvie(Sac * sac){
+	for(int i=0;i<sac->cur;i++){
+		if(sac->p[i]->pv_cur == 0)return 1;
+	}
+	return 0;
+}

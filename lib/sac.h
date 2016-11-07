@@ -33,4 +33,6 @@ void switch_sac(Sac * s,int i,int j);
 int remplisSac(Sac * sac);
 
 void afficheSac(Sac * sac);
+
+int verifvie(Sac * sac);
 #endif
