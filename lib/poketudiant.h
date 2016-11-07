@@ -13,8 +13,10 @@
 #define LVL_FIVE 5
 #define LVL_FOUR 4
 #define LVL_THREE 3
-#define POURC_THREE 20
-#define POURC_FOUR 375 //A revoir 
+
+#define POURC_THREE 200
+#define POURC_FOUR 375
+#define POURC_MAX 1000
 
 #define POURC_LEVELUP 10
 
@@ -64,10 +66,13 @@ int doitevoluer(int lvl);
 
 void lvlup(Poketudiant *p);
 
+
 void calculstatlevelup(Poketudiant * p);
 
+//gestion lors de la monter de niveau
 void gestionLevelUp(Poketudiant * p,int xp_add);
 
+//fait evoluer le poketudiant
 void evolution(Poketudiant *p);
 
 #endif

@@ -129,15 +129,18 @@ void combatRival(Joueur j,Joueur rival){
 		a=tourjoueur(&j,p2,0);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
+			rival.inv.s->p[rival.inv.s->p1]->pv_cur=0;
+
 			calculxp(&j,tabexp,p2->experience_cur);
 			
 			if(verifvie(j.inv.s) == 0){
 				printf("Vous avez Gagnez le Combat ! ");
 				break;
 			}
+
 			tabexp=(int *)malloc(TAILLE_SAC*sizeof(int));
 			changerPokeOrdi(&rival);
-			p2=rival.inv.s->p[rival.inv.s->p1];;
+			p2=rival.inv.s->p[rival.inv.s->p1];
 		}
 
 		if(a==CHANG_POKE){
@@ -150,7 +153,7 @@ void combatRival(Joueur j,Joueur rival){
 			printf("Votre Poketudiant est KO \n");
 			j.inv.s->p[j.inv.s->p1]->pv_cur=0;
 			
-			if(verifvie(j.inv.s) == 0){
+			if(verifvie(j.inv.s) == 0){ //test si encore des poketudiants en vie
 				printf("Game Over !! ");
 				exit(0);
 			}

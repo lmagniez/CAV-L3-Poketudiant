@@ -93,7 +93,7 @@ void affichePoketudiant(Poketudiant * p){
 int doitevoluer(int lvl){
 	if(LVL_FIVE == lvl)
 		return 1;
-	int r=myrand(POURCENT_MINI,POURCENT_MAXI);
+	int r=myrand(POURCENT_MINI,POURC_MAX);
 	if(LVL_FOUR == lvl)
 		if(r<POURC_THREE)
 			return 1;
@@ -124,6 +124,7 @@ void evolution(Poketudiant *p){
 	p->stat_cur=calculStat(p->coef,p->pokemon.stat_base);
 	lvlup(p);
 }
+
 
 void gestionLevelUp(Poketudiant * p,int xp_add){
 	p->experience_cur+=xp_add;
