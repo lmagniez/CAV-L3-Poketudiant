@@ -3,10 +3,9 @@
 
 #include "../lib/joueur.h"
 
-Joueur initJoeur(){
+
+Joueur initJoueur(){
 	Joueur j;
-	j.p=newPoketudiant_type(ENSEIGNANT_DRESSEUR);
 	j.inv=initinv();
 	return j;
 }
-

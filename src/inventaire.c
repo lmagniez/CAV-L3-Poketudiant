@@ -59,5 +59,5 @@ void ajout_inv(Inventaire * inv,Poketudiant * p){
 		else
 			printf(ERR_BOTHFULL);
 	}
-	ajout_sac(inv->s,p);
+	else ajout_sac(inv->s,p);
 }

@@ -5,9 +5,9 @@
 #define CAPTURE 2
 #define CHANG_POKE 3
 
-void combatRival(Joueur j,Joueur rival);
+void combatRival(Joueur *j,Joueur *rival);
 
-void combatSauvage(Joueur j, Poketudiant * p2);
+void combatSauvage(Joueur *j, Poketudiant * p2);
 
 int tourjoueur(Joueur * j, Poketudiant * p2,int combat);
 
@@ -17,7 +17,7 @@ int tourordi(Joueur * j, Poketudiant * p2);
 
 void changerPokeOrdi(Joueur * rival);
 
-void changemntPcombat(Joueur * j);
+int changementPcombat(Joueur * j);
 
 void calculxp(Joueur *j, int tabexp[TAILLE_SAC],int xp_total);
 
@@ -28,7 +28,7 @@ int probaCapture(int pv_eff , int pv_max);
 
 void affichagecombat(Poketudiant * p1, Poketudiant * p2);
 
-void affichageTour(Poketudiant * p,attaque a);
+void affichageTour(Poketudiant * p,attaque a, int enemy, int faiblesse, int dommage);
 
 void affichageentetour(Poketudiant * p1, Poketudiant * p2);
 

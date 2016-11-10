@@ -1,13 +1,18 @@
 #ifndef _JOUEUR_H
 #define _JOUEUR_H
 
-#include "Poketudiant.h"
-#include "Inventaire.h"
+#include "poketudiant.h"
+#include "inventaire.h"
 
 typedef struct Joueur{
-	Poketudiant * p;
+	//Poketudiant * enseignant;
 	Inventaire inv;
+	//int p1;//actif au combat
 }Joueur;
 
-Joueur initJoeur();
+Joueur initJoueur();
+//void afficheEnseignant(Joueur *j);
+
+
+
 #endif

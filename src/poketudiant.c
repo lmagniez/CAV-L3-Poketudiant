@@ -30,7 +30,9 @@ void init(Poketudiant *newP){
 }
 
 Poketudiant * newPoketudiant_random(int borne1, int borne2){
-	srand(time(NULL));
+	
+	
+	
 	if( borne1 < 1 || borne2 < 1){
 		printf("Creation Poketudiant Impossible \n");
 		return NULL;

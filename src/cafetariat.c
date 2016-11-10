@@ -12,7 +12,7 @@ Cafetariat * initcaf(){
 	return c;
 }
 
-//ajout un pokemon a la cafet
+//ajoute un pokemon a la cafet
 void ajout_cafe(Cafetariat * c,Poketudiant * p){
 	if(c->cur==NB_TOTAL){
 		printf("La Cafetaria est pleine\n");
@@ -22,9 +22,9 @@ void ajout_cafe(Cafetariat * c,Poketudiant * p){
 	c->cur++;
 }
 
-//lance l'affichage de toutes la cafet
+//lance l'affichage de toute la cafet
 void showCafetaria(Cafetariat * c){
-	for(int i=0;i<NB_TABLE;i++){
+	for(int i=1;i<=NB_TABLE;i++){
 		showRevision(c,i);
 	}
 }
@@ -33,11 +33,14 @@ void showCafetaria(Cafetariat * c){
 void showRevision(Cafetariat * c,int table){
 	for(int i=(table*NB_CHAISE)-NB_CHAISE;i<(table*NB_CHAISE);i++){
 		printf("----------------------------------\n                  TABLE %d INDICE %d                  \n----------------------------------\n",table,i);
-		affichePoketudiant(c->p[i]);
+		if(i<c->cur)
+			affichePoketudiant(c->p[i]);
+		else
+			printf("VIDE\n");
 	}
 }
 
-//Retourne si la cafet est plaine ou pas
+//Retourne si la cafet est pleine ou pas
 int remplisCafet(Cafetariat * c){
 	return NB_TOTAL==c->cur;
 }
