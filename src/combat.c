@@ -18,6 +18,7 @@ int tourordi(Joueur * j, Poketudiant * p2){
 	return 0;
 }
 
+//Affiche les actions possibles et demande une action au joueur
 int tourjoueur(Joueur * j, Poketudiant * p2,int combat){
 	int i;
 	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
@@ -90,7 +91,8 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 	return 0;
 }
 
-//0: change pas de pokemon (-1 ou meme pokemon)
+//Demande de changer un poketudiant en fonction de son id dans le sac 
+//retourne -1: change pas de poketudiant (id=-1 ou meme pokemon)
 int changementPcombat(Joueur * j){
 	int reponse;
 	printf("\n-1: retour ");	
@@ -120,6 +122,7 @@ int changementPcombat(Joueur * j){
 	return 0;
 }
 
+//Change de Poketudiant pour un joueur ordi
 void  changerPokeOrdi(Joueur *j){
 	Sac *s=j->inv.s;
 	int rand=myrand(-1,j->inv.s->cur);
@@ -129,13 +132,19 @@ void  changerPokeOrdi(Joueur *j){
 		changerPokeOrdi(j);
 }
 
+//Initialise un combat avec un dresseur rival
 void combatRival(Joueur *j,Joueur *rival){
 	int a=0;
-	int * tabexp=(int *)malloc(TAILLE_SAC*sizeof(int));
-
+	int tabexp[TAILLE_SAC];
 	Sac *s1,*s2;
 	s1=j->inv.s;
 	s2=rival->inv.s;
+	
+	for(int i=0; i<TAILLE_SAC; i++)
+		tabexp[i]=0;
+	tabexp[s1->p1]=1;
+	
+	
 	
 	Poketudiant *p1,*p2;
 	//Poketudiant j
@@ -157,7 +166,11 @@ void combatRival(Joueur *j,Joueur *rival){
 				break;
 			}
 
-			tabexp=(int *)malloc(TAILLE_SAC*sizeof(int));
+			//REINITIALISE A 0 
+			for(int i=0; i<TAILLE_SAC; i++)
+				tabexp[i]=0;
+			tabexp[s1->p1]=1;
+				
 			changerPokeOrdi(rival);
 			p2=s2->p[s2->p1];
 		}
@@ -186,14 +199,17 @@ void combatRival(Joueur *j,Joueur *rival){
 	}
 }
 
+//initialise un combat de pokemon sauvage
 void combatSauvage(Joueur *j, Poketudiant * p2){
 	int a=0;
 
-	int * tabexp=(int *)malloc(TAILLE_SAC*sizeof(int));
+	int tabexp[TAILLE_SAC];
 	
 	Sac *s=j->inv.s;
 
 	Poketudiant * p1=s->p[s->p1];
+	for(int i=0; i<TAILLE_SAC; i++)
+		tabexp[i]=0;
 	tabexp[s->p1]=1;
 
 	affichagecombat(p1,p2);
@@ -210,18 +226,16 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 		if(a==CAPTURE){ajout_inv(&(j->inv),p2);break;} //capture
 
 
-////////////CHANGER TAB EXP POUR JOUEUR
-
 		if(a==CHANG_POKE){
 			p1=s->p[s->p1];
 			tabexp[s->p1]=1;
-		} //changement poketudiant
-
+		} 
 		a=tourordi(j,p2);
 
 		if(p1->pv_cur<1){
 			printf("Votre Poketudiant est KO \n");
 			s->p[s->p1]->pv_cur=0;
+			tabexp[s->p1]=0;//ne gagne pas d'xp si il est ko
 			
 			if(verifvie(s) == 0){
 				printf("Game Over !! ");
@@ -236,24 +250,28 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 	}
 }
 
+//Calcul du taux d'xp a repartir sur chacun des poketudiants
 void calculxp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
 	int nb_poke=0;
 	for(int i=0;i<TAILLE_SAC;i++)
-		nb_poke += tabexp[i] == 1 ? 1 : 0;
+		nb_poke += tabexp[i];
 
-	int nb_exp=xp_total/nb_poke;
+	int nb_exp=(xp_total*(0.1))/nb_poke;
 
 	for(int i=0;i<TAILLE_SAC;i++){
-		gestionLevelUp(j->inv.s->p[i],nb_exp);
+		if(tabexp[i]==1)
+			gestionLevelUp(j->inv.s->p[i],nb_exp);
 	}	
 }
 
+//Calcul de la probabilité de capture (2*max(1/2-pvEff/pvMax,0))
 int probaCapture(int pv_eff , int pv_max){
 	float prob=0.5-(1.0*pv_eff/pv_max);
 	prob=fabs(prob);
 	return 2*max(prob,POURCENT_MINI)*POURCENT_MAXI;
 }
 
+//Calcul de la fuite (0% si 3 niveaux de moins, 25% si 2 niveaux de moins, 40% si 1 niveau de moins, 50% si même niveau)
 int fuite(int lvl_poke, int lvl_enemy){
 	float r=myrand(POURCENT_MINI,POURCENT_MAXI);
 	
@@ -269,6 +287,7 @@ int fuite(int lvl_poke, int lvl_enemy){
 	return 1;
 }
 
+//Affichage d'une action effectué par un joueur
 void affichageTour(Poketudiant * p,attaque a, int isEnemy, int faiblesse,int dommage){
 	char *enemy, *efficace;
 	if(isEnemy) enemy=" ennemi"; else enemy="";
@@ -278,6 +297,7 @@ void affichageTour(Poketudiant * p,attaque a, int isEnemy, int faiblesse,int dom
 	printf("\n%s%s va attaquer ! %s utilise %s. %s \n%s%s inflige %d dommages\n\n",var1,enemy,var1,a.nom, efficace,var1,enemy, dommage);
 }
 
+//Affichage des informations de debut de combat
 void affichagecombat(Poketudiant * p1, Poketudiant * p2){
 	
 	char * var1=chaineVariete(p1->pokemon.nom);
@@ -294,6 +314,7 @@ void affichagecombat(Poketudiant * p1, Poketudiant * p2){
 	printf("-----------------------------------------------\n");
 }
 
+//Affichage des informations en début de tour
 void affichageentetour(Poketudiant * p1, Poketudiant * p2){
 	char * var1=chaineVariete(p1->pokemon.nom);
 	char * var2=chaineVariete(p2->pokemon.nom);

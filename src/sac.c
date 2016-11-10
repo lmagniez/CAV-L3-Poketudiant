@@ -17,7 +17,7 @@ Sac * initsac(){
 	for(int i=0;i<TAILLE_SAC;i++)
 		s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	
-	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR);
+	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,1,2);
 	
 	return s;
 }
@@ -48,7 +48,6 @@ void switch_sac(Sac * s,int i,int j)
 
 //renvoie si le sac est remplis 
 int remplisSac(Sac * sac){
-	printf("%d\n",sac->cur);
 	return (sac->cur==TAILLE_SAC);
 }
 

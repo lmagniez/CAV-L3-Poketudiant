@@ -44,9 +44,9 @@ typedef struct Poketudiant{
 Poketudiant * newPoketudiant_random(int borne1, int borne2);
 
 //creer un poketudiant entre en fonction du type
-Poketudiant * newPoketudiant_type(variete t);
+Poketudiant * newPoketudiant_type(variete t, int borne1, int borne2);
 
-void init(Poketudiant * p);
+void init(Poketudiant * p, int lvl);
 
 //calcul l'exp pour le niveau suivant
 int xp_next(int lvl);
@@ -67,7 +67,7 @@ int doitevoluer(int lvl);
 void lvlup(Poketudiant *p);
 
 
-void calculstatlevelup(Poketudiant * p);
+void calculstatlevelup(Poketudiant * p, int lvlUp);
 
 //gestion lors de la monter de niveau
 void gestionLevelUp(Poketudiant * p,int xp_add);

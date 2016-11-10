@@ -11,7 +11,7 @@ void show_team(Joueur j1);
 
 void show_cafet(Joueur j1);
 
-void show_revision_table(Joueur j1);
+void show_revision_table(Joueur j1, int table);
 
 void show_indice(Joueur j1,int indice);
 
