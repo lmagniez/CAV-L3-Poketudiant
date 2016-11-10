@@ -20,7 +20,7 @@ void init(Poketudiant *newP, int lvl){
 	newP->stat_cur=calculStat(newP->coef,newP->pokemon.stat_base);
 
 	for(int i=2;i<= lvl;i++)
-		calculstatlevelup(newP,1);
+		calculstatlevelup(newP,0);
 
 	newP->pv_cur=newP->stat_cur.pv_max_poke;
 	
