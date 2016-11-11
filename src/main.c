@@ -19,27 +19,34 @@ int main(){
 	printf("ok\n");
 	
 	ajout_sac(j.inv.s,tmp1);
+	
+	/*
+	ajout_cafe(j.inv.c,newPoketudiant_random(1,5));
+	ajout_cafe(j.inv.c,newPoketudiant_random(1,5));
+	ajout_cafe(j.inv.c,newPoketudiant_random(1,5));
+	ajout_cafe(j.inv.c,newPoketudiant_random(1,5));
+	*/
+	
+	
+	
 	//ajout_sac(j.inv.s,tmp2);
 
 
 	//combatSauvage(&j,tmp3);
 	
-	
-	printf("ok\n");
-	
+	/*
 	show_team(j);
-	//show_cafet(j);
-	
+	show_cafet(j);
 	
 	ajout_cafe(j.inv.c,tmp2);
-	//ajout_cafe(j.inv.c,tmp3);
-	
+	ajout_cafe(j.inv.c,tmp3);
 	ajout_cafe_id(j.inv.c,tmp3,2);
 	
 	show_cafet(j);
-	
+	*/
 	//pick(&j,3);
-	pick(&j,8);
+	
+	pick(&j,8);//cafeteriat->equipe
 	pick(&j,0);
 	
 	show_cafet(j);
@@ -53,6 +60,7 @@ int main(){
 	
 	move_table(&j,3,1);
 	
+	catch(&j,20);
 	
 	show_cafet(j);
 	show_team(j);

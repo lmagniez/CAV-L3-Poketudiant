@@ -92,7 +92,7 @@ TABLE %d INDICE %d                  \
 
 
 //relache le poketudiant a l'indice i
-void release(Cafetariat * c,int indice){
+void releaseCaf(Cafetariat * c,int indice){
 	int car=0;
 	c->p[indice]=NULL;
 	

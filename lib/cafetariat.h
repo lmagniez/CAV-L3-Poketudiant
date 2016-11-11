@@ -36,6 +36,6 @@ int cafetPleine(Cafetariat * c);
 int tablePleine(Cafetariat *c, int table);
 
 //relache le poketudiant a l'indice i
-void release(Cafetariat * caf,int indice);
+void releaseCaf(Cafetariat * caf,int indice);
 
 #endif

@@ -117,7 +117,7 @@ void move_table(Joueur * j1,int id , int table)
 			{
 				printf("Poketudiant id:%d dans la cafet à l'indice %d (table %d)\n",id,i,i/NB_CHAISE);
 				
-				if(i/NB_CHAISE==table)return;//deja dans la table, pas besoin de deplacer
+				if(i/NB_CHAISE==table)return;//deja dans la table, pas besoin de deplacgi
 				
 				//chercher si table pleine ou non
 				for(int j=(table*NB_CHAISE);j<(table*NB_CHAISE)+NB_CHAISE;j++){
@@ -136,6 +136,10 @@ void move_table(Joueur * j1,int id , int table)
 	
 }
 
+
+void switchP(int id1, int id2);
+
+
 //Deplace le poketudiant d'indice i (equipe->cafeteriat)
 void drop(Joueur * j1 , int i)
 {
@@ -148,9 +152,14 @@ void pick(Joueur * j1 , int i)
 	pick_pokemon(&(j1->inv),i);
 }
 
-void release_com(Joueur * j1, int i);
+//relache le poketudiant en position i de la cafetariat
+void release(Joueur * j1, int i);
 
-void catch(Joueur * j1,int n);
+void catch(Joueur * j1,int n)
+{
+	for(int i=0; i<n; i++)
+		ajout_inv(&(j1->inv), newPoketudiant_random(1,5));
+}
 
 void xp(Joueur * j1, int i , int n)
 {
