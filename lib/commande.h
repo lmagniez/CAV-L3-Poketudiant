@@ -15,7 +15,7 @@ void show_revision_table(Joueur j1, int table);
 
 void show_indice(Joueur j1,int indice);
 
-void move_table(Joueur * j1,int i , int j);
+void move_table(Joueur * j1,int id , int table);
 
 void drop(Joueur * j1 , int i);
 

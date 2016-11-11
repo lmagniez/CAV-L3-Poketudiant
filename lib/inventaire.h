@@ -22,6 +22,9 @@ void soigne_caf(Inventaire * inv);
 //depose le poketudiant de l'equipe vers la cafet
 void drop_pokemon(Inventaire * inv,int indice);
 
+//depose le poketudiant de l'equipe vers la cafet (table)
+void drop_pokemon_table(Inventaire * inv,int indice, int table);
+
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Inventaire * inv,int indice);
 

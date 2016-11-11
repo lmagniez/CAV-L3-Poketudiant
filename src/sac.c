@@ -101,7 +101,7 @@ Poketudiant* supprimerPoke_sac(Sac * s,int i)
 		exit(1);
 	}
 	
-	if(s->p1!=i)
+	if(s->p1==i)
 	{
 		printf(ERR_USED);
 		exit(1);

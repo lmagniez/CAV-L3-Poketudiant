@@ -48,18 +48,101 @@ void show_revision_table(Joueur j1, int table)
 	showRevision(j1.inv.c,table);
 }
 
-void showIndice(Joueur j1,int indice)
+//affiche le poketudiant dont l'id est id, recherche dans cafet et sac
+void show_indice(Joueur j1,int id)
 {
-	affichePoketudiant(j1.inv.s->p[indice]);
-}
-
-void move_table(Joueur * j1,int i , int j)
-{
+	
+	Sac *s=j1.inv.s;
+	Cafetariat *c=j1.inv.c;
+	
+	
+	//parcoure sac
+	for(int i=0; i<s->cur; i++)
+	{
+		if(s->p[i]->id==id)
+		{
+			printf("Poketudiant id:%d dans le sac à l'indice %d \n",id,i);
+			affichePoketudiant(s->p[i]);
+			
+		}
+	}
+	
+	//parcoure cafet
+	for(int i=0; i<NB_TOTAL; i++)
+	{
+		if(c->p[i]!=NULL)
+			if(c->p[i]->id==id)
+			{
+				printf("Poketudiant id:%d dans la cafet à l'indice %d (table %d)\n",id,i,i/NB_CHAISE);
+				affichePoketudiant(c->p[i]);
+			}
+	}
+	
+	
+	
 	
 }
 
-void drop(Joueur * j1 , int i);
+//Deplace le poketudiant d'id id à la table table
+void move_table(Joueur * j1,int id , int table)
+{
+	Sac *s=j1->inv.s;
+	Cafetariat *c=j1->inv.c;
+	
+	
+	//parcoure sac
+	for(int i=0; i<s->cur; i++)
+	{
+		if(s->p[i]->id==id)
+		{
+			if(i==0)
+			{
+				printf("On ne peut pas déplacer l'enseignant dresseur! \n");
+				return;
+			}	
+			
+			printf("Poketudiant id:%d dans le sac à l'indice %d \n",id,i);
+			drop_pokemon_table(&(j1->inv),i,table);
+			return;
+			
+		}
+	}
+	
+	//parcoure cafet
+	for(int i=0; i<NB_TOTAL; i++)
+	{
+		//doit etre diff de null sinon on ne peut pas comparer
+		if(c->p[i]!=NULL)
+			if(c->p[i]->id==id)
+			{
+				printf("Poketudiant id:%d dans la cafet à l'indice %d (table %d)\n",id,i,i/NB_CHAISE);
+				
+				if(i/NB_CHAISE==table)return;//deja dans la table, pas besoin de deplacer
+				
+				//chercher si table pleine ou non
+				for(int j=(table*NB_CHAISE);j<(table*NB_CHAISE)+NB_CHAISE;j++){
+					if(c->p[j]==NULL)
+					{
+						c->p[j]=c->p[i];
+						c->p[i]=NULL;
+						return;
+					}
+				}
+				printf("table pleine! \n");
+				return;
+				
+			}
+	}
+	
+}
 
+//Deplace le poketudiant d'indice i (equipe->cafeteriat)
+void drop(Joueur * j1 , int i)
+{
+	drop_pokemon(&(j1->inv),i);
+}
+
+//Deplace le poketudiant d'indice i (cafeteriat->equipe)
 void pick(Joueur * j1 , int i)
 {
 	pick_pokemon(&(j1->inv),i);

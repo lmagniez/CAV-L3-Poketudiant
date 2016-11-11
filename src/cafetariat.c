@@ -25,8 +25,6 @@ int tablePleine(Cafetariat *c, int table){
 Cafetariat * initcaf(){
 	Cafetariat * c=(Cafetariat *)malloc(sizeof(Cafetariat));
 	c->cur=0;
-	//for(int i=0;i<NB_TOTAL;i++)
-	//	c->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	return c;
 }
 
@@ -108,4 +106,8 @@ void release(Cafetariat * c,int indice){
 	}
 	c->cur--;
 }
+
+
+//void switchPokeCafet(
+
 

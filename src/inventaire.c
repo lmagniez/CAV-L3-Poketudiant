@@ -36,6 +36,12 @@ void drop_pokemon(Inventaire * inv,int indice){
 	ajout_cafe(inv->c,p);
 }
 
+//depose le poketudiant de l'equipe vers la cafet (en fonction table)
+void drop_pokemon_table(Inventaire * inv,int indice, int table){
+	Poketudiant *p=supprimerPoke_sac(inv->s,indice);
+	ajout_cafe_id(inv->c,p,table);
+}
+
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Inventaire * inv,int indice){
 	if(sacPlein(inv->s)){
@@ -63,5 +69,33 @@ void ajout_inv(Inventaire * inv,Poketudiant * p){
 			printf(ERR_BOTHFULL);
 	}
 	else ajout_sac(inv->s,p);
+}
+
+Poketudiant* get_by_id(Inventaire *inv, int id)
+{
+	Sac *s=inv->s;
+	Cafetariat *c=inv->c;
+	
+	
+	//parcoure sac
+	for(int i=0; i<s->cur; i++)
+	{
+		if(s->p[i]->id==id)
+		{
+			return s->p[i];
+		}
+	}
+	
+	//parcoure cafet
+	for(int i=0; i<NB_TOTAL; i++)
+	{
+		if(c->p[i]!=NULL)
+			if(c->p[i]->id==id)
+			{
+				return c->p[i];
+			}
+	}
+	
+	return NULL;
 }
 

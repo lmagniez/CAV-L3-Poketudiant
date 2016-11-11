@@ -45,10 +45,22 @@ int main(){
 	show_cafet(j);
 	show_team(j);
 	
+	move_table(&j,2,1);
+	move_table(&j,0,1);
+	move_table(&j,2,0);
+	move_table(&j,1,0);
+	move_table(&j,1,1);
+	
+	move_table(&j,3,1);
+	
+	
+	show_cafet(j);
+	show_team(j);
+	
 	
 	//xp(&j,1,1250);
 	
-	
+	//show_indice(j,1);
 	
 	//xp(&j,4,50);
 	
