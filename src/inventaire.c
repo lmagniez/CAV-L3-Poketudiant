@@ -47,8 +47,11 @@ void pick_pokemon(Inventaire * inv,int indice){
 		return;
 	}
 	
-	swap_poketudiant(inv->s->p[inv->s->cur],inv->c->p[inv->c->cur]);
+	//swap_poketudiant(inv->s->p[inv->s->cur],inv->c->p[inv->c->cur]);
+	inv->s->p[inv->s->cur]=inv->c->p[indice];
+	inv->c->p[indice]=NULL;
 	inv->c->cur--;
+	inv->s->cur++;
 }
 
 //ajoute le pokemon soit dans la cafet soit dans le sac
@@ -61,3 +64,4 @@ void ajout_inv(Inventaire * inv,Poketudiant * p){
 	}
 	else ajout_sac(inv->s,p);
 }
+

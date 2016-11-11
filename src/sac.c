@@ -14,8 +14,8 @@
 Sac * initsac(){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
-	for(int i=0;i<TAILLE_SAC;i++)
-		s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
+	//for(int i=0;i<TAILLE_SAC;i++)
+	//	s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	
 	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,1,2);
 	
@@ -30,7 +30,7 @@ void ajout_sac(Sac * s,Poketudiant * p){
 		exit(1);
 	}
 	
-	*(s->p[s->cur])=*p;
+	s->p[s->cur]=p;
 	s->cur++;
 }
 
@@ -107,8 +107,9 @@ Poketudiant* supprimerPoke_sac(Sac * s,int i)
 		exit(1);
 	}
 	
-	Poketudiant *res=(Poketudiant*)malloc(sizeof(Poketudiant));
-	*res=*(s->p[i]);
+	Poketudiant *res=s->p[i];
+	s->p[i]=NULL;
+	//*res=*(s->p[i]);
 	
 	for(int j=i; j<s->cur; j++)
 		s->p[j]=s->p[j+1];

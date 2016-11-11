@@ -4,6 +4,8 @@
 #include "../lib/globale.h"
 #include "../lib/poketudiant.h"
 
+int ID=0;
+
 void init(Poketudiant *newP, int lvl){
 	float tmp;
 
@@ -13,6 +15,8 @@ void init(Poketudiant *newP, int lvl){
 		//printf("%f\n",tmp);
 		newP->coef[i]=tmp/10;
 	}
+	
+	newP->id=ID++;
 
 	newP->base=recupAttaque(newP->pokemon.spe);
 
@@ -86,7 +90,7 @@ void affichePoketudiant(Poketudiant * p){
 	char * var=chaineVariete(p->pokemon.nom);
 	char * type=chaineType(p->pokemon.spe);
 	//printf("Nom : %s  Type : %s\n   Level : %d \n",var,type,p->lvl);
-	printf("Nom : %s  Type : %s\n   Level : %d \n   Pv: %d/%d \n",var,type,p->lvl,p->pv_cur,p->stat_cur.pv_max_poke);
+	printf("ID: %d Nom : %s  Type : %s\n   Level : %d \n   Pv: %d/%d \n",p->id, var,type,p->lvl,p->pv_cur,p->stat_cur.pv_max_poke);
 	
 	for(int i=0;i<N_ATTACK;i++){
 		printf("   Nom: %s , Puissance : %d\n",p->base[i].nom,p->base[i].puissance);

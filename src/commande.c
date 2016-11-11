@@ -60,7 +60,10 @@ void move_table(Joueur * j1,int i , int j)
 
 void drop(Joueur * j1 , int i);
 
-void pick(Joueur * j1 , int i);
+void pick(Joueur * j1 , int i)
+{
+	pick_pokemon(&(j1->inv),i);
+}
 
 void release_com(Joueur * j1, int i);
 

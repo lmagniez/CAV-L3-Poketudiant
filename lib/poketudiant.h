@@ -20,10 +20,11 @@
 
 #define POURC_LEVELUP 10
 
-
 typedef struct Poketudiant{
 	Poke pokemon;
 		
+	int id;
+	
 	float coef[NB_COEF];
 	
 	statistique stat_cur;
