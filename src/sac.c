@@ -24,7 +24,7 @@ Sac * initsac(){
 
 //ajoute un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
-	if(remplisSac(s))
+	if(sacPlein(s))
 	{
 		printf(ERR_FULLBAG);
 		exit(1);
@@ -47,7 +47,7 @@ void switch_sac(Sac * s,int i,int j)
 }
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac * sac){
+int sacPlein(Sac * sac){
 	return (sac->cur==TAILLE_SAC);
 }
 

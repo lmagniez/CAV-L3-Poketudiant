@@ -27,7 +27,15 @@ int main(){
 	show_team(j);
 	//show_cafet(j);
 	
-	xp(&j,1,1250);
+	
+	ajout_cafe(j.inv.c,tmp3);
+	ajout_cafe(j.inv.c,tmp3);
+	
+	ajout_cafe_id(j.inv.c,tmp3,2);
+	
+	show_cafet(j);
+	
+	//xp(&j,1,1250);
 	
 	
 	

@@ -3,11 +3,17 @@
 #include <stdio.h>
 
 #include "../lib/joueur.h"
+#include "../lib/combat.h"
 #include "../lib/commande.h"
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 
-void wild(Joueur * j1, int niv_min, int niv_max);
+void wild(Joueur * j1, int niv_min, int niv_max)
+{
+	Poketudiant * tmp=newPoketudiant_random(niv_min,niv_max);
+	combatSauvage(j1,tmp);
+	freePoketudiant(tmp);
+}
 
 void rival(Joueur * j1, int niv_min, int niv_max);
 
@@ -27,13 +33,9 @@ void nurse(Joueur * j1)
 void show_team(Joueur j1)
 {
 	Sac *s = j1.inv.s;
-	
 	for(int i=0; i<s->cur; i++)
-	{
 		affichePoketudiant(s->p[i]);
-	}
 	
-	//afficheSac();
 }
 
 void show_cafet(Joueur j1)
@@ -41,11 +43,20 @@ void show_cafet(Joueur j1)
 	showCafetaria(j1.inv.c);
 }
 
-void show_revision_table(Joueur j1, int table);
+void show_revision_table(Joueur j1, int table)
+{
+	showRevision(j1.inv.c,table);
+}
 
-void showIndice(Joueur j1,int indice);
+void showIndice(Joueur j1,int indice)
+{
+	affichePoketudiant(j1.inv.s->p[indice]);
+}
 
-void move_table(Joueur * j1,int i , int j);
+void move_table(Joueur * j1,int i , int j)
+{
+	
+}
 
 void drop(Joueur * j1 , int i);
 

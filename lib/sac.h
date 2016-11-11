@@ -21,7 +21,7 @@ void ajout_sac(Sac * s,Poketudiant * p);
 void switch_sac(Sac * s,int i,int j);
 
 //renvoie si le sac est remplis 
-int remplisSac(Sac * sac);
+int sacPlein(Sac * sac);
 
 void afficheSac(Sac * sac);
 
