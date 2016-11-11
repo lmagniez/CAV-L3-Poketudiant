@@ -25,7 +25,7 @@ void release(Joueur * j1, int i);
 
 void catch(Joueur * j1,int n);
 
-void switchP(int id1, int id2);
+void switchP(Joueur * j1, int id1, int id2);
 
 void xp(Joueur * j1, int i , int n);
 

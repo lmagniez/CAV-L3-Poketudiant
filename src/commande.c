@@ -137,7 +137,20 @@ void move_table(Joueur * j1,int id , int table)
 }
 
 
-void switchP(int id1, int id2);
+void switchP(Joueur *j1, int id1, int id2)
+{
+	Poketudiant *p1 = get_by_id(&(j1->inv),id1);
+	Poketudiant *p2 = get_by_id(&(j1->inv),id2);
+	
+	if(p1==NULL||p2==NULL)printf("Erreur, un ou plusieurs identifiants n'existent pas.\n");
+	else{
+		Poketudiant tmp=*p1;
+		*p1=*p2;
+		*p2=tmp;
+	}
+	
+	
+}
 
 
 //Deplace le poketudiant d'indice i (equipe->cafeteriat)

@@ -30,4 +30,9 @@ void pick_pokemon(Inventaire * inv,int indice);
 
 //ajoute le pokemon soit dans la cafet soit dans le sac
 void ajout_inv(Inventaire * inv,Poketudiant * p);
+
+Poketudiant* get_by_id(Inventaire *inv, int id);
+
 #endif
+
+

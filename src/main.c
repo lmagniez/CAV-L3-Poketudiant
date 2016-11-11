@@ -62,8 +62,11 @@ int main(){
 	
 	catch(&j,20);
 	
+	switchP(&j,5,17);
+	
 	show_cafet(j);
 	show_team(j);
+	
 	
 	
 	//xp(&j,1,1250);
