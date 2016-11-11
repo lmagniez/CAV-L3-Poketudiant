@@ -63,6 +63,9 @@ int main(){
 	catch(&j,20);
 	
 	switchP(&j,5,17);
+	release(&j,5);
+	
+	
 	
 	show_cafet(j);
 	show_team(j);

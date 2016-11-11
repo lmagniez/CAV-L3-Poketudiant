@@ -166,7 +166,15 @@ void pick(Joueur * j1 , int i)
 }
 
 //relache le poketudiant en position i de la cafetariat
-void release(Joueur * j1, int i);
+void release(Joueur * j1, int i)
+{
+	if(j1->inv.c->p[i])
+	{
+		freePoketudiant(j1->inv.c->p[i]);
+		j1->inv.c->p[i]=NULL;
+		printf("Poketudiant en indice %d relaché \n", i);
+	}
+}
 
 void catch(Joueur * j1,int n)
 {
