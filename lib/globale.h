@@ -1,9 +1,6 @@
 #ifndef _GLOBALE_H
 #define _GLOBALE_H
 
-#include <stdlib.h>
-#include <time.h>
-
 #define POURCENT_MINI 0
 #define POURCENT_MAXI 100
 
@@ -13,4 +10,9 @@
 
 int myrand(int a,int b);
 
+void viderBuffer();
+ 
+int lire(char *chaine, int longueur);
+
+int lectureEntree();
 #endif
