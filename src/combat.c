@@ -57,7 +57,7 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 			affichageTour(p1,p1->base[reponse],0,resFaiblesse,dommage);//0: dresseur
 		break;
 		case 3:
-			if(!fuite(p1->lvl,p2->lvl) || combat == 1){
+			if(!fuite(p1->lvl,p2->lvl) || combat == 0){
 				printf("Fuite Impossible !\n");
 				return 0;
 			}
@@ -65,14 +65,14 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 			return FUITE;
 		break;
 		case 4:
-			if(combat==1){
+			if(combat==0){
 				printf("On ne capture pas un poketudiant d'un autre enseignant dresseur !\n");
 				return 0;
 			}
 			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
 			k=myrand(POURCENT_MINI,POURCENT_MAXI);
-			if(k<probCapt && combat == 0){
+			if(k<probCapt && combat == 1){
 				printf("Vous avez Attrape le Poketudiant ! \n");
 				return CAPTURE;
 			}
