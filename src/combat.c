@@ -42,7 +42,7 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 	int reponse,dommage,power,k,probCapt,resFaiblesse;
 	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
 	printf("Votre choix : ");
-	scanf("%d", &reponse);
+	reponse=lectureEntree();
 
 	switch(reponse){
 		case 1:
@@ -99,7 +99,7 @@ int changementPcombat(Joueur * j, int annulable){
 	if(annulable)
 		printf("\n-1: retour ");	
 	printf("\nChoisissez le Poketudiant: ");
-	scanf("%d", &reponse);
+	reponse=lectureEntree();
 
 	//annuler (que si autorisé)
 	if(annulable&&(reponse==-1||reponse==j->inv.s->p1)){
