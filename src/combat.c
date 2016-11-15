@@ -6,6 +6,7 @@
 #include "../lib/globale.h"
 #include "../lib/combat.h"
 
+//Tour de l'ordi
 int tourordi(Joueur * j, Poketudiant * p2){
 	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
 	int nba=myrand(0,2);
