@@ -16,9 +16,17 @@ int main(){
 	Poketudiant * tmp3=newPoketudiant_random(1,5);
 	
 	Joueur j=initJoueur();
+	Joueur j2=initJoueur();
 	printf("ok\n");
 	
 	ajout_sac(j.inv.s,tmp1);
+	
+	
+	catch(&j,5);
+	catch(&j2,5);
+	
+	combatRival(&j,&j2);
+	
 	
 	/*
 	ajout_cafe(j.inv.c,newPoketudiant_random(1,5));
@@ -46,6 +54,7 @@ int main(){
 	*/
 	//pick(&j,3);
 	
+	/*
 	pick(&j,8);//cafeteriat->equipe
 	pick(&j,0);
 	
@@ -70,18 +79,13 @@ int main(){
 	show_cafet(j);
 	show_team(j);
 	
-	
+	*/
 	
 	//xp(&j,1,1250);
 	
 	//show_indice(j,1);
 	
 	//xp(&j,4,50);
-	
-	for(int i=1; i<10; i++)
-	{
-		printf("%d ",xp_next(i));
-	}
 	
 
 	return 0;

@@ -17,7 +17,7 @@ int tourordi(Joueur * j, Poketudiant * p2);
 
 void changerPokeOrdi(Joueur * rival);
 
-int changementPcombat(Joueur * j);
+int changementPcombat(Joueur * j, int annulable);
 
 void calculxp(Joueur *j, int tabexp[TAILLE_SAC],int xp_total);
 

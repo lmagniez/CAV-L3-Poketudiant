@@ -80,7 +80,7 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 		break;
 		case 5:
 			afficheSac(j->inv.s);
-			if(changementPcombat(j)==-1)choixJoueur(j,p2,combat);
+			if(changementPcombat(j,1)==-1)choixJoueur(j,p2,combat);
 			return CHANG_POKE;
 		break;
 		default:
@@ -93,15 +93,16 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 
 //Demande de changer un poketudiant en fonction de son id dans le sac 
 //retourne -1: change pas de poketudiant (id=-1 ou meme pokemon)
-int changementPcombat(Joueur * j){
+//annulable: 1:peut faire retour 0:peut pas faire retour
+int changementPcombat(Joueur * j, int annulable){
 	int reponse;
-	printf("\n-1: retour ");	
+	if(annulable)
+		printf("\n-1: retour ");	
 	printf("\nChoisissez le Poketudiant: ");
 	scanf("%d", &reponse);
 
-	//annuler
-	if(reponse==-1||reponse==j->inv.s->p1)
-	{
+	//annuler (que si autorisé)
+	if(annulable&&(reponse==-1||reponse==j->inv.s->p1)){
 		return -1;
 	}
 
@@ -111,12 +112,12 @@ int changementPcombat(Joueur * j){
 
 	else{
 		printf("Choix Incorrect");
-		changementPcombat(j);
+		changementPcombat(j,annulable);
 	}
 
 	if(j->inv.s->p[j->inv.s->p1]->pv_cur<1){
 		printf("\nLe Poketudiant est KO!!");
-		changementPcombat(j);
+		changementPcombat(j,annulable);
 	}
 
 	return 0;
@@ -125,7 +126,7 @@ int changementPcombat(Joueur * j){
 //Change de Poketudiant pour un joueur ordi
 void  changerPokeOrdi(Joueur *j){
 	Sac *s=j->inv.s;
-	int rand=myrand(-1,j->inv.s->cur);
+	int rand=myrand(0,j->inv.s->cur);
 	changerPrem(j->inv.s,rand);
 
 	if(s->p[s->p1]->pv_cur<1)//poke
@@ -152,7 +153,7 @@ void combatRival(Joueur *j,Joueur *rival){
 	//Poketudiant adverse
 	p2=s2->p[s2->p1];
 	
-	while(a){
+	while(!a){
 		a=tourjoueur(j,p2,0);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
@@ -162,7 +163,7 @@ void combatRival(Joueur *j,Joueur *rival){
 			calculxp(j,tabexp,p2->experience_cur);
 			
 			if(verifvie(rival->inv.s) == 0){
-				printf("Vous avez Gagnez le Combat ! ");
+				printf("Vous avez Gagné le Combat ! ");
 				break;
 			}
 
@@ -192,7 +193,7 @@ void combatRival(Joueur *j,Joueur *rival){
 			}
 
 			afficheSac(s1);
-			changementPcombat(j);
+			changementPcombat(j,0);
 			p1=s1->p[s1->p1];
 		}
 		affichageentetour(p1,p2);
@@ -243,7 +244,7 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 			}
 
 			afficheSac(s);
-			changementPcombat(j);
+			changementPcombat(j,0);
 			p1=s->p[s->p1];
 		}
 		affichageentetour(p1,p2);
