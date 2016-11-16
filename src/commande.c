@@ -8,6 +8,29 @@
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 
+void Handlewild(Joueur *j1){}
+
+void Handlerival(Joueur *j1){}
+
+void Handlenurse(Joueur *j1){}
+
+void Handleshow(Joueur *j1){}
+
+void Handlemove_table(Joueur *j1){}
+
+void Handledrop(Joueur *j1){}
+
+void Handlepick(Joueur *j1){}
+
+void Handlerelease(Joueur *j1){}
+
+void Handlecatch(Joueur *j1){}
+
+void HandleswitchP(Joueur *j1){}
+
+void Handlexp(Joueur *j1){}
+
+
 void wild(Joueur * j1, int niv_min, int niv_max)
 {
 	Poketudiant * tmp=newPoketudiant_random(niv_min,niv_max);
@@ -30,30 +53,33 @@ void nurse(Joueur * j1)
 	
 }
 
-void show_team(Joueur j1)
+void show(Joueur * j1, char ** param){
+}
+
+void show_team(Joueur * j1)
 {
-	Sac *s = j1.inv.s;
+	Sac *s = j1->inv.s;
 	for(int i=0; i<s->cur; i++)
 		affichePoketudiant(s->p[i]);
 	
 }
 
-void show_cafet(Joueur j1)
+void show_cafet(Joueur * j1)
 {
-	showCafetaria(j1.inv.c);
+	showCafetaria(j1->inv.c);
 }
 
-void show_revision_table(Joueur j1, int table)
+void show_revision_table(Joueur * j1, int table)
 {
-	showRevision(j1.inv.c,table);
+	showRevision(j1->inv.c,table);
 }
 
 //affiche le poketudiant dont l'id est id, recherche dans cafet et sac
-void show_indice(Joueur j1,int id)
+void show_indice(Joueur * j1,int id)
 {
 	
-	Sac *s=j1.inv.s;
-	Cafetariat *c=j1.inv.c;
+	Sac *s=j1->inv.s;
+	Cafetariat *c=j1->inv.c;
 	
 	
 	//parcoure sac

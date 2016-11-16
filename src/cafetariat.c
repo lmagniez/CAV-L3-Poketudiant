@@ -93,7 +93,6 @@ TABLE %d INDICE %d                  \
 
 //relache le poketudiant a l'indice i
 void releaseCaf(Cafetariat * c,int indice){
-	int car=0;
 	c->p[indice]=NULL;
 	
 	if(indice == NB_TOTAL){

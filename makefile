@@ -1,7 +1,7 @@
 BINDIR=bin/
 SRCDIR=src/
 
-OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)joueur.o $(BINDIR)commande.o
+OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)inventaire.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)joueur.o $(BINDIR)commande.o $(BINDIR)parsecommande.o
 CC=gcc
 CFLAGS=-Wall -g
 
@@ -13,6 +13,9 @@ $(BINDIR)main.o: $(SRCDIR)*.c
 
 $(BINDIR)commande.o : $(SRCDIR)commande.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)commande.c
+
+$(BINDIR)parsecommande.o: $(SRCDIR)parsecommande.c $(SRCDIR)globale.c $(SRCDIR)commande.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)parsecommande.c
 	
 $(BINDIR)poketudiant.o : $(SRCDIR)poketudiant.c $(SRCDIR)poke.c $(SRCDIR)attaque.c $(SRCDIR)globale.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)poketudiant.c
@@ -48,7 +51,7 @@ $(BINDIR)type.o : $(SRCDIR)type.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)type.c 
 
 $(BINDIR)variete.o : $(SRCDIR)variete.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)variete.c 
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)variete.c
 
 clean:
 	@rm -rf $(BINDIR)*.o 
