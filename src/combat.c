@@ -9,7 +9,7 @@
 //Tour de l'ordi
 int tourordi(Joueur * j, Poketudiant * p2){
 	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
-	int nba=myrand(0,2);
+	int nba=myrand(0,1);
 	int k=myrand(B_COEF_MIN,B_COEF_MAX);
 	int resFaiblesse=faiblesse(p2->base[nba].t,p1->pokemon.spe);
 	int power=p2->base[nba].puissance*resFaiblesse;
@@ -201,7 +201,7 @@ void combatRival(Joueur *j,Joueur *rival){
 			changementPcombat(j,0);
 			p1=s1->p[s1->p1];
 		}
-		affichageentetour(p1,p2);
+		affichagecombat(p1,p2);
 	}
 }
 
@@ -252,7 +252,7 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 			changementPcombat(j,0);
 			p1=s->p[s->p1];
 		}
-		affichageentetour(p1,p2);
+		affichagecombat(p1,p2);
 	}
 }
 
@@ -300,7 +300,7 @@ void affichageTour(Poketudiant * p,attaque a, int isEnemy, int faiblesse,int dom
 	if(faiblesse==2) efficace="C'est super efficace !"; else efficace="";
 	
 	char * var1=chaineVariete(p->pokemon.nom);
-	printf("\n%s%s va attaquer ! %s utilise %s. %s \n%s%s inflige %d dommages\n\n",var1,enemy,var1,a.nom, efficace,var1,enemy, dommage);
+	printf("\n%s%s va attaquer ! \n %s utilise %s. %s \n%s%s inflige %d dommages\n\n",var1,enemy,var1,a.nom, efficace,var1,enemy, dommage);
 }
 
 //Affichage des informations de debut de combat
@@ -320,11 +320,3 @@ void affichagecombat(Poketudiant * p1, Poketudiant * p2){
 	printf("-----------------------------------------------\n");
 }
 
-//Affichage des informations en début de tour
-void affichageentetour(Poketudiant * p1, Poketudiant * p2){
-	char * var1=chaineVariete(p1->pokemon.nom);
-	char * var2=chaineVariete(p2->pokemon.nom);
-
-	printf("Joueur: %s (lvl.%d) %d/%d ------ ",var1,p1->lvl,p1->pv_cur,p1->stat_cur.pv_max_poke);
-	printf("Adversaire: %s (lvl.%d) %d/%d\n\n",var2,p2->lvl,p2->pv_cur,p2->stat_cur.pv_max_poke);
-}

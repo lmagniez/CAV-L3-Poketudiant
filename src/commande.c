@@ -15,7 +15,10 @@ void wild(Joueur * j1, int niv_min, int niv_max)
 	freePoketudiant(tmp);
 }
 
-void rival(Joueur * j1, int niv_min, int niv_max);
+void rival(Joueur * j1, int niv_min, int niv_max)
+{
+	
+}
 
 void nurse(Joueur * j1)
 {
