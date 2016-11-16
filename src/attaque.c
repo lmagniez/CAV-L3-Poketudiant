@@ -25,7 +25,7 @@ attaque * recupAttaque(type t){
 	attaque tmp;
 	int indice;
 	for(int i=0;i<N_ATTACK;i++){
-		indice=myrand(0,NB_ATTACK);
+		indice=myrand(0,NB_ATTACK-1);
 		tmp=tab_attaque[indice];
 		if(i==0){
 			if(!comparaisontype(tmp.t,t))

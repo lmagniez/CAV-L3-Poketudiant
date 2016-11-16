@@ -10,7 +10,7 @@ typedef struct Joueur{
 	//int p1;//actif au combat
 }Joueur;
 
-Joueur initJoueur();
+Joueur initJoueur(int lvl);
 //void afficheEnseignant(Joueur *j);
 
 

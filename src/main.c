@@ -15,8 +15,8 @@ int main(){
 
 	Poketudiant * tmp3=newPoketudiant_random(1,5);
 	
-	Joueur j=initJoueur();
-	Joueur j2=initJoueur();
+	Joueur j=initJoueur(5);
+	Joueur j2=initJoueur(2);
 	printf("ok\n");
 	
 	ajout_sac(j.inv.s,tmp1);

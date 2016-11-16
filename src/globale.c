@@ -6,7 +6,7 @@
 
 int myrand(int a,int b){
 	//srand ( time(NULL) );
-	return rand()%(b-a)+a;
+	return rand()%(b+1-a)+a;
 }
 
 void viderBuffer()

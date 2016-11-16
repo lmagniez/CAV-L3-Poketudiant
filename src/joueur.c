@@ -4,8 +4,8 @@
 #include "../lib/joueur.h"
 
 
-Joueur initJoueur(){
+Joueur initJoueur(int lvl){
 	Joueur j;
-	j.inv=initinv();
+	j.inv=initinv(lvl);
 	return j;
 }

@@ -127,7 +127,7 @@ int changementPcombat(Joueur * j, int annulable){
 //Change de Poketudiant pour un joueur ordi
 void  changerPokeOrdi(Joueur *j){
 	Sac *s=j->inv.s;
-	int rand=myrand(0,j->inv.s->cur);
+	int rand=myrand(0,j->inv.s->cur-1);
 	changerPrem(j->inv.s,rand);
 
 	if(s->p[s->p1]->pv_cur<1)//poke
@@ -154,6 +154,8 @@ void combatRival(Joueur *j,Joueur *rival){
 	//Poketudiant adverse
 	p2=s2->p[s2->p1];
 	
+	affichagecombat(p1,p2);
+	
 	while(!a){
 		a=tourjoueur(j,p2,0);
 		if(p2->pv_cur<1){
@@ -175,6 +177,8 @@ void combatRival(Joueur *j,Joueur *rival){
 				
 			changerPokeOrdi(rival);
 			p2=s2->p[s2->p1];
+			//printf("Le joueur envoie au combat: %s \n",p2->pokemon.nom);
+			
 		}
 
 		if(a==CHANG_POKE){
@@ -322,5 +326,5 @@ void affichageentetour(Poketudiant * p1, Poketudiant * p2){
 	char * var2=chaineVariete(p2->pokemon.nom);
 
 	printf("Joueur: %s (lvl.%d) %d/%d ------ ",var1,p1->lvl,p1->pv_cur,p1->stat_cur.pv_max_poke);
-	printf("Adversaire: %s (lvl.%d) %d/%d\n\n",var2,p1->lvl,p2->pv_cur,p2->stat_cur.pv_max_poke);
+	printf("Adversaire: %s (lvl.%d) %d/%d\n\n",var2,p2->lvl,p2->pv_cur,p2->stat_cur.pv_max_poke);
 }

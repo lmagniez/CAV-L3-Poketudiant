@@ -9,9 +9,9 @@
 
 
 //initialise l'inventaire
-Inventaire initinv(){
+Inventaire initinv(int lvl){
 	Inventaire inv;
-	inv.s=initsac();
+	inv.s=initsac(lvl);
 	inv.c=initcaf();
 	return inv;
 }

@@ -11,7 +11,7 @@ typedef struct Inventaire{
 }Inventaire;
 
 //initialise l'inventaire
-Inventaire initinv();
+Inventaire initinv(int lvl);
 
 //soigne tous les poketudiants du sac
 void soigne_sac(Inventaire * inv);
