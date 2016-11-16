@@ -5,7 +5,8 @@
 #include "../lib/globale.h"
 
 int myrand(int a,int b){
-	return rand()%(b-a)+a;
+	//srand ( time(NULL) );
+	return rand()%(b+1-a)+a;
 }
 
 void viderBuffer()

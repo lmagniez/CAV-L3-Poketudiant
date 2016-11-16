@@ -24,19 +24,25 @@ attaque * recupAttaque(type t){
 	attaque * tab=(attaque *)malloc(N_ATTACK*sizeof(attaque));
 	attaque tmp;
 	int indice;
-	for(int i=0;i<N_ATTACK;i++){
-		indice=myrand(0,NB_ATTACK);
+	
+	//première attaque
+	indice=myrand(0,NB_ATTACK-1);
+	tmp=tab_attaque[indice];
+	while(!comparaisontype(tmp.t,t)){
+		indice=myrand(0,NB_ATTACK-1);
 		tmp=tab_attaque[indice];
-		if(i==0){
-			if(!comparaisontype(tmp.t,t))
-				i--;
+	}
+	tab[0]=tmp;
+		
+	//autres attaques (une seule a priori)
+	for(int i=1;i<N_ATTACK;i++){
+		indice=myrand(0,NB_ATTACK-1);
+		tmp=tab_attaque[indice];
+		while(comparaisontype(tmp.t,t)){
+			indice=myrand(0,NB_ATTACK-1);
+			tmp=tab_attaque[indice];
 		}
-		else{
-			if(comparaisontype(tmp.t,t))
-				i--;
-		}
-		if(i!=-1)
-			tab[i]=tmp;
+		tab[i]=tmp;
 	}
 	return tab;
 } 

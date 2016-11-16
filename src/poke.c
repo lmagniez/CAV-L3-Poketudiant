@@ -23,11 +23,30 @@ Poke recupPoke(variete v){
 }
 
 Poke newPokeRand(){
-	int r=myrand(0,NB_VARIETE);
+	
+	int r=myrand(0,NB_VARIETE-1);
+	
+	while(tab_variete[r].capturable==0)
+	{
+		r=myrand(0,NB_VARIETE-1);
+	}
+	return tab_variete[r];
+
+}
+
+
+/*
+Poke newPokeRand(){
+	int r=myrand(0,NB_VARIETE-1);
+	//si il est capturable
 	if(tab_variete[r].capturable==1){
 		return tab_variete[r];
 	}
+	//sinon verifie
 	else {
+		
+		
+		
 		while(tab_variete[r].capturable==0){
 			r++;
 			if(r==NB_VARIETE)
@@ -35,4 +54,4 @@ Poke newPokeRand(){
 		}
 		return tab_variete[r];
 	}
-}
+}*/

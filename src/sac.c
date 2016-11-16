@@ -11,13 +11,16 @@
 #define ERR_ISTRAINER	"erreur, on ne peut supprimer l'enseignant dresseur\n"
 
 //initialise avec l'enseignant dresseur
-Sac * initsac(){
+Sac * initsac(int lvl){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
 	//for(int i=0;i<TAILLE_SAC;i++)
 	//	s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	
-	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,1,2);
+	
+	printf("Poke au lvl: %d\n",lvl);
+	
+	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
 	
 	return s;
 }
