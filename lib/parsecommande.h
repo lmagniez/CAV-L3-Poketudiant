@@ -5,7 +5,7 @@
 #define TAILLE 1
 #define TAILLE_CHAINE 10
 
-typedef void (*CmdHandling)(char ** arguments,Joueur * j1);
+typedef void (*CmdHandling)(char ** arguments,Joueur * j1,int taille);
 
 CmdHandling getCmdHandling(char * firstWord);
 

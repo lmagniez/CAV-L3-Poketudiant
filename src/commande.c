@@ -7,49 +7,116 @@
 #include "../lib/commande.h"
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
+#define ERR_COMMANDE	"Erreur Syntaxe Commande ! \n" 
 
-void Handlewild(char ** arguments,Joueur *j1){
-	printf("wild");
+void Handlewild(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
+
+	int buffer[2];
+	for(int i=0;i<taille_arg;i++){
+		buffer[i]=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	wild(j1,buffer[0],buffer[1]);
 }
 
-void Handlerival(char ** arguments,Joueur *j1){
-	printf("rival");
+void Handlerival(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
+
+	int buffer[2];
+	for(int i=0;i<taille_arg;i++){
+		buffer[i]=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	rival(j1,buffer[0],buffer[1]);
 }
 
-void Handlenurse(char ** arguments,Joueur *j1){
-	printf("nurse");
+void Handlenurse(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
+	
+	nurse(j1);
 }
 
-void Handleshow(char ** arguments,Joueur *j1){
-	printf("show");
+void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
+
 }
 
-void Handlemove_table(char ** arguments,Joueur *j1){
-	printf("table");
+void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
+
+	int buffer[2];
+	for(int i=0;i<taille_arg;i++){
+		buffer[i]=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	switchP(j1,buffer[0],buffer[1]);
 }
 
-void Handledrop(char ** arguments,Joueur *j1){
-	printf("drop");
+void Handlemove_table(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
+
+	int buffer[2];
+	for(int i=0;i<taille_arg;i++){
+		buffer[i]=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	move_table(j1,buffer[0],buffer[1]);
+
 }
 
-void Handlepick(char ** arguments,Joueur *j1){
-	printf("pick");
+void Handledrop(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
+
+	int id;
+	for(int i=0;i<taille_arg;i++){
+		id=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	drop(j1,id);
 }
 
-void Handlerelease(char ** arguments,Joueur *j1){
-	printf("release");
+void Handlepick(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
+
+	int id;
+	for(int i=0;i<taille_arg;i++){
+		id=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	pick(j1,id);
 }
 
-void Handlecatch(char ** arguments,Joueur *j1){
-	printf("ctach");
+void Handlerelease(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
+
+	int id;
+	for(int i=0;i<taille_arg;i++){
+		id=(int)strtol(arguments[i],NULL,10);
+	}
+
+	release(j1,id);
 }
 
-void HandleswitchP(char ** arguments,Joueur *j1){
-	printf("switch");
+void Handlecatch(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
+
+	int id;
+	for(int i=0;i<taille_arg;i++){
+		id=(int)strtol(arguments[i],NULL,10);
+	}
+
+	catch(j1,id);
 }
 
-void Handlexp(char ** arguments,Joueur *j1){
-	printf("exp");
+void Handlexp(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
+
+	int buffer[2];
+	for(int i=0;i<taille_arg;i++){
+		buffer[i]=(int)strtol(arguments[i],NULL,10);
+	}
+	
+	xp(j1,buffer[0],buffer[1]);
 }
 
 
@@ -202,7 +269,6 @@ void switchP(Joueur *j1, int id1, int id2)
 	
 	
 }
-
 
 //Deplace le poketudiant d'indice i (equipe->cafeteriat)
 void drop(Joueur * j1 , int i)

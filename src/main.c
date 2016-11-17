@@ -9,24 +9,23 @@
 
 int main(){
 	
+	Poketudiant * tmp1=newPoketudiant_random(1,5);
+	Poketudiant * tmp2=newPoketudiant_type(PROCRASTINO,1,5);
+
+	Poketudiant * tmp3=newPoketudiant_random(1,5);
+	
 	Joueur j=initJoueur(5);
+	Joueur j2=initJoueur(2);
+	printf("ok\n");
+	
+	ajout_sac(j.inv.s,tmp1);
+
 
 	while(1){
 		lirecommande(&j);
 	}
 
 	srand(time(NULL));//debut de code pour la bonne generation aleatoire
-	
-	Poketudiant * tmp1=newPoketudiant_random(1,5);
-	Poketudiant * tmp2=newPoketudiant_type(PROCRASTINO,1,5);
-
-	Poketudiant * tmp3=newPoketudiant_random(1,5);
-	
-
-	Joueur j2=initJoueur(2);
-	printf("ok\n");
-	
-	ajout_sac(j.inv.s,tmp1);
 	
 	
 	catch(&j,5);

@@ -52,11 +52,6 @@ void lirecommande(Joueur * j1){
  		token = strtok (NULL, " ,");
     }
 
-    if(taille==0){
-    	printf("Aucune Commande n'a aucun argumements ! \n");
-    	return ;
-    }
-
-    commande(arguments,j1);
+    commande(arguments,j1,taille);
 
 }
