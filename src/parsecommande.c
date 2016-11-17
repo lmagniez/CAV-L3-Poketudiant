@@ -9,13 +9,15 @@
 
 
 CmdHandling cmdFuncs[]={Handlewild,Handlerival,Handlenurse,Handleshow,Handlemove_table,Handledrop,Handlepick,Handlerelease,Handlecatch,HandleswitchP,Handlexp};
-char * cmdNames[]={"wild","rival","nurse","show","switch","move-table","drop","pick","relase","catch","xp"};
+char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","relase","catch","switch""xp"};
 
 CmdHandling getCmdHandling(char * firstWord){
 	int i=0;
 	for(i=0;i<NCMDS;++i){
-		if(strcmp(firstWord,cmdNames[i])==0)
-			return cmdFuncs[i];
+			if(strcmp(firstWord,cmdNames[i])==0){
+				printf("%s \n",cmdNames[i]);
+				return cmdFuncs[i];
+			}
 	}
 	return NULL;
 }
