@@ -15,7 +15,6 @@ CmdHandling getCmdHandling(char * firstWord){
 	int i=0;
 	for(i=0;i<NCMDS;++i){
 			if(strcmp(firstWord,cmdNames[i])==0){
-				printf("%s \n",cmdNames[i]);
 				return cmdFuncs[i];
 			}
 	}
