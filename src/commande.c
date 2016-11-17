@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "../lib/joueur.h"
 #include "../lib/combat.h"
@@ -38,7 +39,28 @@ void Handlenurse(char ** arguments,Joueur *j1,int taille_arg){
 }
 
 void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
+	int nb;
 
+	if(taille_arg == 1 && strcmp(arguments[0],"pokecafetaria")==0){
+		show_cafet(j1);
+	}
+
+	else if(taille_arg == 1 && strcmp(arguments[0],"team")==0){
+		show_team(j1);
+	}
+
+	else if(taille_arg == 1 ){
+		int nb=(int)strtol(arguments[0],NULL,10);
+		show_indice(j1,nb);
+		return;
+	}
+
+	else if(taille_arg == 2 && strcmp(arguments[0],"revision-table")==0){
+		nb=(int)strtol(arguments[1],NULL,10);
+		show_revision_table(j1,nb);
+	}
+
+	else{printf(ERR_COMMANDE);return;}
 }
 
 void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg){
@@ -145,9 +167,6 @@ void nurse(Joueur * j1)
 	
 }
 
-void show(Joueur * j1, char ** param){
-}
-
 void show_team(Joueur * j1)
 {
 	Sac *s = j1->inv.s;
@@ -169,7 +188,7 @@ void show_revision_table(Joueur * j1, int table)
 //affiche le poketudiant dont l'id est id, recherche dans cafet et sac
 void show_indice(Joueur * j1,int id)
 {
-	
+
 	Sac *s=j1->inv.s;
 	Cafetariat *c=j1->inv.c;
 	
@@ -181,7 +200,7 @@ void show_indice(Joueur * j1,int id)
 		{
 			printf("Poketudiant id:%d dans le sac à l'indice %d \n",id,i);
 			affichePoketudiant(s->p[i]);
-			
+			return;
 		}
 	}
 	
@@ -193,6 +212,7 @@ void show_indice(Joueur * j1,int id)
 			{
 				printf("Poketudiant id:%d dans la cafet à l'indice %d (table %d)\n",id,i,i/NB_CHAISE);
 				affichePoketudiant(c->p[i]);
+				return;
 			}
 	}
 	

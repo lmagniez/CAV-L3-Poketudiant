@@ -30,8 +30,6 @@ void rival(Joueur * j1, int niv_min, int niv_max);
 
 void nurse(Joueur * j1);
 
-void show(Joueur * j1, char ** param);
-
 void show_team(Joueur * j1);
 
 void show_cafet(Joueur * j1);
