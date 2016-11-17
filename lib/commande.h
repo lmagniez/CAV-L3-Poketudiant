@@ -1,27 +1,27 @@
 #ifndef _COMMANDE_H
 #define _COMMANDE_H
 
-void Handlewild(Joueur *j1);
+void Handlewild(char ** arguments,Joueur *j1);
 
-void Handlerival(Joueur *j1);
+void Handlerival(char ** arguments,Joueur *j1);
 
-void Handlenurse(Joueur *j1);
+void Handlenurse(char ** arguments,Joueur *j1);
 
-void Handleshow(Joueur *j1);
+void Handleshow(char ** arguments,Joueur *j1);
 
-void Handlemove_table(Joueur *j1);
+void Handlemove_table(char ** arguments,Joueur *j1);
 
-void Handledrop(Joueur *j1);
+void Handledrop(char ** arguments,Joueur *j1);
 
-void Handlepick(Joueur *j1);
+void Handlepick(char ** arguments,Joueur *j1);
 
-void Handlerelease(Joueur *j1);
+void Handlerelease(char ** arguments,Joueur *j1);
 
-void Handlecatch(Joueur *j1);
+void Handlecatch(char ** arguments,Joueur *j1);
 
-void HandleswitchP(Joueur *j1);
+void HandleswitchP(char ** arguments,Joueur *j1);
 
-void Handlexp(Joueur *j1);
+void Handlexp(char ** arguments,Joueur *j1);
 
 
 void wild(Joueur * j1, int niv_min, int niv_max);

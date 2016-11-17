@@ -8,27 +8,49 @@
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 
-void Handlewild(Joueur *j1){}
+void Handlewild(char ** arguments,Joueur *j1){
+	printf("wild");
+}
 
-void Handlerival(Joueur *j1){}
+void Handlerival(char ** arguments,Joueur *j1){
+	printf("rival");
+}
 
-void Handlenurse(Joueur *j1){}
+void Handlenurse(char ** arguments,Joueur *j1){
+	printf("nurse");
+}
 
-void Handleshow(Joueur *j1){}
+void Handleshow(char ** arguments,Joueur *j1){
+	printf("show");
+}
 
-void Handlemove_table(Joueur *j1){}
+void Handlemove_table(char ** arguments,Joueur *j1){
+	printf("table");
+}
 
-void Handledrop(Joueur *j1){}
+void Handledrop(char ** arguments,Joueur *j1){
+	printf("drop");
+}
 
-void Handlepick(Joueur *j1){}
+void Handlepick(char ** arguments,Joueur *j1){
+	printf("pick");
+}
 
-void Handlerelease(Joueur *j1){}
+void Handlerelease(char ** arguments,Joueur *j1){
+	printf("release");
+}
 
-void Handlecatch(Joueur *j1){}
+void Handlecatch(char ** arguments,Joueur *j1){
+	printf("ctach");
+}
 
-void HandleswitchP(Joueur *j1){}
+void HandleswitchP(char ** arguments,Joueur *j1){
+	printf("switch");
+}
 
-void Handlexp(Joueur *j1){}
+void Handlexp(char ** arguments,Joueur *j1){
+	printf("exp");
+}
 
 
 void wild(Joueur * j1, int niv_min, int niv_max)

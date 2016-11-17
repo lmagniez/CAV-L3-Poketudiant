@@ -9,8 +9,10 @@
 
 int main(){
 	
+	Joueur j=initJoueur(5);
+
 	while(1){
-		lirecommande();
+		lirecommande(&j);
 	}
 
 	srand(time(NULL));//debut de code pour la bonne generation aleatoire
@@ -20,7 +22,7 @@ int main(){
 
 	Poketudiant * tmp3=newPoketudiant_random(1,5);
 	
-	Joueur j=initJoueur(5);
+
 	Joueur j2=initJoueur(2);
 	printf("ok\n");
 	
@@ -91,8 +93,6 @@ int main(){
 	//show_indice(j,1);
 	
 	//xp(&j,4,50);
-	
->>>>>>> 3b03e6462774941318340f8cc2cc384bc8282b30
 
 	return 0;
 }
