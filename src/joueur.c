@@ -3,16 +3,105 @@
 
 #include "../lib/joueur.h"
 
+#define ERR_TEAMFULL "Impossible l'equipe est pleine\n"
+#define ERR_NOPKTD "Il n'y a pas de poketudiants a cette place\n"
+#define ERR_BOTHFULL "Le sac et La cafetaria sont pleins\n"
 
-Joueur initJoueur(int lvl){
+
+//initialise l'inventaire
+Joueur initinv(int lvl){
 	Joueur j;
-	j.inv=initinv(lvl);
+	j.s=initsac(lvl);
+	j.c=initcaf();
 	return j;
 }
 
-Joueur initRival(int lvl_min, int lvl_max)
+Joueur init_inv_rival(int lvl_min, int lvl_max){
+	Joueur j;
+	j.s=init_sac_rival(lvl_min,lvl_max);
+	j.c=initcaf();
+	return j;
+}
+
+//soigne tous les poketudiants du sac
+void soigne_sac(Joueur * j){
+	for(int i=0;i<j->s->cur;i++){
+		soigne_Poketudiant(j->c->p[i]);
+	}
+}
+
+//soigne tous les poketudiants de la cafet
+void soigne_caf(Joueur * j){
+	for(int i=0;i<j->c->cur;i++){
+		soigne_Poketudiant(j->c->p[i]);
+	}
+}
+
+//depose le poketudiant de l'equipe vers la cafet
+void drop_pokemon(Joueur * j,int indice){
+	Poketudiant *p=supprimerPoke_sac(j->s,indice);
+	ajout_cafe(j->c,p);
+}
+
+//depose le poketudiant de l'equipe vers la cafet (en fonction table)
+void drop_pokemon_table(Joueur * j,int indice, int table){
+	Poketudiant *p=supprimerPoke_sac(j->s,indice);
+	ajout_cafe_id(j->c,p,table);
+}
+
+//depose le poketudiant de la cafet vers l'equipe
+void pick_pokemon(Joueur * j,int indice){
+	if(sacPlein(j->s)){
+		printf(ERR_TEAMFULL);
+		return;
+	}
+	if(j->c->p[indice]==NULL){
+		printf(ERR_NOPKTD);
+		return;
+	}
+	
+	j->s->p[j->s->cur]=j->c->p[indice];
+	j->c->p[indice]=NULL;
+	j->c->cur--;
+	j->s->cur++;
+}
+
+//ajoute le pokemon soit dans la cafet soit dans le sac
+void ajout_inv(Joueur * j,Poketudiant * p){
+	if(sacPlein( (j->s) ) ){
+		if(!cafetPleine((j->c)))
+			ajout_cafe(j->c,p);
+		else
+			printf(ERR_BOTHFULL);
+	}
+	else ajout_sac(j->s,p);
+}
+
+Poketudiant* get_by_id(Joueur *j, int id)
 {
-	Joueur j;
-	j.inv=init_inv_rival(lvl_min,lvl_max);
-	return j;
+	Sac *s=j->s;
+	Cafetariat *c=j->c;
+	
+	
+	//parcoure sac
+	for(int i=0; i<s->cur; i++)
+	{
+		if(s->p[i]->id==id)
+		{
+			return s->p[i];
+		}
+	}
+	
+	//parcoure cafet
+	for(int i=0; i<NB_TOTAL; i++)
+	{
+		if(c->p[i]!=NULL)
+			if(c->p[i]->id==id)
+			{
+				return c->p[i];
+			}
+	}
+	
+	return NULL;
 }
+

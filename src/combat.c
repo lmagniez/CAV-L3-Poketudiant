@@ -8,7 +8,7 @@
 
 //Tour de l'ordi
 int tourordi(Joueur * j, Poketudiant * p2){
-	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
+	Poketudiant * p1=j->s->p[j->s->p1];
 	int nba=myrand(0,1);
 	int k=myrand(B_COEF_MIN,B_COEF_MAX);
 	int resFaiblesse=faiblesse(p2->base[nba].t,p1->pokemon.spe);
@@ -22,7 +22,7 @@ int tourordi(Joueur * j, Poketudiant * p2){
 //Affiche les actions possibles et demande une action au joueur
 int tourjoueur(Joueur * j, Poketudiant * p2,int combat){
 	int i;
-	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
+	Poketudiant * p1=j->s->p[j->s->p1];
 	printf("\n---------------------------\n");
 	printf("Attaque : \n");
 	
@@ -41,7 +41,7 @@ int tourjoueur(Joueur * j, Poketudiant * p2,int combat){
 
 int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 	int reponse,dommage,power,k,probCapt,resFaiblesse;
-	Poketudiant * p1=j->inv.s->p[j->inv.s->p1];
+	Poketudiant * p1=j->s->p[j->s->p1];
 	printf("Votre choix : ");
 	reponse=lectureEntree();
 
@@ -80,7 +80,7 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 			return 0;
 		break;
 		case 5:
-			afficheSac(j->inv.s);
+			afficheSac(j->s);
 			if(changementPcombat(j,1)==-1)choixJoueur(j,p2,combat);
 			return CHANG_POKE;
 		break;
@@ -103,12 +103,12 @@ int changementPcombat(Joueur * j, int annulable){
 	reponse=lectureEntree();
 
 	//annuler (que si autorisé)
-	if(annulable&&(reponse==-1||reponse==j->inv.s->p1)){
+	if(annulable&&(reponse==-1||reponse==j->s->p1)){
 		return -1;
 	}
 
-	else if(reponse < j->inv.s->cur && reponse >=0){
-		changerPrem(j->inv.s,reponse);
+	else if(reponse < j->s->cur && reponse >=0){
+		changerPrem(j->s,reponse);
 	}
 
 	else{
@@ -116,7 +116,7 @@ int changementPcombat(Joueur * j, int annulable){
 		changementPcombat(j,annulable);
 	}
 
-	if(j->inv.s->p[j->inv.s->p1]->pv_cur<1){
+	if(j->s->p[j->s->p1]->pv_cur<1){
 		printf("\nLe Poketudiant est KO!!");
 		changementPcombat(j,annulable);
 	}
@@ -126,9 +126,9 @@ int changementPcombat(Joueur * j, int annulable){
 
 //Change de Poketudiant pour un joueur ordi
 void  changerPokeOrdi(Joueur *j){
-	Sac *s=j->inv.s;
-	int rand=myrand(0,j->inv.s->cur-1);
-	changerPrem(j->inv.s,rand);
+	Sac *s=j->s;
+	int rand=myrand(0,j->s->cur-1);
+	changerPrem(j->s,rand);
 
 	if(s->p[s->p1]->pv_cur<1)//poke
 		changerPokeOrdi(j);
@@ -139,8 +139,8 @@ void combatRival(Joueur *j,Joueur *rival){
 	int a=0;
 	int tabexp[TAILLE_SAC];
 	Sac *s1,*s2;
-	s1=j->inv.s;
-	s2=rival->inv.s;
+	s1=j->s;
+	s2=rival->s;
 	
 	for(int i=0; i<TAILLE_SAC; i++)
 		tabexp[i]=0;
@@ -165,7 +165,7 @@ void combatRival(Joueur *j,Joueur *rival){
 
 			calculxp(j,tabexp,p2->experience_cur);
 			
-			if(verifvie(rival->inv.s) == 0){
+			if(verifvie(rival->s) == 0){
 				printf("Vous avez Gagné le Combat ! ");
 				break;
 			}
@@ -211,7 +211,7 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 
 	int tabexp[TAILLE_SAC];
 	
-	Sac *s=j->inv.s;
+	Sac *s=j->s;
 
 	Poketudiant * p1=s->p[s->p1];
 	for(int i=0; i<TAILLE_SAC; i++)
@@ -229,7 +229,7 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 		}
 
 		if(a==FUITE){break;} //fuite
-		if(a==CAPTURE){ajout_inv(&(j->inv),p2);break;} //capture
+		if(a==CAPTURE){ajout_inv(j,p2);break;} //capture
 
 
 		if(a==CHANG_POKE){
@@ -266,7 +266,7 @@ void calculxp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
 
 	for(int i=0;i<TAILLE_SAC;i++){
 		if(tabexp[i]==1)
-			gestionLevelUp(j->inv.s->p[i],nb_exp);
+			gestionLevelUp(j->s->p[i],nb_exp);
 	}	
 }
 

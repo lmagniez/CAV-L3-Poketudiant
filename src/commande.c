@@ -215,7 +215,7 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 		return;
 	}
 	
-	Joueur j= initRival(niv_min, niv_max);
+	Joueur j= init_inv_rival(niv_min, niv_max);
 	combatRival(j1,&j);
 	
 	
@@ -223,8 +223,8 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 
 void nurse(Joueur * j1)
 {
-	Sac *s= j1->inv.s;
-	Cafetariat* c= j1->inv.c;
+	Sac *s= j1->s;
+	Cafetariat* c= j1->c;
 	for(int i=0; i<s->cur; i++)
 		s->p[i]->pv_cur=s->p[i]->stat_cur.pv_max_poke;
 	
@@ -236,7 +236,7 @@ void nurse(Joueur * j1)
 
 void show_team(Joueur * j1)
 {
-	Sac *s = j1->inv.s;
+	Sac *s = j1->s;
 	for(int i=0; i<s->cur; i++)
 		affichePoketudiant(s->p[i]);
 	
@@ -244,20 +244,20 @@ void show_team(Joueur * j1)
 
 void show_cafet(Joueur * j1)
 {
-	showCafetaria(j1->inv.c);
+	showCafetaria(j1->c);
 }
 
 void show_revision_table(Joueur * j1, int table)
 {
-	showRevision(j1->inv.c,table);
+	showRevision(j1->c,table);
 }
 
 //affiche le poketudiant dont l'id est id, recherche dans cafet et sac
 void show_indice(Joueur * j1,int id)
 {
 
-	Sac *s=j1->inv.s;
-	Cafetariat *c=j1->inv.c;
+	Sac *s=j1->s;
+	Cafetariat *c=j1->c;
 	
 	
 	//parcoure sac
@@ -291,8 +291,8 @@ void show_indice(Joueur * j1,int id)
 //Deplace le poketudiant d'id id à la table table
 void move_table(Joueur * j1,int id , int table)
 {
-	Sac *s=j1->inv.s;
-	Cafetariat *c=j1->inv.c;
+	Sac *s=j1->s;
+	Cafetariat *c=j1->c;
 	
 	
 	//parcoure sac
@@ -307,7 +307,7 @@ void move_table(Joueur * j1,int id , int table)
 			}	
 			
 			printf("Poketudiant id:%d dans le sac à l'indice %d \n",id,i);
-			drop_pokemon_table(&(j1->inv),i,table);
+			drop_pokemon_table(j1,i,table);
 			return;
 			
 		}
@@ -344,8 +344,8 @@ void move_table(Joueur * j1,int id , int table)
 
 void switchP(Joueur *j1, int id1, int id2)
 {
-	Poketudiant *p1 = get_by_id(&(j1->inv),id1);
-	Poketudiant *p2 = get_by_id(&(j1->inv),id2);
+	Poketudiant *p1 = get_by_id(j1,id1);
+	Poketudiant *p2 = get_by_id(j1,id2);
 	
 	if(p1==NULL||p2==NULL)printf("Erreur, un ou plusieurs identifiants n'existent pas.\n");
 	else{
@@ -360,22 +360,22 @@ void switchP(Joueur *j1, int id1, int id2)
 //Deplace le poketudiant d'indice i (equipe->cafeteriat)
 void drop(Joueur * j1 , int i)
 {
-	drop_pokemon(&(j1->inv),i);
+	drop_pokemon(j1,i);
 }
 
 //Deplace le poketudiant d'indice i (cafeteriat->equipe)
 void pick(Joueur * j1 , int i)
 {
-	pick_pokemon(&(j1->inv),i);
+	pick_pokemon(j1,i);
 }
 
 //relache le poketudiant en position i de la cafetariat
 void release(Joueur * j1, int i)
 {
-	if(j1->inv.c->p[i])
+	if(j1->c->p[i])
 	{
-		freePoketudiant(j1->inv.c->p[i]);
-		j1->inv.c->p[i]=NULL;
+		freePoketudiant(j1->c->p[i]);
+		j1->c->p[i]=NULL;
 		printf("Poketudiant en indice %d relaché \n", i);
 	}
 }
@@ -383,12 +383,12 @@ void release(Joueur * j1, int i)
 void catch(Joueur * j1,int n)
 {
 	for(int i=0; i<n; i++)
-		ajout_inv(&(j1->inv), newPoketudiant_random(1,5));
+		ajout_inv(j1, newPoketudiant_random(1,5));
 }
 
 void xp(Joueur * j1, int i , int n)
 {
-	Sac *s=j1->inv.s;
+	Sac *s=j1->s;
 	if(i>s->cur||i<0)
 		printf(ERR_OVERFLOW,i);
 	else 

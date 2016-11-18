@@ -1,20 +1,43 @@
-#ifndef _JOUEUR_H
-#define _JOUEUR_H
+#ifndef _INVENTAIRE_H
+#define _INVENTAIRE_H
 
 #include "poketudiant.h"
-#include "inventaire.h"
+#include "cafetariat.h"
+#include "sac.h"
 
 typedef struct Joueur{
-	//Poketudiant * enseignant;
-	Inventaire inv;
-	//int p1;//actif au combat
+	Sac * s;
+	Cafetariat * c;
 }Joueur;
 
-Joueur initJoueur(int lvl);
-//init un rival et deux poke
-Joueur initRival(int lvl_min, int lvl_max);
-//void afficheEnseignant(Joueur *j);
+//initialise l'inventaire
+Joueur initinv(int lvl);
+
+//init inventaire pour rival
+Joueur init_inv_rival(int lvl_min, int lvl_max);
 
 
+//soigne tous les poketudiants du sac
+void soigne_sac(Joueur * j);
+
+//soigne tous les poketudiants de la cafet
+void soigne_caf(Joueur * j);
+
+//depose le poketudiant de l'equipe vers la cafet
+void drop_pokemon(Joueur * j,int indice);
+
+//depose le poketudiant de l'equipe vers la cafet (table)
+void drop_pokemon_table(Joueur * j,int indice, int table);
+
+//depose le poketudiant de la cafet vers l'equipe
+void pick_pokemon(Joueur * j,int indice);
+
+//ajoute le pokemon soit dans la cafet soit dans le sac
+void ajout_inv(Joueur * j,Poketudiant * p);
+
+
+Poketudiant* get_by_id(Joueur *j, int id);
 
 #endif
+
+
