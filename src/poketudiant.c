@@ -157,6 +157,9 @@ void evolution(Poketudiant *p){
 
 void gestionLevelUp(Poketudiant * p,int xp_add){
 	
+	if(p->lvl==10)
+		return;
+	
 	char *nom, *nom2; 
 	nom= chaineVariete(p->pokemon.nom);
 	printf("%s a gagné %d experiences !\n",nom,xp_add);
@@ -165,8 +168,9 @@ void gestionLevelUp(Poketudiant * p,int xp_add){
 
 	//if(p->experience_cur<p->experience_niveau_sup) return ;
 	
-	while(p->experience_cur>p->experience_niveau_sup)
+	while(p->experience_cur>p->experience_niveau_sup&&p->lvl<10)
 	{
+		
 		if(p->pokemon.evolution!=NO_EVOLUTION&&doitevoluer(p->lvl)){
 			evolution(p);
 			nom2=chaineVariete(p->pokemon.nom);

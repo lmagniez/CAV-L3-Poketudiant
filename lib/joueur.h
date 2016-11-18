@@ -11,6 +11,8 @@ typedef struct Joueur{
 }Joueur;
 
 Joueur initJoueur(int lvl);
+//init un rival et deux poke
+Joueur initRival(int lvl_min, int lvl_max);
 //void afficheEnseignant(Joueur *j);
 
 

@@ -13,6 +13,10 @@ typedef struct Inventaire{
 //initialise l'inventaire
 Inventaire initinv(int lvl);
 
+//init inventaire pour rival
+Inventaire init_inv_rival(int lvl_min, int lvl_max);
+
+
 //soigne tous les poketudiants du sac
 void soigne_sac(Inventaire * inv);
 
@@ -30,6 +34,7 @@ void pick_pokemon(Inventaire * inv,int indice);
 
 //ajoute le pokemon soit dans la cafet soit dans le sac
 void ajout_inv(Inventaire * inv,Poketudiant * p);
+
 
 Poketudiant* get_by_id(Inventaire *inv, int id);
 

@@ -52,4 +52,6 @@ void switchP(Joueur * j1, int id1, int id2);
 
 void xp(Joueur * j1, int i , int n);
 
+int isInt(char *s);
+
 #endif

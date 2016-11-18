@@ -25,6 +25,20 @@ Sac * initsac(int lvl){
 	return s;
 }
 
+Sac * init_sac_rival(int lvl_min,int lvl_max){
+	Sac * s=(Sac *)malloc(sizeof(Sac));
+	s->cur=3;
+	//for(int i=0;i<TAILLE_SAC;i++)
+	//	s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
+	
+	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,lvl_min,lvl_max);
+	s->p[1]=newPoketudiant_random(lvl_min,lvl_max);
+	s->p[2]=newPoketudiant_random(lvl_min,lvl_max);
+	
+	
+	return s;
+}
+
 //ajoute un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
 	if(sacPlein(s))

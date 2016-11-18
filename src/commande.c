@@ -9,6 +9,9 @@
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 #define ERR_COMMANDE	"Erreur Syntaxe Commande ! \n" 
+#define ERR_COMMANDE_NB "Erreur syntaxe, veuillez entrer un entier\n"
+#define ERR_POKE_ID 	"Il n'y a aucun poketudiant correspondant à l'id: %d\n"
+#define ERR_POKE_LVL	"Un poketudiant ne peut pas dépasser le lvl 10! (et ne peut pas être en dessous de 0...)\n"
 
 void Handlewild(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
@@ -41,7 +44,7 @@ void Handlenurse(char ** arguments,Joueur *j1,int taille_arg){
 void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
 	int nb;
 
-	if(taille_arg == 1 && strcmp(arguments[0],"pokecafetaria")==0){
+	if(taille_arg == 1 && strcmp(arguments[0],"pokecafeteria")==0){
 		show_cafet(j1);
 	}
 
@@ -50,14 +53,23 @@ void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
 	}
 
 	else if(taille_arg == 1 ){
-		int nb=(int)strtol(arguments[0],NULL,10);
-		show_indice(j1,nb);
-		return;
+		if(isInt(arguments[0])){	
+			int nb=(int)strtol(arguments[0],NULL,10);
+			show_indice(j1,nb);
+		}
+		else{
+			printf(ERR_COMMANDE_NB);
+		}
 	}
 
 	else if(taille_arg == 2 && strcmp(arguments[0],"revision-table")==0){
-		nb=(int)strtol(arguments[1],NULL,10);
-		show_revision_table(j1,nb);
+		if(isInt(arguments[1])){
+			nb=(int)strtol(arguments[1],NULL,10);
+			show_revision_table(j1,nb);
+		}
+		else{
+			printf(ERR_COMMANDE_NB);
+		}
 	}
 
 	else{printf(ERR_COMMANDE);return;}
@@ -68,7 +80,14 @@ void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg){
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
-		buffer[i]=(int)strtol(arguments[i],NULL,10);
+		
+		if(isInt(arguments[i])){
+			buffer[i]=(int)strtol(arguments[i],NULL,10);
+		}
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}
 	}
 	
 	switchP(j1,buffer[0],buffer[1]);
@@ -79,7 +98,13 @@ void Handlemove_table(char ** arguments,Joueur *j1,int taille_arg){
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
-		buffer[i]=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i])){
+			buffer[i]=(int)strtol(arguments[i],NULL,10);
+		}
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}
 	}
 	
 	move_table(j1,buffer[0],buffer[1]);
@@ -91,7 +116,12 @@ void Handledrop(char ** arguments,Joueur *j1,int taille_arg){
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		id=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i]))
+			id=(int)strtol(arguments[i],NULL,10);
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}	
 	}
 	
 	drop(j1,id);
@@ -102,7 +132,12 @@ void Handlepick(char ** arguments,Joueur *j1,int taille_arg){
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		id=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i]))
+			id=(int)strtol(arguments[i],NULL,10);
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}	
 	}
 	
 	pick(j1,id);
@@ -113,7 +148,12 @@ void Handlerelease(char ** arguments,Joueur *j1,int taille_arg){
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		id=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i]))
+			id=(int)strtol(arguments[i],NULL,10);
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}	
 	}
 
 	release(j1,id);
@@ -124,7 +164,12 @@ void Handlecatch(char ** arguments,Joueur *j1,int taille_arg){
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		id=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i]))
+			id=(int)strtol(arguments[i],NULL,10);
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}	
 	}
 
 	catch(j1,id);
@@ -135,7 +180,13 @@ void Handlexp(char ** arguments,Joueur *j1,int taille_arg){
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
-		buffer[i]=(int)strtol(arguments[i],NULL,10);
+		if(isInt(arguments[i])){
+			buffer[i]=(int)strtol(arguments[i],NULL,10);
+		}
+		else{
+			printf(ERR_COMMANDE_NB);
+			return;
+		}
 	}
 	
 	xp(j1,buffer[0],buffer[1]);
@@ -144,6 +195,13 @@ void Handlexp(char ** arguments,Joueur *j1,int taille_arg){
 
 void wild(Joueur * j1, int niv_min, int niv_max)
 {
+	
+	if(niv_min<0||niv_max>10)
+	{
+		printf(ERR_POKE_LVL);
+		return;
+	}
+	
 	Poketudiant * tmp=newPoketudiant_random(niv_min,niv_max);
 	combatSauvage(j1,tmp);
 	freePoketudiant(tmp);
@@ -151,6 +209,15 @@ void wild(Joueur * j1, int niv_min, int niv_max)
 
 void rival(Joueur * j1, int niv_min, int niv_max)
 {
+	if(niv_min<0||niv_max>10)
+	{
+		printf(ERR_POKE_LVL);
+		return;
+	}
+	
+	Joueur j= initRival(niv_min, niv_max);
+	combatRival(j1,&j);
+	
 	
 }
 
@@ -216,7 +283,7 @@ void show_indice(Joueur * j1,int id)
 			}
 	}
 	
-	
+	printf(ERR_POKE_ID,id);
 	
 	
 }
@@ -332,3 +399,25 @@ void xp(Joueur * j1, int i , int n)
 	
 	
 }
+
+
+int isInt(char *s)
+{
+		char c;
+		int i, len = strlen(s);
+		int valid=1;
+		
+        for(i = 0; i < len; i++)
+        {
+            c = s[i];
+ 
+            if ((c < '0') || (c > '9'))
+            {
+                valid = 0;
+                break;
+            }
+        }
+ 
+        return valid;
+}
+

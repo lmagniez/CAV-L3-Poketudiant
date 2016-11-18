@@ -14,6 +14,8 @@ typedef struct Sac{
 //Initialise le sac
 Sac * initsac(int lvl);
 
+Sac * init_sac_rival(int lvl_min,int lvl_max);
+
 //ajout un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p);
 

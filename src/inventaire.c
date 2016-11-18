@@ -16,6 +16,13 @@ Inventaire initinv(int lvl){
 	return inv;
 }
 
+Inventaire init_inv_rival(int lvl_min, int lvl_max){
+	Inventaire inv;
+	inv.s=init_sac_rival(lvl_min,lvl_max);
+	inv.c=initcaf();
+	return inv;
+}
+
 //soigne tous les poketudiants du sac
 void soigne_sac(Inventaire * inv){
 	for(int i=0;i<inv->s->cur;i++){

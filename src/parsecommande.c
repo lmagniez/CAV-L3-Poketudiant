@@ -9,11 +9,12 @@
 
 
 CmdHandling cmdFuncs[]={Handlewild,Handlerival,Handlenurse,Handleshow,Handlemove_table,Handledrop,Handlepick,Handlerelease,Handlecatch,HandleswitchP,Handlexp};
-char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","relase","catch","switch""xp"};
+char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp"};
 
 CmdHandling getCmdHandling(char * firstWord){
 	int i=0;
 	for(i=0;i<NCMDS;++i){
+
 			if(strcmp(firstWord,cmdNames[i])==0){
 				return cmdFuncs[i];
 			}
@@ -32,7 +33,8 @@ void lirecommande(Joueur * j1){
 	token = strtok (texte," ");
 	
 	CmdHandling commande=getCmdHandling(token);
-
+	
+	
 	if(!commande){
 		printf("Commande Non Valide ! \n");
 		return;
