@@ -38,4 +38,6 @@ int table_pleine(Cafetariat *c, int table);
 //relache le poketudiant a l'indice i
 void release_cafe(Cafetariat * caf,int indice);
 
+void free_cafeteria(Cafetariat *c);
+
 #endif

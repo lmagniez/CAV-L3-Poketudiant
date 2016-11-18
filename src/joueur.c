@@ -72,10 +72,15 @@ void ajout_inv(Joueur * j,Poketudiant * p){
 		if(!cafet_pleine((j->c)))
 			ajout_cafe(j->c,p);
 		else
+		{
 			printf(ERR_BOTHFULL);
+			free_poketudiant(p);
+		}
 	}
 	else ajout_sac(j->s,p);
 }
+
+
 
 Poketudiant* get_by_id(Joueur *j, int id)
 {
@@ -105,3 +110,8 @@ Poketudiant* get_by_id(Joueur *j, int id)
 	return NULL;
 }
 
+void free_joueur(Joueur j)
+{
+	free_sac(j.s);
+	free_cafeteria(j.c);
+}

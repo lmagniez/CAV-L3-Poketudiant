@@ -22,7 +22,8 @@ int tour_ordi(Joueur * j, Poketudiant * p2){
 //Affiche les actions possibles et demande une action au joueur
 int tour_joueur(Joueur * j, Poketudiant * p2,int combat){
 	int i;
-	Poketudiant * p1=j->s->p[j->s->p1];
+	Poketudiant * p1;
+	p1=j->s->p[j->s->p1];
 	printf("\n---------------------------\n");
 	printf("Attaque : \n");
 	
@@ -41,7 +42,8 @@ int tour_joueur(Joueur * j, Poketudiant * p2,int combat){
 
 int choix_joueur(Joueur * j, Poketudiant * p2,int combat){
 	int reponse,dommage,power,k,probCapt,resFaiblesse;
-	Poketudiant * p1=j->s->p[j->s->p1];
+	Poketudiant * p1;
+	p1=j->s->p[j->s->p1];
 	printf("Votre choix : ");
 	reponse=lecture_entree();
 
@@ -194,7 +196,8 @@ void combat_rival(Joueur *j,Joueur *rival){
 			
 			if(verif_vie(s1) == 0){ //test si encore des poketudiants en vie
 				printf("Game Over !! ");
-				exit(0);
+				soigne_poketudiant(j->s->p[0]);//on soigne l'enseignant dresseur
+				return;
 			}
 
 			affiche_sac(s1);
@@ -221,14 +224,14 @@ void combat_sauvage(Joueur *j, Poketudiant * p2){
 	affichage_combat(p1,p2);
 
 	while(!a){
-		a=tour_joueur(j,p2,0);
+		a=tour_joueur(j,p2,1);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
 			calcul_xp(j,tabexp,p2->experience_cur);
 			break;
 		}
 
-		if(a==FUITE){break;} //fuite
+		if(a==FUITE){free_poketudiant(p2);break;} //fuite
 		if(a==CAPTURE){ajout_inv(j,p2);break;} //capture
 
 
@@ -272,8 +275,8 @@ void calcul_xp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
 
 //Calcul de la probabilité de capture (2*max(1/2-pvEff/pvMax,0))
 int proba_capture(int pv_eff , int pv_max){
-	float prob=0.5-(1.0*pv_eff/pv_max);
-	prob=fabs(prob);
+	float taux=1.0*pv_eff/pv_max;
+	float prob=0.5-taux;
 	return 2*max(prob,POURCENT_MINI)*POURCENT_MAXI;
 }
 

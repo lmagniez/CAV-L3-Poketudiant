@@ -39,4 +39,6 @@ Poketudiant* recup_premier(Sac * s);
 //supprime  poketudiant a l'indice i
 Poketudiant* supprimer_poke_sac(Sac * s,int i);
 
+void free_sac(Sac *s);
+
 #endif

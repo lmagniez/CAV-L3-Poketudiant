@@ -23,7 +23,7 @@ CmdHandling get_CmdHandling(char * firstWord){
 }
 
 void lire_commande(Joueur * j1){
-	int taille=0;
+	int taille=0;//nombre d'arguments
 	char texte[100] = {0};
 	char * token;
 	printf("texte : ");
@@ -45,9 +45,8 @@ void lire_commande(Joueur * j1){
 	token = strtok (NULL, " ,");
 
     for(;token != NULL;taille++){
-    	if(taille>TAILLE)
- 			arguments=realloc(arguments, taille * sizeof(char));
-        
+		if(taille>=TAILLE)
+ 			arguments=realloc(arguments, (taille+1) * sizeof(char*));
         arguments[taille]=malloc(sizeof(char)*(strlen(token)+1));
 
  		strcpy(arguments[taille],token);
@@ -56,5 +55,9 @@ void lire_commande(Joueur * j1){
     }
 
     commande(arguments,j1,taille);
+    
+    for (int i=0; i<taille; i++)
+		free(arguments[i]);
+    free(arguments);
 
 }

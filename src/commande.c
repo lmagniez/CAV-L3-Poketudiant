@@ -205,7 +205,6 @@ void wild(Joueur * j1, int niv_min, int niv_max)
 	
 	Poketudiant * tmp=new_poketudiant_random(niv_min,niv_max);
 	combat_sauvage(j1,tmp);
-	free_poketudiant(tmp);
 }
 
 void rival(Joueur * j1, int niv_min, int niv_max)
@@ -218,6 +217,7 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 	
 	Joueur j= init_rival(niv_min, niv_max);
 	combat_rival(j1,&j);
+	free_joueur(j);
 	
 	
 }

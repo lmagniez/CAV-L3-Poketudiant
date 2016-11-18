@@ -108,3 +108,14 @@ void release_caf(Cafetariat * c,int indice){
 }
 
 
+void free_cafeteria(Cafetariat *c)
+{
+	for(int i=0; i<NB_TOTAL; i++)
+	{
+		if(c->p[i])
+			free_poketudiant(c->p[i]);
+	}
+	
+	free(c);
+}
+

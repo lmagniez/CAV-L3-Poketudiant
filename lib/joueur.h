@@ -38,6 +38,8 @@ void ajout_inv(Joueur * j,Poketudiant * p);
 
 Poketudiant* get_by_id(Joueur *j, int id);
 
+void free_joueur(Joueur j);
+
 #endif
 
 

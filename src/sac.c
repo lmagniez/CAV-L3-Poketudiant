@@ -15,8 +15,6 @@ Sac * init_sac(int lvl){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
 	
-	printf("Poke au lvl: %d\n",lvl);
-	
 	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
 	
 	return s;
@@ -132,4 +130,18 @@ Poketudiant* supprimer_poke_sac(Sac * s,int i)
 	
 }
 
-
+void free_sac(Sac *s)
+{
+	for(int i=0; i<TAILLE_SAC; i++)
+	{
+		if(s->p[i])
+		{
+			
+			printf("ok!! \n\n\n");
+			affiche_poketudiant(s->p[i]);
+			free_poketudiant(s->p[i]);
+		}
+	}
+	
+	free(s);
+}

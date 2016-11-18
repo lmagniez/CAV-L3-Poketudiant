@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #include "../lib/globale.h"
 #include "../lib/poketudiant.h"
