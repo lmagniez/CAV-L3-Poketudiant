@@ -6,13 +6,14 @@
 #define ERR_FULLCAF "La Cafetaria est pleine\n"
 #define ERR_IDCAF "La table %d est pleine \n"
 
+
 //Retourne si la cafet est pleine
-int cafetPleine(Cafetariat * c){
+int cafet_pleine(Cafetariat * c){
 	return NB_TOTAL==c->cur;
 }
 
 //Retourne si une table de la cafet est pleine
-int tablePleine(Cafetariat *c, int table){
+int table_pleine(Cafetariat *c, int table){
 	for (int i=table*NB_CHAISE; i<table*NB_CHAISE+NB_CHAISE; i++)
 	{
 		if(c->p[i]==NULL)
@@ -22,7 +23,7 @@ int tablePleine(Cafetariat *c, int table){
 }
 
 //initialise la cafet
-Cafetariat * initcaf(){
+Cafetariat * init_caf(){
 	Cafetariat * c=(Cafetariat *)malloc(sizeof(Cafetariat));
 	c->cur=0;
 	return c;
@@ -31,7 +32,7 @@ Cafetariat * initcaf(){
 //ajoute un pokemon a la cafet au prochain indice de disponible
 //true si l'ajout s'est bien passé
 int ajout_cafe(Cafetariat * c,Poketudiant * p){
-	if(cafetPleine(c)){
+	if(cafet_pleine(c)){
 		printf("La Cafetaria est pleine\n");
 		return 0;
 	}
@@ -51,7 +52,7 @@ int ajout_cafe(Cafetariat * c,Poketudiant * p){
 //true si l'ajout s'est bien passé
 int ajout_cafe_id(Cafetariat *c, Poketudiant *p, int table)
 {
-	if(tablePleine(c,table))
+	if(table_pleine(c,table))
 		return 0;
 	for(int i=table*NB_CHAISE; i<table*NB_CHAISE+NB_CHAISE; i++){
 		if(c->p[i]==NULL){
@@ -67,23 +68,22 @@ int ajout_cafe_id(Cafetariat *c, Poketudiant *p, int table)
 }	
 
 //lance l'affichage de toute la cafet
-void showCafetaria(Cafetariat * c){
+void show_cafetaria(Cafetariat * c){
 	for(int i=0;i<NB_TABLE;i++){
-		showRevision(c,i);
+		show_revision(c,i);
 	}
 }
 
 //Lance l'affichage d'une table de la cafet
-void showRevision(Cafetariat * c,int table){
+void show_revision(Cafetariat * c,int table){
 	for(int i=(table*NB_CHAISE);i<(table*NB_CHAISE)+NB_CHAISE;i++){
 		printf("----------------------------------\n                  \
 TABLE %d INDICE %d                  \
 \n----------------------------------\n",table,i);
 		if(c->p[i]!=NULL)
-			affichePoketudiant(c->p[i]);
+			affiche_poketudiant(c->p[i]);
 		else
 			printf("VIDE\n");
-			//printf("%d\n",c->p[i]);
 	}
 }
 
@@ -91,8 +91,9 @@ TABLE %d INDICE %d                  \
 
 
 
-//relache le poketudiant a l'indice i
-void releaseCaf(Cafetariat * c,int indice){
+//relache le poketudiant a l'indice i (on a déjà vérifié que c->p[indice]!=NULL
+void release_caf(Cafetariat * c,int indice){
+	
 	c->p[indice]=NULL;
 	
 	if(indice == NB_TOTAL){
@@ -105,8 +106,5 @@ void releaseCaf(Cafetariat * c,int indice){
 	}
 	c->cur--;
 }
-
-
-//void switchPokeCafet(
 
 

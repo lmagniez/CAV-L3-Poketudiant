@@ -12,7 +12,7 @@ typedef struct Sac{
 }Sac;
 
 //Initialise le sac
-Sac * initsac(int lvl);
+Sac * init_sac(int lvl);
 
 Sac * init_sac_rival(int lvl_min,int lvl_max);
 
@@ -23,20 +23,20 @@ void ajout_sac(Sac * s,Poketudiant * p);
 void switch_sac(Sac * s,int i,int j);
 
 //renvoie si le sac est remplis 
-int sacPlein(Sac * sac);
+int sac_plein(Sac * sac);
 
-void afficheSac(Sac * sac);
+void affiche_sac(Sac * sac);
 
-int verifvie(Sac * sac);
+int verif_vie(Sac * sac);
 
 
 //change la valeur de p1 en combat
-void changerPrem(Sac *j, int indice);
+void changer_premier(Sac *j, int indice);
 
 //recup le premier poketudiant 
-Poketudiant* recupPremier(Sac * s);
+Poketudiant* recup_premier(Sac * s);
 
 //supprime  poketudiant a l'indice i
-Poketudiant* supprimerPoke_sac(Sac * s,int i);
+Poketudiant* supprimer_poke_sac(Sac * s,int i);
 
 #endif

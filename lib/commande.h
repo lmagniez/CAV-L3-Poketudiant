@@ -1,27 +1,27 @@
 #ifndef _COMMANDE_H
 #define _COMMANDE_H
 
-void Handlewild(char ** arguments,Joueur *j1,int taille_arg);
+void handle_wild(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlerival(char ** arguments,Joueur *j1,int taille_arg);
+void handle_rival(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlenurse(char ** arguments,Joueur *j1,int taille_arg);
+void handle_nurse(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handleshow(char ** arguments,Joueur *j1,int taille_arg);
+void handle_show(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlemove_table(char ** arguments,Joueur *j1,int taille_arg);
+void handle_move_table(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handledrop(char ** arguments,Joueur *j1,int taille_arg);
+void handle_drop(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlepick(char ** arguments,Joueur *j1,int taille_arg);
+void handle_pick(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlerelease(char ** arguments,Joueur *j1,int taille_arg);
+void handle_release(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlecatch(char ** arguments,Joueur *j1,int taille_arg);
+void handle_catch(char ** arguments,Joueur *j1,int taille_arg);
 
-void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg);
+void handle_switchP(char ** arguments,Joueur *j1,int taille_arg);
 
-void Handlexp(char ** arguments,Joueur *j1,int taille_arg);
+void handle_xp(char ** arguments,Joueur *j1,int taille_arg);
 
 
 void wild(Joueur * j1, int niv_min, int niv_max);
@@ -52,6 +52,6 @@ void switchP(Joueur * j1, int id1, int id2);
 
 void xp(Joueur * j1, int i , int n);
 
-int isInt(char *s);
+int is_int(char *s);
 
 #endif

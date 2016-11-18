@@ -15,7 +15,7 @@ typedef struct Poke{
 	statistique stat_base;
 }Poke;
 
-Poke recupPoke(variete v);
+Poke recup_poke(variete v);
 
-Poke newPokeRand();
+Poke new_poke_rand();
 #endif

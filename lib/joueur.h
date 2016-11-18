@@ -11,10 +11,10 @@ typedef struct Joueur{
 }Joueur;
 
 //initialise l'inventaire
-Joueur initinv(int lvl);
+Joueur init_joueur(int lvl);
 
 //init inventaire pour rival
-Joueur init_inv_rival(int lvl_min, int lvl_max);
+Joueur init_rival(int lvl_min, int lvl_max);
 
 
 //soigne tous les poketudiants du sac

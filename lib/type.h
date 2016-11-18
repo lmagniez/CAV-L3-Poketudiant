@@ -5,10 +5,10 @@ typedef enum{
 	NOISY,LAZY,MOTIVATED,TEACHER
 }type;
 
-char * chaineType(type t);
+char * chaine_type(type t);
 
 //compare 2 types (generations attaques)
-int comparaisontype(type t1,type t2);
+int comparaison_type(type t1,type t2);
 
 //dit si tel type est une faiblesse de l'autre
 int faiblesse(type t1,type t2);

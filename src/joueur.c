@@ -9,49 +9,49 @@
 
 
 //initialise l'inventaire
-Joueur initinv(int lvl){
+Joueur init_joueur(int lvl){
 	Joueur j;
-	j.s=initsac(lvl);
-	j.c=initcaf();
+	j.s=init_sac(lvl);
+	j.c=init_caf();
 	return j;
 }
 
-Joueur init_inv_rival(int lvl_min, int lvl_max){
+Joueur init_rival(int lvl_min, int lvl_max){
 	Joueur j;
 	j.s=init_sac_rival(lvl_min,lvl_max);
-	j.c=initcaf();
+	j.c=init_caf();
 	return j;
 }
 
 //soigne tous les poketudiants du sac
 void soigne_sac(Joueur * j){
 	for(int i=0;i<j->s->cur;i++){
-		soigne_Poketudiant(j->c->p[i]);
+		soigne_poketudiant(j->c->p[i]);
 	}
 }
 
 //soigne tous les poketudiants de la cafet
 void soigne_caf(Joueur * j){
 	for(int i=0;i<j->c->cur;i++){
-		soigne_Poketudiant(j->c->p[i]);
+		soigne_poketudiant(j->c->p[i]);
 	}
 }
 
 //depose le poketudiant de l'equipe vers la cafet
 void drop_pokemon(Joueur * j,int indice){
-	Poketudiant *p=supprimerPoke_sac(j->s,indice);
+	Poketudiant *p=supprimer_poke_sac(j->s,indice);
 	ajout_cafe(j->c,p);
 }
 
 //depose le poketudiant de l'equipe vers la cafet (en fonction table)
 void drop_pokemon_table(Joueur * j,int indice, int table){
-	Poketudiant *p=supprimerPoke_sac(j->s,indice);
+	Poketudiant *p=supprimer_poke_sac(j->s,indice);
 	ajout_cafe_id(j->c,p,table);
 }
 
 //depose le poketudiant de la cafet vers l'equipe
 void pick_pokemon(Joueur * j,int indice){
-	if(sacPlein(j->s)){
+	if(sac_plein(j->s)){
 		printf(ERR_TEAMFULL);
 		return;
 	}
@@ -68,8 +68,8 @@ void pick_pokemon(Joueur * j,int indice){
 
 //ajoute le pokemon soit dans la cafet soit dans le sac
 void ajout_inv(Joueur * j,Poketudiant * p){
-	if(sacPlein( (j->s) ) ){
-		if(!cafetPleine((j->c)))
+	if(sac_plein( (j->s) ) ){
+		if(!cafet_pleine((j->c)))
 			ajout_cafe(j->c,p);
 		else
 			printf(ERR_BOTHFULL);

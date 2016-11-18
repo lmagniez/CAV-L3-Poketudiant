@@ -8,10 +8,10 @@
 #include "../lib/commande.h"
 
 
-CmdHandling cmdFuncs[]={Handlewild,Handlerival,Handlenurse,Handleshow,Handlemove_table,Handledrop,Handlepick,Handlerelease,Handlecatch,HandleswitchP,Handlexp};
+CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle_move_table,handle_drop,handle_pick,handle_release,handle_catch,handle_switchP,handle_xp};
 char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp"};
 
-CmdHandling getCmdHandling(char * firstWord){
+CmdHandling get_CmdHandling(char * firstWord){
 	int i=0;
 	for(i=0;i<NCMDS;++i){
 
@@ -22,7 +22,7 @@ CmdHandling getCmdHandling(char * firstWord){
 	return NULL;
 }
 
-void lirecommande(Joueur * j1){
+void lire_commande(Joueur * j1){
 	int taille=0;
 	char texte[100] = {0};
 	char * token;
@@ -32,7 +32,7 @@ void lirecommande(Joueur * j1){
 	//premier mot
 	token = strtok (texte," ");
 	
-	CmdHandling commande=getCmdHandling(token);
+	CmdHandling commande=get_CmdHandling(token);
 	
 	
 	if(!commande){

@@ -5,4 +5,4 @@ typedef struct statistique{
 	int pv_max_poke;
 }statistique;
 
-statistique calculStat(float * coef,statistique b);
+statistique calcul_stat(float * coef,statistique b);

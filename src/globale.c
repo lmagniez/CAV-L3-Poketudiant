@@ -4,12 +4,11 @@
 
 #include "../lib/globale.h"
 
-int myrand(int a,int b){
-	//srand ( time(NULL) );
+int my_rand(int a,int b){
 	return rand()%(b+1-a)+a;
 }
 
-void viderBuffer()
+void vider_buffer()
 {
     int c = 0;
     while (c != '\n' && c != EOF)
@@ -31,18 +30,18 @@ int lire(char *chaine, int longueur)
         }
         else
         {
-            viderBuffer();
+            vider_buffer();
         }
         return 1;
     }
     else
     {
-        viderBuffer();
+        vider_buffer();
         return 0;
     }
 }
 
-int lectureEntree(){
+int lecture_entree(){
 	char nombreTexte[100] = {0};
 
 	if (lire(nombreTexte, 100))

@@ -5,31 +5,29 @@
 #define CAPTURE 2
 #define CHANG_POKE 3
 
-void combatRival(Joueur *j,Joueur *rival);
+void combat_rival(Joueur *j,Joueur *rival);
 
-void combatSauvage(Joueur *j, Poketudiant * p2);
+void combat_sauvage(Joueur *j, Poketudiant * p2);
 
-int tourjoueur(Joueur * j, Poketudiant * p2,int combat);
+int tour_joueur(Joueur * j, Poketudiant * p2,int combat);
 
-int choixJoueur(Joueur * j, Poketudiant * p2,int combat);
+int choix_joueur(Joueur * j, Poketudiant * p2,int combat);
 
-int tourordi(Joueur * j, Poketudiant * p2);
+int tour_ordi(Joueur * j, Poketudiant * p2);
 
-void changerPokeOrdi(Joueur * rival);
+void changer_poke_ordi(Joueur * rival);
 
-int changementPcombat(Joueur * j, int annulable);
+int changer_poke_combat(Joueur * j, int annulable);
 
-void calculxp(Joueur *j, int tabexp[TAILLE_SAC],int xp_total);
+void calcul_xp(Joueur *j, int tabexp[TAILLE_SAC],int xp_total);
 
 //revoie 1 si on peut s'enfuir 
 int fuite(int lvl_poke, int lvl_enemy);
 
-int probaCapture(int pv_eff , int pv_max);
+int proba_capture(int pv_eff , int pv_max);
 
-void affichagecombat(Poketudiant * p1, Poketudiant * p2);
+void affichage_combat(Poketudiant * p1, Poketudiant * p2);
 
-void affichageTour(Poketudiant * p,attaque a, int enemy, int faiblesse, int dommage);
-
-void affichageentetour(Poketudiant * p1, Poketudiant * p2);
+void affichage_tour(Poketudiant * p,attaque a, int enemy, int faiblesse, int dommage);
 
 #endif

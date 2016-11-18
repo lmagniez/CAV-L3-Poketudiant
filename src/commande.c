@@ -12,8 +12,9 @@
 #define ERR_COMMANDE_NB "Erreur syntaxe, veuillez entrer un entier\n"
 #define ERR_POKE_ID 	"Il n'y a aucun poketudiant correspondant à l'id: %d\n"
 #define ERR_POKE_LVL	"Un poketudiant ne peut pas dépasser le lvl 10! (et ne peut pas être en dessous de 0...)\n"
+#define ERR_CAFE_ID 	"La Cafeteria ne dispose pas d'autant de places...\n"
 
-void Handlewild(char ** arguments,Joueur *j1,int taille_arg){
+void handle_wild(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
 
 	int buffer[2];
@@ -24,7 +25,7 @@ void Handlewild(char ** arguments,Joueur *j1,int taille_arg){
 	wild(j1,buffer[0],buffer[1]);
 }
 
-void Handlerival(char ** arguments,Joueur *j1,int taille_arg){
+void handle_rival(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
 
 	int buffer[2];
@@ -35,13 +36,13 @@ void Handlerival(char ** arguments,Joueur *j1,int taille_arg){
 	rival(j1,buffer[0],buffer[1]);
 }
 
-void Handlenurse(char ** arguments,Joueur *j1,int taille_arg){
+void handle_nurse(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
 	
 	nurse(j1);
 }
 
-void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
+void handle_show(char ** arguments,Joueur *j1,int taille_arg){
 	int nb;
 
 	if(taille_arg == 1 && strcmp(arguments[0],"pokecafeteria")==0){
@@ -53,7 +54,7 @@ void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
 	}
 
 	else if(taille_arg == 1 ){
-		if(isInt(arguments[0])){	
+		if(is_int(arguments[0])){	
 			int nb=(int)strtol(arguments[0],NULL,10);
 			show_indice(j1,nb);
 		}
@@ -63,7 +64,7 @@ void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
 	}
 
 	else if(taille_arg == 2 && strcmp(arguments[0],"revision-table")==0){
-		if(isInt(arguments[1])){
+		if(is_int(arguments[1])){
 			nb=(int)strtol(arguments[1],NULL,10);
 			show_revision_table(j1,nb);
 		}
@@ -75,13 +76,13 @@ void Handleshow(char ** arguments,Joueur *j1,int taille_arg){
 	else{printf(ERR_COMMANDE);return;}
 }
 
-void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg){
+void handle_switchP(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
 		
-		if(isInt(arguments[i])){
+		if(is_int(arguments[i])){
 			buffer[i]=(int)strtol(arguments[i],NULL,10);
 		}
 		else{
@@ -93,12 +94,12 @@ void HandleswitchP(char ** arguments,Joueur *j1,int taille_arg){
 	switchP(j1,buffer[0],buffer[1]);
 }
 
-void Handlemove_table(char ** arguments,Joueur *j1,int taille_arg){
+void handle_move_table(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i])){
+		if(is_int(arguments[i])){
 			buffer[i]=(int)strtol(arguments[i],NULL,10);
 		}
 		else{
@@ -111,12 +112,12 @@ void Handlemove_table(char ** arguments,Joueur *j1,int taille_arg){
 
 }
 
-void Handledrop(char ** arguments,Joueur *j1,int taille_arg){
+void handle_drop(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i]))
+		if(is_int(arguments[i]))
 			id=(int)strtol(arguments[i],NULL,10);
 		else{
 			printf(ERR_COMMANDE_NB);
@@ -127,12 +128,12 @@ void Handledrop(char ** arguments,Joueur *j1,int taille_arg){
 	drop(j1,id);
 }
 
-void Handlepick(char ** arguments,Joueur *j1,int taille_arg){
+void handle_pick(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i]))
+		if(is_int(arguments[i]))
 			id=(int)strtol(arguments[i],NULL,10);
 		else{
 			printf(ERR_COMMANDE_NB);
@@ -143,12 +144,12 @@ void Handlepick(char ** arguments,Joueur *j1,int taille_arg){
 	pick(j1,id);
 }
 
-void Handlerelease(char ** arguments,Joueur *j1,int taille_arg){
+void handle_release(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i]))
+		if(is_int(arguments[i]))
 			id=(int)strtol(arguments[i],NULL,10);
 		else{
 			printf(ERR_COMMANDE_NB);
@@ -159,12 +160,12 @@ void Handlerelease(char ** arguments,Joueur *j1,int taille_arg){
 	release(j1,id);
 }
 
-void Handlecatch(char ** arguments,Joueur *j1,int taille_arg){
+void handle_catch(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=1){printf(ERR_COMMANDE);return;}
 
 	int id;
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i]))
+		if(is_int(arguments[i]))
 			id=(int)strtol(arguments[i],NULL,10);
 		else{
 			printf(ERR_COMMANDE_NB);
@@ -175,12 +176,12 @@ void Handlecatch(char ** arguments,Joueur *j1,int taille_arg){
 	catch(j1,id);
 }
 
-void Handlexp(char ** arguments,Joueur *j1,int taille_arg){
+void handle_xp(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=2){printf(ERR_COMMANDE);return;}
 
 	int buffer[2];
 	for(int i=0;i<taille_arg;i++){
-		if(isInt(arguments[i])){
+		if(is_int(arguments[i])){
 			buffer[i]=(int)strtol(arguments[i],NULL,10);
 		}
 		else{
@@ -202,9 +203,9 @@ void wild(Joueur * j1, int niv_min, int niv_max)
 		return;
 	}
 	
-	Poketudiant * tmp=newPoketudiant_random(niv_min,niv_max);
-	combatSauvage(j1,tmp);
-	freePoketudiant(tmp);
+	Poketudiant * tmp=new_poketudiant_random(niv_min,niv_max);
+	combat_sauvage(j1,tmp);
+	free_poketudiant(tmp);
 }
 
 void rival(Joueur * j1, int niv_min, int niv_max)
@@ -215,8 +216,8 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 		return;
 	}
 	
-	Joueur j= init_inv_rival(niv_min, niv_max);
-	combatRival(j1,&j);
+	Joueur j= init_rival(niv_min, niv_max);
+	combat_rival(j1,&j);
 	
 	
 }
@@ -229,7 +230,7 @@ void nurse(Joueur * j1)
 		s->p[i]->pv_cur=s->p[i]->stat_cur.pv_max_poke;
 	
 	for(int i=0;i<NB_TABLE;i++){
-		showRevision(c,i);
+		show_revision(c,i);
 	}
 	
 }
@@ -238,18 +239,18 @@ void show_team(Joueur * j1)
 {
 	Sac *s = j1->s;
 	for(int i=0; i<s->cur; i++)
-		affichePoketudiant(s->p[i]);
+		affiche_poketudiant(s->p[i]);
 	
 }
 
 void show_cafet(Joueur * j1)
 {
-	showCafetaria(j1->c);
+	show_cafetaria(j1->c);
 }
 
 void show_revision_table(Joueur * j1, int table)
 {
-	showRevision(j1->c,table);
+	show_revision(j1->c,table);
 }
 
 //affiche le poketudiant dont l'id est id, recherche dans cafet et sac
@@ -266,7 +267,7 @@ void show_indice(Joueur * j1,int id)
 		if(s->p[i]->id==id)
 		{
 			printf("Poketudiant id:%d dans le sac à l'indice %d \n",id,i);
-			affichePoketudiant(s->p[i]);
+			affiche_poketudiant(s->p[i]);
 			return;
 		}
 	}
@@ -278,7 +279,7 @@ void show_indice(Joueur * j1,int id)
 			if(c->p[i]->id==id)
 			{
 				printf("Poketudiant id:%d dans la cafet à l'indice %d (table %d)\n",id,i,i/NB_CHAISE);
-				affichePoketudiant(c->p[i]);
+				affiche_poketudiant(c->p[i]);
 				return;
 			}
 	}
@@ -372,9 +373,14 @@ void pick(Joueur * j1 , int i)
 //relache le poketudiant en position i de la cafetariat
 void release(Joueur * j1, int i)
 {
+	if(i<0||i>NB_TOTAL-1){
+		printf(ERR_CAFE_ID);
+		return;
+	}
+	
 	if(j1->c->p[i])
 	{
-		freePoketudiant(j1->c->p[i]);
+		free_poketudiant(j1->c->p[i]);
 		j1->c->p[i]=NULL;
 		printf("Poketudiant en indice %d relaché \n", i);
 	}
@@ -383,7 +389,7 @@ void release(Joueur * j1, int i)
 void catch(Joueur * j1,int n)
 {
 	for(int i=0; i<n; i++)
-		ajout_inv(j1, newPoketudiant_random(1,5));
+		ajout_inv(j1, new_poketudiant_random(1,5));
 }
 
 void xp(Joueur * j1, int i , int n)
@@ -393,15 +399,15 @@ void xp(Joueur * j1, int i , int n)
 		printf(ERR_OVERFLOW,i);
 	else 
 	{
-		gestionLevelUp(s->p[i],n);
-		affichePoketudiant(s->p[i]);
+		gestion_lvl_up(s->p[i],n);
+		affiche_poketudiant(s->p[i]);
 	}
 	
 	
 }
 
 
-int isInt(char *s)
+int is_int(char *s)
 {
 		char c;
 		int i, len = strlen(s);

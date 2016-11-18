@@ -20,26 +20,26 @@ attaque tab_attaque[NB_ATTACK]={
 };
 
 //retourne un tab de 2 attaque pour le pokemon
-attaque * recupAttaque(type t){
+attaque * recup_attaque(type t){
 	attaque * tab=(attaque *)malloc(N_ATTACK*sizeof(attaque));
 	attaque tmp;
 	int indice;
 	
 	//première attaque
-	indice=myrand(0,NB_ATTACK-1);
+	indice=my_rand(0,NB_ATTACK-1);
 	tmp=tab_attaque[indice];
-	while(!comparaisontype(tmp.t,t)){
-		indice=myrand(0,NB_ATTACK-1);
+	while(!comparaison_type(tmp.t,t)){
+		indice=my_rand(0,NB_ATTACK-1);
 		tmp=tab_attaque[indice];
 	}
 	tab[0]=tmp;
 		
 	//autres attaques (une seule a priori)
 	for(int i=1;i<N_ATTACK;i++){
-		indice=myrand(0,NB_ATTACK-1);
+		indice=my_rand(0,NB_ATTACK-1);
 		tmp=tab_attaque[indice];
-		while(comparaisontype(tmp.t,t)){
-			indice=myrand(0,NB_ATTACK-1);
+		while(comparaison_type(tmp.t,t)){
+			indice=my_rand(0,NB_ATTACK-1);
 			tmp=tab_attaque[indice];
 		}
 		tab[i]=tmp;
@@ -48,7 +48,7 @@ attaque * recupAttaque(type t){
 } 
 
 //renvoie les dommages d'une attaque 
-int domageattaque(float k,int att_attack,int def_defender,int power){
+int dommage_attaque(float k,int att_attack,int def_defender,int power){
 	float res=(k*(att_attack*1.0/def_defender)*power);
 	return (int)res;
 }

@@ -7,20 +7,20 @@
 #include "../lib/combat.h"
 
 //Tour de l'ordi
-int tourordi(Joueur * j, Poketudiant * p2){
+int tour_ordi(Joueur * j, Poketudiant * p2){
 	Poketudiant * p1=j->s->p[j->s->p1];
-	int nba=myrand(0,1);
-	int k=myrand(B_COEF_MIN,B_COEF_MAX);
-	int resFaiblesse=faiblesse(p2->base[nba].t,p1->pokemon.spe);
+	int nba=my_rand(0,1);
+	int k=my_rand(B_COEF_MIN,B_COEF_MAX);
+	int resFaiblesse=faiblesse(p2->base[nba].t,p1->poke.spe);
 	int power=p2->base[nba].puissance*resFaiblesse;
-	int dommage=domageattaque(k/10.0,p2->stat_cur.att,p1->stat_cur.defense,power);
+	int dommage=dommage_attaque(k/10.0,p2->stat_cur.att,p1->stat_cur.defense,power);
 	p1->pv_cur=p1->pv_cur-dommage;
-	affichageTour(p2,p2->base[nba],1,resFaiblesse,dommage);//1: ennemi
+	affichage_tour(p2,p2->base[nba],1,resFaiblesse,dommage);//1: ennemi
 	return 0;
 }
 
 //Affiche les actions possibles et demande une action au joueur
-int tourjoueur(Joueur * j, Poketudiant * p2,int combat){
+int tour_joueur(Joueur * j, Poketudiant * p2,int combat){
 	int i;
 	Poketudiant * p1=j->s->p[j->s->p1];
 	printf("\n---------------------------\n");
@@ -36,25 +36,25 @@ int tourjoueur(Joueur * j, Poketudiant * p2,int combat){
 	printf("   %d - Changer Poketudiant\n",++i);
 	printf("---------------------------\n");
 	//si 0 on continue le combat si 1 fuite reussi si 2 capture reussi 3 si changement pokemon
-	return choixJoueur(j,p2,combat);
+	return choix_joueur(j,p2,combat);
 }
 
-int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
+int choix_joueur(Joueur * j, Poketudiant * p2,int combat){
 	int reponse,dommage,power,k,probCapt,resFaiblesse;
 	Poketudiant * p1=j->s->p[j->s->p1];
 	printf("Votre choix : ");
-	reponse=lectureEntree();
+	reponse=lecture_entree();
 
 	switch(reponse){
 		case 1:
 		case 2:
 			reponse=reponse-1;
-			k=myrand(B_COEF_MIN,B_COEF_MAX);
-			resFaiblesse=faiblesse(p1->base[reponse].t,p2->pokemon.spe);
+			k=my_rand(B_COEF_MIN,B_COEF_MAX);
+			resFaiblesse=faiblesse(p1->base[reponse].t,p2->poke.spe);
 			power = p1->base[reponse].puissance*resFaiblesse;
-			dommage=domageattaque(k/10.0,p1->stat_cur.att,p2->stat_cur.defense,power);
+			dommage=dommage_attaque(k/10.0,p1->stat_cur.att,p2->stat_cur.defense,power);
 			p2->pv_cur=p2->pv_cur-dommage;
-			affichageTour(p1,p1->base[reponse],0,resFaiblesse,dommage);//0: dresseur
+			affichage_tour(p1,p1->base[reponse],0,resFaiblesse,dommage);//0: dresseur
 		break;
 		case 3:
 			if(!fuite(p1->lvl,p2->lvl) || combat == 0){
@@ -69,9 +69,9 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 				printf("On ne capture pas un poketudiant d'un autre enseignant dresseur !\n");
 				return 0;
 			}
-			probCapt=probaCapture(p2->pv_cur,p2->stat_cur.pv_max_poke);
+			probCapt=proba_capture(p2->pv_cur,p2->stat_cur.pv_max_poke);
 			printf("probcapt: %d\n",probCapt);
-			k=myrand(POURCENT_MINI,POURCENT_MAXI);
+			k=my_rand(POURCENT_MINI,POURCENT_MAXI);
 			if(k<probCapt && combat == 1){
 				printf("Vous avez Attrape le Poketudiant ! \n");
 				return CAPTURE;
@@ -80,13 +80,13 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 			return 0;
 		break;
 		case 5:
-			afficheSac(j->s);
-			if(changementPcombat(j,1)==-1)choixJoueur(j,p2,combat);
+			affiche_sac(j->s);
+			if(changer_poke_combat(j,1)==-1)choix_joueur(j,p2,combat);
 			return CHANG_POKE;
 		break;
 		default:
 			printf("Mauvaise Entrée ! ");
-			choixJoueur(j,p2,combat);
+			choix_joueur(j,p2,combat);
 		break;
 	}
 	return 0;
@@ -95,12 +95,12 @@ int choixJoueur(Joueur * j, Poketudiant * p2,int combat){
 //Demande de changer un poketudiant en fonction de son id dans le sac 
 //retourne -1: change pas de poketudiant (id=-1 ou meme pokemon)
 //annulable: 1:peut faire retour 0:peut pas faire retour
-int changementPcombat(Joueur * j, int annulable){
+int changer_poke_combat(Joueur * j, int annulable){
 	int reponse;
 	if(annulable)
 		printf("\n-1: retour ");	
 	printf("\nChoisissez le Poketudiant: ");
-	reponse=lectureEntree();
+	reponse=lecture_entree();
 
 	//annuler (que si autorisé)
 	if(annulable&&(reponse==-1||reponse==j->s->p1)){
@@ -108,34 +108,34 @@ int changementPcombat(Joueur * j, int annulable){
 	}
 
 	else if(reponse < j->s->cur && reponse >=0){
-		changerPrem(j->s,reponse);
+		changer_premier(j->s,reponse);
 	}
 
 	else{
 		printf("Choix Incorrect");
-		changementPcombat(j,annulable);
+		changer_poke_combat(j,annulable);
 	}
 
 	if(j->s->p[j->s->p1]->pv_cur<1){
 		printf("\nLe Poketudiant est KO!!");
-		changementPcombat(j,annulable);
+		changer_poke_combat(j,annulable);
 	}
 
 	return 0;
 }
 
 //Change de Poketudiant pour un joueur ordi
-void  changerPokeOrdi(Joueur *j){
+void  changer_poke_ordi(Joueur *j){
 	Sac *s=j->s;
-	int rand=myrand(0,j->s->cur-1);
-	changerPrem(j->s,rand);
+	int rand=my_rand(0,j->s->cur-1);
+	changer_premier(j->s,rand);
 
 	if(s->p[s->p1]->pv_cur<1)//poke
-		changerPokeOrdi(j);
+		changer_poke_ordi(j);
 }
 
 //Initialise un combat avec un dresseur rival
-void combatRival(Joueur *j,Joueur *rival){
+void combat_rival(Joueur *j,Joueur *rival){
 	int a=0;
 	int tabexp[TAILLE_SAC];
 	Sac *s1,*s2;
@@ -154,18 +154,18 @@ void combatRival(Joueur *j,Joueur *rival){
 	//Poketudiant adverse
 	p2=s2->p[s2->p1];
 	
-	affichagecombat(p1,p2);
+	affichage_combat(p1,p2);
 	
 	while(!a){
-		a=tourjoueur(j,p2,0);
+		a=tour_joueur(j,p2,0);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
 			p2->pv_cur=0;
 			//rival.inv.s->p[rival.inv.s->p1]->pv_cur=0;
 
-			calculxp(j,tabexp,p2->experience_cur);
+			calcul_xp(j,tabexp,p2->experience_cur);
 			
-			if(verifvie(rival->s) == 0){
+			if(verif_vie(rival->s) == 0){
 				printf("Vous avez Gagné le Combat ! ");
 				break;
 			}
@@ -175,7 +175,7 @@ void combatRival(Joueur *j,Joueur *rival){
 				tabexp[i]=0;
 			tabexp[s1->p1]=1;
 				
-			changerPokeOrdi(rival);
+			changer_poke_ordi(rival);
 			p2=s2->p[s2->p1];
 			//printf("Le joueur envoie au combat: %s \n",p2->pokemon.nom);
 			
@@ -187,26 +187,26 @@ void combatRival(Joueur *j,Joueur *rival){
 			
 		} //changement poketudiant
 
-		a=tourordi(j,p2);
+		a=tour_ordi(j,p2);
 		if(p1->pv_cur<1){
 			printf("Votre Poketudiant est KO \n");
 			s1->p[s1->p1]->pv_cur=0;
 			
-			if(verifvie(s1) == 0){ //test si encore des poketudiants en vie
+			if(verif_vie(s1) == 0){ //test si encore des poketudiants en vie
 				printf("Game Over !! ");
 				exit(0);
 			}
 
-			afficheSac(s1);
-			changementPcombat(j,0);
+			affiche_sac(s1);
+			changer_poke_combat(j,0);
 			p1=s1->p[s1->p1];
 		}
-		affichagecombat(p1,p2);
+		affichage_combat(p1,p2);
 	}
 }
 
 //initialise un combat de pokemon sauvage
-void combatSauvage(Joueur *j, Poketudiant * p2){
+void combat_sauvage(Joueur *j, Poketudiant * p2){
 	int a=0;
 
 	int tabexp[TAILLE_SAC];
@@ -218,13 +218,13 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 		tabexp[i]=0;
 	tabexp[s->p1]=1;
 
-	affichagecombat(p1,p2);
+	affichage_combat(p1,p2);
 
 	while(!a){
-		a=tourjoueur(j,p2,0);
+		a=tour_joueur(j,p2,0);
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
-			calculxp(j,tabexp,p2->experience_cur);
+			calcul_xp(j,tabexp,p2->experience_cur);
 			break;
 		}
 
@@ -236,28 +236,28 @@ void combatSauvage(Joueur *j, Poketudiant * p2){
 			p1=s->p[s->p1];
 			tabexp[s->p1]=1;
 		} 
-		a=tourordi(j,p2);
+		a=tour_ordi(j,p2);
 
 		if(p1->pv_cur<1){
 			printf("Votre Poketudiant est KO \n");
 			s->p[s->p1]->pv_cur=0;
 			tabexp[s->p1]=0;//ne gagne pas d'xp si il est ko
 			
-			if(verifvie(s) == 0){
+			if(verif_vie(s) == 0){
 				printf("Game Over !! ");
 				exit(0);
 			}
 
-			afficheSac(s);
-			changementPcombat(j,0);
+			affiche_sac(s);
+			changer_poke_combat(j,0);
 			p1=s->p[s->p1];
 		}
-		affichagecombat(p1,p2);
+		affichage_combat(p1,p2);
 	}
 }
 
 //Calcul du taux d'xp a repartir sur chacun des poketudiants
-void calculxp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
+void calcul_xp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
 	int nb_poke=0;
 	for(int i=0;i<TAILLE_SAC;i++)
 		nb_poke += tabexp[i];
@@ -266,12 +266,12 @@ void calculxp(Joueur *j,int tabexp[TAILLE_SAC],int xp_total){
 
 	for(int i=0;i<TAILLE_SAC;i++){
 		if(tabexp[i]==1)
-			gestionLevelUp(j->s->p[i],nb_exp);
+			gestion_lvl_up(j->s->p[i],nb_exp);
 	}	
 }
 
 //Calcul de la probabilité de capture (2*max(1/2-pvEff/pvMax,0))
-int probaCapture(int pv_eff , int pv_max){
+int proba_capture(int pv_eff , int pv_max){
 	float prob=0.5-(1.0*pv_eff/pv_max);
 	prob=fabs(prob);
 	return 2*max(prob,POURCENT_MINI)*POURCENT_MAXI;
@@ -279,7 +279,7 @@ int probaCapture(int pv_eff , int pv_max){
 
 //Calcul de la fuite (0% si 3 niveaux de moins, 25% si 2 niveaux de moins, 40% si 1 niveau de moins, 50% si même niveau)
 int fuite(int lvl_poke, int lvl_enemy){
-	float r=myrand(POURCENT_MINI,POURCENT_MAXI);
+	float r=my_rand(POURCENT_MINI,POURCENT_MAXI);
 	
 	if(lvl_enemy-3 >= lvl_poke)
 		return 0;
@@ -294,23 +294,23 @@ int fuite(int lvl_poke, int lvl_enemy){
 }
 
 //Affichage d'une action effectué par un joueur
-void affichageTour(Poketudiant * p,attaque a, int isEnemy, int faiblesse,int dommage){
+void affichage_tour(Poketudiant * p,attaque a, int isEnemy, int faiblesse,int dommage){
 	char *enemy, *efficace;
 	if(isEnemy) enemy=" ennemi"; else enemy="";
 	if(faiblesse==2) efficace="C'est super efficace !"; else efficace="";
 	
-	char * var1=chaineVariete(p->pokemon.nom);
+	char * var1=chaine_variete(p->poke.nom);
 	printf("\n%s%s va attaquer ! \n %s utilise %s. %s \n%s%s inflige %d dommages\n\n",var1,enemy,var1,a.nom, efficace,var1,enemy, dommage);
 }
 
 //Affichage des informations de debut de combat
-void affichagecombat(Poketudiant * p1, Poketudiant * p2){
+void affichage_combat(Poketudiant * p1, Poketudiant * p2){
 	
-	char * var1=chaineVariete(p1->pokemon.nom);
-	char * var2=chaineVariete(p2->pokemon.nom);
+	char * var1=chaine_variete(p1->poke.nom);
+	char * var2=chaine_variete(p2->poke.nom);
 
-	char * type1=chaineType(p1->pokemon.spe);
-	char * type2=chaineType(p2->pokemon.spe);
+	char * type1=chaine_type(p1->poke.spe);
+	char * type2=chaine_type(p2->poke.spe);
 
 	printf("---JOUEUR--------------------------ADVERSAIRE--\n");
 	printf("-----------------------------------------------\n");

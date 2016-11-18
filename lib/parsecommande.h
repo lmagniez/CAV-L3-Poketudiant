@@ -7,8 +7,8 @@
 
 typedef void (*CmdHandling)(char ** arguments,Joueur * j1,int taille);
 
-CmdHandling getCmdHandling(char * firstWord);
+CmdHandling get_CmdHandling(char * firstWord);
 
-void lirecommande(Joueur * j1);
+void lire_commande(Joueur * j1);
 
 #endif

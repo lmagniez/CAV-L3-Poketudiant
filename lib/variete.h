@@ -5,6 +5,6 @@ typedef enum{
 	PARLFOR,ISMAR,RIGOLAMOR,PROCRASTINO,COUCHTAR,NUIDEBOU,BUCHAFON,BELMENTION,PROMOMAJOR,ENSEIGNANT_DRESSEUR,NO_EVOLUTION
 }variete;
 
-char * chaineVariete(variete ele);
+char * chaine_variete(variete ele);
 
 #endif

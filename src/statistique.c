@@ -1,7 +1,7 @@
 #include "../lib/statistique.h"
 
 
-statistique calculStat(float * coef,statistique b){
+statistique calcul_stat(float * coef,statistique b){
 	statistique newS;
 	newS.att=b.att*coef[0];
 	newS.defense=b.defense*coef[1];

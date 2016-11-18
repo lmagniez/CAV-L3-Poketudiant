@@ -5,12 +5,12 @@
 
 static char * tabc_string_type[]={"NOISY","LAZY","MOTIVATED","TEACHER"};
 
-char * chaineType(type t){
+char * chaine_type(type t){
 	return tabc_string_type[t];
 }
 
 
-int comparaisontype(type t1,type t2){
+int comparaison_type(type t1,type t2){
 	return (t1==t2);
 }
 

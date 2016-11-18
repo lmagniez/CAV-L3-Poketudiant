@@ -11,16 +11,13 @@
 #define ERR_ISTRAINER	"erreur, on ne peut supprimer l'enseignant dresseur\n"
 
 //initialise avec l'enseignant dresseur
-Sac * initsac(int lvl){
+Sac * init_sac(int lvl){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
-	//for(int i=0;i<TAILLE_SAC;i++)
-	//	s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
-	
 	
 	printf("Poke au lvl: %d\n",lvl);
 	
-	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
+	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
 	
 	return s;
 }
@@ -28,20 +25,18 @@ Sac * initsac(int lvl){
 Sac * init_sac_rival(int lvl_min,int lvl_max){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=3;
-	//for(int i=0;i<TAILLE_SAC;i++)
-	//	s->p[i]=(Poketudiant *)malloc(sizeof(Poketudiant));
 	
-	s->p[0]=newPoketudiant_type(ENSEIGNANT_DRESSEUR,lvl_min,lvl_max);
-	s->p[1]=newPoketudiant_random(lvl_min,lvl_max);
-	s->p[2]=newPoketudiant_random(lvl_min,lvl_max);
+	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl_min,lvl_max);
+	s->p[1]=new_poketudiant_random(lvl_min,lvl_max);
+	s->p[2]=new_poketudiant_random(lvl_min,lvl_max);
 	
 	
 	return s;
 }
 
-//ajoute un pokemon dans le sac
+//ajoute un poketudiant dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
-	if(sacPlein(s))
+	if(sac_plein(s))
 	{
 		printf(ERR_FULLBAG);
 		exit(1);
@@ -64,22 +59,22 @@ void switch_sac(Sac * s,int i,int j)
 }
 
 //renvoie si le sac est remplis 
-int sacPlein(Sac * sac){
+int sac_plein(Sac * sac){
 	return (sac->cur==TAILLE_SAC);
 }
 
-void afficheSac(Sac * sac){
+void affiche_sac(Sac * sac){
 	printf("Sac : \n");
 	char * nom;
 	for(int i=0;i<sac->cur;i++){
-		nom=chaineVariete(sac->p[i]->pokemon.nom);
+		nom=chaine_variete(sac->p[i]->poke.nom);
 		printf("  %d Name: %s LVL: %d Life : %d/%d \n",i,nom,sac->p[i]->lvl,sac->p[i]->pv_cur,sac->p[i]->stat_cur.pv_max_poke);
 	}
 	printf("\n");
 }
 
 
-int verifvie(Sac * sac){
+int verif_vie(Sac * sac){
 	for(int i=0;i<sac->cur;i++){
 		if(sac->p[i]->pv_cur > 0)return 1;
 	}
@@ -87,7 +82,7 @@ int verifvie(Sac * sac){
 }
 
 //change la valeur de p1 en combat
-void changerPrem(Sac *s, int indice)
+void changer_premier(Sac *s, int indice)
 {
 	
 	if(indice>s->cur-1||indice<0)
@@ -99,14 +94,14 @@ void changerPrem(Sac *s, int indice)
 }
 
 //recup le premier poketudiant (p1)
-Poketudiant* recupPremier(Sac *s)
+Poketudiant* recup_premier(Sac *s)
 {
 	return s->p[s->p1];
 }
 
 //supprime  poketudiant a l'indice i
 //on ne peut pas supprimer l'enseignant dresseur (indice 0)
-Poketudiant* supprimerPoke_sac(Sac * s,int i)
+Poketudiant* supprimer_poke_sac(Sac * s,int i)
 {	
 	if(i==0){
 		printf(ERR_ISTRAINER);

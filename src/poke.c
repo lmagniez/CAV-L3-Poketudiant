@@ -17,41 +17,21 @@ static Poke tab_variete[NB_VARIETE]={
 	{ENSEIGNANT_DRESSEUR,TEACHER,0,NO_EVOLUTION,{100,100,100}}
 };
 
-Poke recupPoke(variete v){
+Poke recup_poke(variete v){
 	Poke new=tab_variete[v];
 	return new;
 }
 
-Poke newPokeRand(){
+Poke new_poke_rand(){
 	
-	int r=myrand(0,NB_VARIETE-1);
+	int r=my_rand(0,NB_VARIETE-1);
 	
 	while(tab_variete[r].capturable==0)
 	{
-		r=myrand(0,NB_VARIETE-1);
+		r=my_rand(0,NB_VARIETE-1);
 	}
 	return tab_variete[r];
 
 }
 
 
-/*
-Poke newPokeRand(){
-	int r=myrand(0,NB_VARIETE-1);
-	//si il est capturable
-	if(tab_variete[r].capturable==1){
-		return tab_variete[r];
-	}
-	//sinon verifie
-	else {
-		
-		
-		
-		while(tab_variete[r].capturable==0){
-			r++;
-			if(r==NB_VARIETE)
-				r=0;
-		}
-		return tab_variete[r];
-	}
-}*/

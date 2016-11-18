@@ -8,11 +8,11 @@
 	#define max(a,b) ( ((a) > (b)) ? (a) : (b) )
 #endif
 
-int myrand(int a,int b);
+int my_rand(int a,int b);
 
-void viderBuffer();
+void vider_buffer();
  
 int lire(char *chaine, int longueur);
 
-int lectureEntree();
+int lecture_entree();
 #endif

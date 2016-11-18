@@ -12,10 +12,10 @@ typedef struct attaque{
 	int puissance;
 }attaque;
 
-
-attaque * recupAttaque(type t); //retourne un tab de 2 attaque pour le pokemon
+//retourne un tab de 2 attaque pour le pokemon
+attaque * recup_attaque(type t); 
 
 //renvoie les dommages d'une attaque 
-int domageattaque(float k,int att_attack,int def_defender,int power);
+int dommage_attaque(float k,int att_attack,int def_defender,int power);
 
 #endif
