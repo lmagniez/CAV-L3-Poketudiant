@@ -15,6 +15,10 @@ Sac * init_sac(int lvl){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
 	s->p1=0;
+	
+	for(int i=0;i<TAILLE_SAC;i++)
+		s->p[i]=NULL;
+
 	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
 	
 	return s;
