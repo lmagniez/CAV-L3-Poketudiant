@@ -14,7 +14,7 @@
 Sac * init_sac(int lvl){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
 	s->cur=1;
-	
+	s->p1=0;
 	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl,lvl);
 	
 	return s;
@@ -136,7 +136,6 @@ void free_sac(Sac *s)
 	{
 		if(s->p[i])
 		{
-			affiche_poketudiant(s->p[i]);
 			free_poketudiant(s->p[i]);
 		}
 	}

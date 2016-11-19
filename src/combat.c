@@ -248,7 +248,8 @@ void combat_sauvage(Joueur *j, Poketudiant * p2){
 			
 			if(verif_vie(s) == 0){
 				printf("Game Over !! ");
-				exit(0);
+				soigne_poketudiant(j->s->p[0]);
+				return;
 			}
 
 			affiche_sac(s);
