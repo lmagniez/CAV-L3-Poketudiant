@@ -136,8 +136,6 @@ void free_sac(Sac *s)
 	{
 		if(s->p[i])
 		{
-			
-			printf("ok!! \n\n\n");
 			affiche_poketudiant(s->p[i]);
 			free_poketudiant(s->p[i]);
 		}

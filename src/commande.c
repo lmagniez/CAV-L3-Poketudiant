@@ -394,15 +394,14 @@ void catch(Joueur * j1,int n)
 
 void xp(Joueur * j1, int i , int n)
 {
-	Sac *s=j1->s;
-	if(i>s->cur||i<0)
-		printf(ERR_OVERFLOW,i);
-	else 
-	{
-		gestion_lvl_up(s->p[i],n);
-		affiche_poketudiant(s->p[i]);
-	}
 	
+	Poketudiant *p=get_by_id(j1,i);
+	if(p==NULL)
+		printf("Aucun Poketudiant correspondant a l'id %d\n", i);
+	else{
+		gestion_lvl_up(p,n);
+		affiche_poketudiant(p);
+	}
 	
 }
 
