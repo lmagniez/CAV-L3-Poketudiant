@@ -25,6 +25,8 @@ int table_pleine(Cafetariat *c, int table){
 //initialise la cafet
 Cafetariat * init_caf(){
 	Cafetariat * c=(Cafetariat *)malloc(sizeof(Cafetariat));
+	for(int i=0;i<NB_TABLE*NB_CHAISE;i++)
+		c->p[i]=NULL;
 	c->cur=0;
 	return c;
 }
@@ -67,12 +69,6 @@ int ajout_cafe_id(Cafetariat *c, Poketudiant *p, int table)
 	
 }	
 
-//lance l'affichage de toute la cafet
-void show_cafetaria(Cafetariat * c){
-	for(int i=0;i<NB_TABLE;i++){
-		show_revision(c,i);
-	}
-}
 
 //Lance l'affichage d'une table de la cafet
 void show_revision(Cafetariat * c,int table){
@@ -80,14 +76,22 @@ void show_revision(Cafetariat * c,int table){
 		printf("----------------------------------\n                  \
 TABLE %d INDICE %d                  \
 \n----------------------------------\n",table,i);
-		if(c->p[i]!=NULL)
+		if(c->p[i]!=NULL){
+			printf("CC\n");
 			affiche_poketudiant(c->p[i]);
-		else
+		}
+		else{
 			printf("VIDE\n");
+		}
 	}
 }
 
-
+//lance l'affichage de toute la cafet
+void show_cafetaria(Cafetariat * c){
+	for(int i=0;i<NB_TABLE;i++){
+		show_revision(c,i);
+	}
+}
 
 
 
