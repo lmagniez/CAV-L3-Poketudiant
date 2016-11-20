@@ -184,6 +184,11 @@ FELICITATION! Votre %s a évolué en %s !\n\
 		
 		p->experience_niveau_sup=xp_next(p->lvl);
 	}
+	
+	if(p->lvl==10)
+	{
+		p->experience_cur=p->experience_niveau_sup;
+	}
 }
 
 //libere un Poketudiant
