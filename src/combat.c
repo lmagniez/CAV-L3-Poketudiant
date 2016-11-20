@@ -72,7 +72,6 @@ int choix_joueur(Joueur * j, Poketudiant * p2,int combat){
 				return 0;
 			}
 			probCapt=proba_capture(p2->pv_cur,p2->stat_cur.pv_max_poke);
-			printf("probcapt: %d\n",probCapt);
 			k=my_rand(POURCENT_MINI,POURCENT_MAXI);
 			if(k<probCapt && combat == 1){
 				printf("Vous avez Attrape le Poketudiant ! \n");
