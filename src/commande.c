@@ -226,16 +226,12 @@ void nurse(Joueur * j1)
 {
 	Sac *s= j1->s;
 	Cafetariat* c= j1->c;
-	for(int i=0; i<s->cur; i++){
+	for(int i=0; i<s->cur; i++)
 		s->p[i]->pv_cur=s->p[i]->stat_cur.pv_max_poke;
-	}
 	
 	for(int i=0;i<NB_TABLE;i++){
-		if(c->p[i]!=NULL)
-			c->p[i]->pv_cur=c->p[i]->stat_cur.pv_max_poke;
+		show_revision(c,i);
 	}
-
-	printf("Tous les Poketudiants ont été soigné :D \n");
 	
 }
 
