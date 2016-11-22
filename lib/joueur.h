@@ -35,7 +35,6 @@ void pick_pokemon(Joueur * j,int indice);
 //ajoute le pokemon soit dans la cafet soit dans le sac
 void ajout_inv(Joueur * j,Poketudiant * p);
 
-
 Poketudiant* get_by_id(Joueur *j, int id);
 
 void free_joueur(Joueur j);

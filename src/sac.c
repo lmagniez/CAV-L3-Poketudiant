@@ -26,12 +26,12 @@ Sac * init_sac(int lvl){
 
 Sac * init_sac_rival(int lvl_min,int lvl_max){
 	Sac * s=(Sac *)malloc(sizeof(Sac));
-	s->cur=3;
+	s->cur=TAILLE_SAC;
 	
 	s->p[0]=new_poketudiant_type(ENSEIGNANT_DRESSEUR,lvl_min,lvl_max);
-	s->p[1]=new_poketudiant_random(lvl_min,lvl_max);
-	s->p[2]=new_poketudiant_random(lvl_min,lvl_max);
 	
+	for(int i=1;i<TAILLE_SAC;i++)
+		s->p[i]=new_poketudiant_random(lvl_min,lvl_max);
 	
 	return s;
 }
