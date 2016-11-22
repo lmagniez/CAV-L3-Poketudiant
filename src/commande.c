@@ -230,7 +230,8 @@ void nurse(Joueur * j1)
 		s->p[i]->pv_cur=s->p[i]->stat_cur.pv_max_poke;
 	
 	for(int i=0;i<NB_TABLE;i++){
-		show_revision(c,i);
+		if(c->p[i]!=NULL)
+ 			c->p[i]->pv_cur=c->p[i]->stat_cur.pv_max_poke;
 	}
 	
 }
