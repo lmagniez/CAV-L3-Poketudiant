@@ -227,6 +227,7 @@ void combat_sauvage(Joueur *j, Poketudiant * p2){
 		if(p2->pv_cur<1){
 			printf("Le Poketudiant ennemi est KO\n");
 			calcul_xp(j,tabexp,p2->experience_cur);
+			free_poketudiant(p2);
 			break;
 		}
 
