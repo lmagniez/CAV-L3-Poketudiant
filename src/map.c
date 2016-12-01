@@ -2,7 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../lib/Joueur.h"
 #include "../lib/map.h"
+#include "../lib/globale.h"
+#include "../lib/commande.h"
+
 
 static int initPosition(int y, int x,char c,int rival){
 	switch(c){
@@ -60,6 +64,24 @@ void initMap(){
 	afficheMap();
 }
 
+void gestionAction(Joueur * j){
+	int nb_pourc=0;
+	switch(save_char){
+		case 'X':
+		break;
+		case 'N':
+			nurse(j);
+			printf("Vos poketudiants ont ete soignés :D\n");
+		break;
+		case 'O':
+			nb_pourc=my_rand(0,POURCENT_MAXI);
+			if(nb_pourc<=20)
+				wild(j,1,NB_VARIETE);
+		break;
+
+	}
+}
+
 void afficheMap(){
 		for(int i=0;i<TAILLE_MAX_LIGNE;i++){
 		for(int j=0;j<TAILLE_MAX_CHAINE;j++){
@@ -71,7 +93,7 @@ void afficheMap(){
 					printf(ANSI_COLOR_RED "▓" ANSI_COLOR_RESET); 
 				break;
 				case 'S' :
-					printf(ANSI_COLOR_BLUE "▓" ANSI_COLOR_RESET); 
+					printf(ANSI_COLOR_YELLOW "♀" ANSI_COLOR_RESET); 
 				break;
 				case 'O' :
 					printf(ANSI_COLOR_GREEN "▓" ANSI_COLOR_RESET);

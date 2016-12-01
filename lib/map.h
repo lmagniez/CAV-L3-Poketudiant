@@ -25,5 +25,7 @@ char save_char;
 
 void initMap();
 
+void gestionAction();
+
 void afficheMap();
 #endif

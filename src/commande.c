@@ -214,6 +214,7 @@ void handle_up(char ** arguments,Joueur *j1,int taille_arg){
 		save_char=map[position[0][1]][position[0][0]];
 		map[position[0][1]][position[0][0]]='S';
 	}
+	gestionAction(j1);
 }
 
 void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
@@ -232,6 +233,7 @@ void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
 		save_char=map[position[0][1]][position[0][0]];
 		map[position[0][1]][position[0][0]]='S';
 	}
+	gestionAction(j1);
 }
 
 void handle_rigth(char ** arguments,Joueur *j1,int taille_arg){
@@ -250,6 +252,7 @@ void handle_rigth(char ** arguments,Joueur *j1,int taille_arg){
 		save_char=map[position[0][1]][position[0][0]];
 		map[position[0][1]][position[0][0]]='S';
 	}
+	gestionAction(j1);
 }
 
 void handle_left(char ** arguments,Joueur *j1,int taille_arg){
@@ -268,6 +271,7 @@ void handle_left(char ** arguments,Joueur *j1,int taille_arg){
 		save_char=map[position[0][1]][position[0][0]];
 		map[position[0][1]][position[0][0]]='S';
 	}
+	gestionAction(j1);
 }
 
 //#################################
@@ -283,6 +287,7 @@ void wild(Joueur * j1, int niv_min, int niv_max)
 		printf(ERR_POKE_LVL);
 		return;
 	}
+	printf("Wild : %i %i\n",niv_min,niv_max);
 	
 	Poketudiant * tmp=new_poketudiant_random(niv_min,niv_max);
 	combat_sauvage(j1,tmp);
@@ -296,7 +301,7 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 		return;
 	}
 	
-	Joueur j= init_rival(niv_min, niv_max);
+	Joueur j= init_rival(niv_min,niv_max);
 	combat_rival(j1,&j);
 	free_joueur(j);
 	
@@ -311,8 +316,9 @@ void nurse(Joueur * j1)
 		s->p[i]->pv_cur=s->p[i]->stat_cur.pv_max_poke;
 	
 	for(int i=0;i<NB_TABLE;i++){
-		if(c->p[i]!=NULL)
+		if(c->p[i]!=NULL){
  			c->p[i]->pv_cur=c->p[i]->stat_cur.pv_max_poke;
+		}
 	}
 	
 }
