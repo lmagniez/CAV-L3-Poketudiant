@@ -23,6 +23,13 @@ void handle_switchP(char ** arguments,Joueur *j1,int taille_arg);
 
 void handle_xp(char ** arguments,Joueur *j1,int taille_arg);
 
+void handle_up(char ** arguments,Joueur *j1,int taille_arg);
+
+void handle_bot(char ** arguments,Joueur *j1,int taille_arg);
+
+void handle_rigth(char ** arguments,Joueur *j1,int taille_arg);
+
+void handle_left(char ** arguments,Joueur *j1,int taille_arg);
 
 void wild(Joueur * j1, int niv_min, int niv_max);
 

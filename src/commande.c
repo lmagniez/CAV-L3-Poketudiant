@@ -6,6 +6,7 @@
 #include "../lib/joueur.h"
 #include "../lib/combat.h"
 #include "../lib/commande.h"
+#include "../lib/map.h"
 
 #define ERR_OVERFLOW	"erreur, l'indice %d ne correspond a aucun poketudiant dans l'equipe\n"
 #define ERR_COMMANDE	"Erreur Syntaxe Commande ! \n" 
@@ -193,6 +194,86 @@ void handle_xp(char ** arguments,Joueur *j1,int taille_arg){
 	xp(j1,buffer[0],buffer[1]);
 }
 
+//#################################
+//#################################
+//#################################
+//#################################
+
+void handle_up(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
+	if(position[0][1]==0){printf("Deplacement Impossible\n");return;}
+	if(position[0][1]== (TAILLE_MAX_LIGNE-1) ) {
+		save_char=map[position[0][1]-1][position[0][0]]; // on sauvegarde la case d'avant
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][1]=position[0][1]-1;
+		map[position[0][1]][position[0][0]]='S';
+	}
+	else{
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][1]=position[0][1]-1;
+		save_char=map[position[0][1]][position[0][0]];
+		map[position[0][1]][position[0][0]]='S';
+	}
+}
+
+void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
+	if(position[0][1]==TAILLE_MAX_LIGNE-1){printf("Deplacement Impossible\n");return;}
+	if(position[0][1]== 0) {
+		save_char=map[position[0][1]+1][position[0][0]]; // on sauvegarde la case d'avant
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][1]=position[0][1]+1;
+		map[position[0][1]][position[0][0]]='S';
+	}
+	else{
+		printf("%c\n",save_char);
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][1]=position[0][1]+1;
+		save_char=map[position[0][1]][position[0][0]];
+		map[position[0][1]][position[0][0]]='S';
+	}
+}
+
+void handle_rigth(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
+	if(position[0][0]==TAILLE_MAX_CHAINE-1){printf("Deplacement Impossible\n");return;}
+	if(position[0][0]== 0) {
+		save_char=map[position[0][1]][position[0][0]+1]; // on sauvegarde la case d'avant
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][0]=position[0][0]+1;
+		map[position[0][1]][position[0][0]]='S';
+	}
+	else{
+		if(!save_char)save_char='X';
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][0]=position[0][0]+1;
+		save_char=map[position[0][1]][position[0][0]];
+		map[position[0][1]][position[0][0]]='S';
+	}
+}
+
+void handle_left(char ** arguments,Joueur *j1,int taille_arg){
+	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
+	if(position[0][0]==0){printf("Deplacement Impossible\n");return;}
+	if(position[0][0]==TAILLE_MAX_CHAINE-1) {
+		save_char=map[position[0][1]][position[0][0]-1]; // on sauvegarde la case d'avant
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][0]=position[0][0]-1;
+		map[position[0][1]][position[0][0]]='S';
+	}
+	else{
+		if(!save_char)save_char='X';
+		map[position[0][1]][position[0][0]]=save_char;
+		position[0][0]=position[0][0]-1;
+		save_char=map[position[0][1]][position[0][0]];
+		map[position[0][1]][position[0][0]]='S';
+	}
+}
+
+//#################################
+//#################################
+//#################################
+//#################################
 
 void wild(Joueur * j1, int niv_min, int niv_max)
 {

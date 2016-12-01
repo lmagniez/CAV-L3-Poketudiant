@@ -1,7 +1,7 @@
 BINDIR=bin/
 SRCDIR=src/
 
-OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)joueur.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)commande.o $(BINDIR)parsecommande.o
+OBJET=$(BINDIR)main.o $(BINDIR)poketudiant.o $(BINDIR)poke.o $(BINDIR)attaque.o $(BINDIR)type.o $(BINDIR)variete.o $(BINDIR)joueur.o $(BINDIR)cafetariat.o $(BINDIR)sac.o $(BINDIR)globale.o $(BINDIR)statistique.o $(BINDIR)combat.o $(BINDIR)commande.o $(BINDIR)parsecommande.o $(BINDIR)map.o
 CC=gcc
 CFLAGS=-Wall -g
 
@@ -10,6 +10,9 @@ jeux : $(OBJET)
 	
 $(BINDIR)main.o: $(SRCDIR)*.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)main.c
+
+$(BINDIR)map.o: $(SRCDIR)map.c
+	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)map.c
 
 $(BINDIR)commande.o : $(SRCDIR)commande.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)commande.c

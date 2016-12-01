@@ -8,13 +8,12 @@
 #include "../lib/commande.h"
 
 
-CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle_move_table,handle_drop,handle_pick,handle_release,handle_catch,handle_switchP,handle_xp};
-char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp"};
+CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle_move_table,handle_drop,handle_pick,handle_release,handle_catch,handle_switchP,handle_xp,handle_up,handle_bot,handle_rigth,handle_left};
+char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp","up","bot","rigth","left"};
 
 CmdHandling get_CmdHandling(char * firstWord){
 	int i=0;
 	for(i=0;i<NCMDS;++i){
-
 			if(strcmp(firstWord,cmdNames[i])==0){
 				return cmdFuncs[i];
 			}
@@ -59,5 +58,4 @@ void lire_commande(Joueur * j1){
     for (int i=0; i<taille; i++)
 		free(arguments[i]);
     free(arguments);
-
 }
