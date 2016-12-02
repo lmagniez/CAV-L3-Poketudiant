@@ -33,35 +33,43 @@ static int initPosition(int y, int x,char c,int rival){
 	return rival;
 }
 
-static void generationMap(){
+static FILE * generationMap(){
 	FILE * fichier=fopen(FICHIER_MAP, "r");
 	
-	int i=0,ligne=0; //ligne de a remplir
+	int ligne=0; //ligne de a remplir
 	int rival=1;
-	char caractereActuel;
 
 	if (fichier == NULL) { printf("Erreur Fichier Map \n "); exit(0); }
 
+	char chaine[128];
 
-	do{
-        caractereActuel = fgetc(fichier); // On lit le caractère
+	 while ( ligne < TAILLE_MAX_LIGNE && fgets (chaine, sizeof(chaine),fichier)!= NULL ){
+      	
+      	for(int i=0;i<TAILLE_MAX_CHAINE;i++){
+      		rival=initPosition(ligne,i,chaine[i],rival);
+      		map[ligne][i]=chaine[i];
+      	}
 
-        if(caractereActuel=='\n' || caractereActuel=='\0' || caractereActuel==' ' || caractereActuel=='?')continue;
+      	ligne++;
+    }
 
-        map[ligne][i]=caractereActuel;
-
-        rival=initPosition(ligne,i,caractereActuel,rival);
-
-        i++;
-        if(i==TAILLE_MAX_CHAINE){i=0;ligne++;}
-    }while(ligne < TAILLE_MAX_LIGNE && caractereActuel != EOF);
-
-    fclose(fichier);
+    return fichier;
 }
 
+static void init_tabRival(FILE * f){
+	char chaine[128];
+	while (fgets (chaine, sizeof(chaine),f)!= NULL){
+		if(chaine[0]!='\n')
+			printf("%s",chaine);
+     }
+     printf("\n");
+	fclose(f);
+}
+
+
 void initMap(){
-	generationMap();
-	afficheMap();
+	FILE * f=generationMap();
+	init_tabRival(f);
 }
 
 void gestionAction(Joueur * j){
@@ -78,37 +86,79 @@ void gestionAction(Joueur * j){
 			if(nb_pourc<=20)
 				wild(j,1,NB_VARIETE);
 		break;
+	}
+}
 
+void libereJoueur(){
+	for(int i=0;i<NB_RIVAL;i++)
+		free_joueur(tab_rival[i]);
+}
+
+static void afficheMenu(int i){
+	switch(i){
+		case 0 :
+			printf("    ╔════════════════════════════════╗");
+		break;
+		case 1 :
+			printf("    ║             MENU               ║");
+		break;
+		case 2 :
+			printf("    ║                                ║");
+		break;
+		case 3 :
+			printf("    ║                                ║");
+		break;
+		case 4 :
+			printf("    ║                                ║");
+		break;
+		case 5 :
+			printf("    ║                                ║");
+		break;
+		case 6 :
+			printf("    ║                                ║");
+		break;
+		case 7 :
+			printf("    ║                                ║");
+		break;
+		case 8 :
+			printf("    ║                                ║");
+		break;
+		case 9 :
+			printf("    ║                                ║");
+		break;
+		case 10 :
+			printf("    ║                                ║");
+		break;
+		case 11 :
+			printf("    ╚════════════════════════════════╝");
+		break;
 	}
 }
 
 void afficheMap(){
 		for(int i=0;i<TAILLE_MAX_LIGNE;i++){
-		for(int j=0;j<TAILLE_MAX_CHAINE;j++){
-			switch(map[i][j]){
-				case 'X' :
-					printf("▓");
-				break;
-				case 'N' :
-					printf(ANSI_COLOR_RED "▓" ANSI_COLOR_RESET); 
-				break;
-				case 'S' :
-					printf(ANSI_COLOR_YELLOW "♀" ANSI_COLOR_RESET); 
-				break;
-				case 'O' :
-					printf(ANSI_COLOR_GREEN "▓" ANSI_COLOR_RESET);
-				break;
-				case 'A' :
-					printf(ANSI_COLOR_MAGENTA "▓" ANSI_COLOR_RESET);
-				break;
-				case 'Z' :
-					printf(ANSI_COLOR_MAGENTA "▓" ANSI_COLOR_RESET);
-				break;
-				case 'E' :
-					printf(ANSI_COLOR_MAGENTA "▓" ANSI_COLOR_RESET);
-				break;
-			}
-        }
-        printf("\n");
-    }
+			for(int j=0;j<TAILLE_MAX_CHAINE;j++){
+				switch(map[i][j]){
+					case 'X' :
+						printf("██");
+					break;
+					case 'N' :
+						printf(ANSI_COLOR_RED "██" ANSI_COLOR_RESET); 
+					break;
+					case 'S' :
+						printf(ANSI_COLOR_YELLOW "♀♀" ANSI_COLOR_RESET); 
+					break;
+					case 'O' :
+						printf(ANSI_COLOR_GREEN "██" ANSI_COLOR_RESET);
+					break;
+					case 'A' :
+					case 'Z' :
+					case 'E' :
+						printf(ANSI_COLOR_MAGENTA "██" ANSI_COLOR_RESET);
+					break;
+				}
+	        }
+	        afficheMenu(i);
+        	printf("\n");
+    	}
 }

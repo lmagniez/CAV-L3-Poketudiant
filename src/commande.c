@@ -227,7 +227,6 @@ void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
 		map[position[0][1]][position[0][0]]='S';
 	}
 	else{
-		printf("%c\n",save_char);
 		map[position[0][1]][position[0][0]]=save_char;
 		position[0][1]=position[0][1]+1;
 		save_char=map[position[0][1]][position[0][0]];
@@ -304,8 +303,6 @@ void rival(Joueur * j1, int niv_min, int niv_max)
 	Joueur j= init_rival(niv_min,niv_max);
 	combat_rival(j1,&j);
 	free_joueur(j);
-	
-	
 }
 
 void nurse(Joueur * j1)

@@ -1,6 +1,8 @@
 #ifndef _MAP_H
 #define _MAP_H
 
+#include "joueur.h"
+
 #define FICHIER_MAP "./map/map1"
 #define TAILLE_MAX_CHAINE 19
 #define TAILLE_MAX_LIGNE 12
@@ -23,9 +25,13 @@ char map[TAILLE_MAX_CHAINE][TAILLE_MAX_CHAINE];
 int position[NB_PERSO][NB_POSITION];
 char save_char;
 
+Joueur tab_rival[NB_RIVAL];
+
 void initMap();
 
 void gestionAction();
+
+void libereJoueur();
 
 void afficheMap();
 #endif

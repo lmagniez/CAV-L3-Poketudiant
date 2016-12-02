@@ -18,9 +18,10 @@ int main(){
 	//ajout_sac(j.s,tmp1);
 
 	while(1){
-		lire_commande(&j);
 		afficheMap();
+		lire_commande(&j);
 	}
+	libereJoueur();
 
 	return 0;
 }
