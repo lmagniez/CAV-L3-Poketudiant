@@ -100,31 +100,41 @@ static void afficheMenu(int i){
 			printf("    ╔════════════════════════════════╗");
 		break;
 		case 1 :
-			printf("    ║             MENU               ║");
+			printf("    ║             AIDE               ║");
 		break;
 		case 2 :
-			printf("    ║                                ║");
+			printf("    ╚════════════════════════════════╝");
 		break;
 		case 3 :
-			printf("    ║                                ║");
+			printf("    ║  ");
+			printf(ANSI_COLOR_RED "██"ANSI_COLOR_RESET);
+			printf("  : soigne  ");
+			printf(ANSI_COLOR_MAGENTA "██"ANSI_COLOR_RESET);
+			printf("  : rival   ");
+			printf("  ║");
 		break;
 		case 4 :
 			printf("    ║                                ║");
 		break;
 		case 5 :
-			printf("    ║                                ║");
+			printf("    ║  ");
+			printf(ANSI_COLOR_GREEN "██"ANSI_COLOR_RESET);
+			printf("  : Herbes  ");
+			printf( "██");
+			printf("  : chemin  ");
+			printf("  ║");
 		break;
 		case 6 :
 			printf("    ║                                ║");
 		break;
 		case 7 :
-			printf("    ║                                ║");
+			printf("    ║          DEPLACEMENT           ║");
 		break;
 		case 8 :
 			printf("    ║                                ║");
 		break;
 		case 9 :
-			printf("    ║                                ║");
+			printf("    ║  ↑:up  ↓:bot  →:rigth  ←:left  ║");
 		break;
 		case 10 :
 			printf("    ║                                ║");
