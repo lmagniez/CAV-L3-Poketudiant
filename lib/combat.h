@@ -5,7 +5,7 @@
 #define CAPTURE 2
 #define CHANG_POKE 3
 
-void combat_rival(Joueur *j,Joueur *rival);
+int combat_rival(Joueur *j,Joueur *rival);
 
 void combat_sauvage(Joueur *j, Poketudiant * p2);
 

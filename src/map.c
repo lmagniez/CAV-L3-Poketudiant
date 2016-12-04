@@ -66,6 +66,23 @@ static void init_tabRival(FILE * f){
 	fclose(f);
 }
 
+static void findegame_looser(Joueur * j){
+	printf("    ╔════════════════════════════════╗");
+	printf("    ║           GAME OVER            ║");
+	printf("    ╚════════════════════════════════╝");
+	free_joueur(*j);
+	libereJoueur();
+	exit(0);
+}
+
+static void findegame_win(Joueur * j){
+	printf("    ╔════════════════════════════════╗");
+	printf("    ║       VOUS AVEZ GAGNE  !!      ║");
+	printf("    ╚════════════════════════════════╝");
+	free_joueur(*j);
+	libereJoueur();
+	exit(0);
+}
 
 void initMap(){
 	FILE * f=generationMap();
@@ -85,6 +102,15 @@ void gestionAction(Joueur * j){
 			nb_pourc=my_rand(0,POURCENT_MAXI);
 			if(nb_pourc<=20)
 				wild(j,1,NB_VARIETE);
+		break;
+		case 'A' :
+			1 == 1 ? save_char='B': findegame_looser(j);
+		break;
+		case 'Z' :
+			1 == 1 ? save_char='B': findegame_looser(j);
+		break;
+		case 'E' :
+			1 == 1 ? save_char='B': findegame_looser(j);
 		break;
 	}
 }
@@ -165,6 +191,9 @@ void afficheMap(){
 					case 'Z' :
 					case 'E' :
 						printf(ANSI_COLOR_MAGENTA "██" ANSI_COLOR_RESET);
+					break;
+					case 'B' :
+						printf(ANSI_COLOR_CYAN "██" ANSI_COLOR_RESET);
 					break;
 				}
 	        }

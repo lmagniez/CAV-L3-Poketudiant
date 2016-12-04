@@ -136,7 +136,7 @@ void  changer_poke_ordi(Joueur *j){
 }
 
 //Initialise un combat avec un dresseur rival
-void combat_rival(Joueur *j,Joueur *rival){
+int combat_rival(Joueur *j,Joueur *rival){
 	int a=0;
 	int tabexp[TAILLE_SAC];
 	Sac *s1,*s2;
@@ -168,6 +168,7 @@ void combat_rival(Joueur *j,Joueur *rival){
 			
 			if(verif_vie(rival->s) == 0){
 				printf("Vous avez Gagné le Combat ! ");
+				return 1;
 				break;
 			}
 
@@ -196,7 +197,7 @@ void combat_rival(Joueur *j,Joueur *rival){
 			if(verif_vie(s1) == 0){ //test si encore des poketudiants en vie
 				printf("Game Over !! ");
 				soigne_poketudiant(j->s->p[0]);//on soigne l'enseignant dresseur
-				return;
+				return 0;
 			}
 
 			affiche_sac(s1);
@@ -205,6 +206,7 @@ void combat_rival(Joueur *j,Joueur *rival){
 		}
 		affichage_combat(p1,p2);
 	}
+	return -1;
 }
 
 //initialise un combat de pokemon sauvage
