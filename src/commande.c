@@ -220,18 +220,12 @@ void handle_up(char ** arguments,Joueur *j1,int taille_arg){
 void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
 	if(position[0][1]==TAILLE_MAX_LIGNE-1){printf("Deplacement Impossible\n");return;}
-	if(position[0][1]== 0) {
-		save_char=map[position[0][1]+1][position[0][0]]; // on sauvegarde la case d'avant
-		map[position[0][1]][position[0][0]]=save_char;
-		position[0][1]=position[0][1]+1;
-		map[position[0][1]][position[0][0]]='S';
-	}
-	else{
-		map[position[0][1]][position[0][0]]=save_char;
-		position[0][1]=position[0][1]+1;
-		save_char=map[position[0][1]][position[0][0]];
-		map[position[0][1]][position[0][0]]='S';
-	}
+
+	map[position[0][1]][position[0][0]]=save_char;
+	position[0][1]=position[0][1]+1;
+	save_char=map[position[0][1]][position[0][0]];
+	map[position[0][1]][position[0][0]]='S';
+
 	gestionAction(j1);
 }
 
