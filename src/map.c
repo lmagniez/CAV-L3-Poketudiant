@@ -82,6 +82,10 @@ static void init_tabRival(FILE * f){
 					tab_rival[numRival-1]=init_rival_precis(min,max);
 				}
 				v=recup_variete(nom);
+				if((int)v<0){
+					printf("Erreur dans l'initialisation de la MAP\n");
+					exit(0);
+				}
 				ajout_sac(tab_rival[numRival-1].s,new_poketudiant_type(v,min,max));
 			}
 
