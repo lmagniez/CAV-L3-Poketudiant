@@ -7,4 +7,6 @@ typedef enum{
 
 char * chaine_variete(variete ele);
 
+variete recup_variete(char * chaine);
+
 #endif

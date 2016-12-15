@@ -167,7 +167,7 @@ int combat_rival(Joueur *j,Joueur *rival){
 			calcul_xp(j,tabexp,p2->experience_cur);
 			
 			if(verif_vie(rival->s) == 0){
-				printf("Vous avez Gagné le Combat ! ");
+				printf("Vous avez Gagné le Combat ! \n");
 				return 1;
 				break;
 			}
@@ -195,7 +195,7 @@ int combat_rival(Joueur *j,Joueur *rival){
 			s1->p[s1->p1]->pv_cur=0;
 			
 			if(verif_vie(s1) == 0){ //test si encore des poketudiants en vie
-				printf("Game Over !! ");
+				printf("Game Over !! \n");
 				soigne_poketudiant(j->s->p[0]);//on soigne l'enseignant dresseur
 				return 0;
 			}

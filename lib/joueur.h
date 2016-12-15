@@ -8,6 +8,7 @@
 typedef struct Joueur{
 	Sac * s;
 	Cafetariat * c;
+	int nb_point;
 }Joueur;
 
 //initialise l'inventaire
@@ -16,6 +17,7 @@ Joueur init_joueur(int lvl);
 //init inventaire pour rival
 Joueur init_rival(int lvl_min, int lvl_max);
 
+Joueur init_rival_precis(int lvl_min,int lvl_max);
 
 //soigne tous les poketudiants du sac
 void soigne_sac(Joueur * j);

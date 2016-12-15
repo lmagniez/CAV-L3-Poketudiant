@@ -36,6 +36,12 @@ Sac * init_sac_rival(int lvl_min,int lvl_max){
 	return s;
 }
 
+Sac * init_sac_rival_precis(int lvl_min,int lvl_max){
+	Sac * s=(Sac *)malloc(sizeof(Sac));
+	s->cur=0;
+	return s;
+}
+
 //ajoute un poketudiant dans le sac
 void ajout_sac(Sac * s,Poketudiant * p){
 	if(sac_plein(s))

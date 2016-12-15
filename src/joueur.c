@@ -11,6 +11,7 @@
 //initialise l'inventaire
 Joueur init_joueur(int lvl){
 	Joueur j;
+	j.nb_point=1;
 	j.s=init_sac(lvl);
 	j.c=init_caf();
 	return j;
@@ -18,7 +19,16 @@ Joueur init_joueur(int lvl){
 
 Joueur init_rival(int lvl_min, int lvl_max){
 	Joueur j;
+	j.nb_point=1;
 	j.s=init_sac_rival(lvl_min,lvl_max);
+	j.c=init_caf();
+	return j;
+}
+
+Joueur init_rival_precis(int lvl_min,int lvl_max){
+	Joueur j;
+	j.nb_point=1;
+	j.s=init_sac_rival_precis(lvl_min,lvl_max);
 	j.c=init_caf();
 	return j;
 }

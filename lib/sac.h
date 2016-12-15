@@ -16,6 +16,8 @@ Sac * init_sac(int lvl);
 
 Sac * init_sac_rival(int lvl_min,int lvl_max);
 
+Sac * init_sac_rival_precis(int lvl_min,int lvl_max);
+
 //ajout un pokemon dans le sac
 void ajout_sac(Sac * s,Poketudiant * p);
 
