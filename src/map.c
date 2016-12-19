@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../lib/Joueur.h"
+#include "../lib/joueur.h"
 #include "../lib/combat.h"
 #include "../lib/map.h"
 #include "../lib/globale.h"
@@ -37,7 +37,7 @@ static int initPosition(int y, int x,char c,int rival){
 
 static FILE * generationMap(){
 	FILE * fichier=fopen(FICHIER_MAP, "r");
-	
+
 	int ligne=0; //ligne de a remplir
 	int rival=1;
 
@@ -46,7 +46,7 @@ static FILE * generationMap(){
 	char chaine[128];
 
 	 while ( ligne < TAILLE_MAX_LIGNE && fgets (chaine, sizeof(chaine),fichier)!= NULL ){
-      	
+
       	for(int i=0;i<TAILLE_MAX_CHAINE;i++){
       		rival=initPosition(ligne,i,chaine[i],rival);
       		map[ligne][i]=chaine[i];
@@ -210,10 +210,10 @@ void afficheMap(){
 						printf("██");
 					break;
 					case 'N' :
-						printf(ANSI_COLOR_RED "██" ANSI_COLOR_RESET); 
+						printf(ANSI_COLOR_RED "██" ANSI_COLOR_RESET);
 					break;
 					case 'S' :
-						printf(ANSI_COLOR_YELLOW "♀♀" ANSI_COLOR_RESET); 
+						printf(ANSI_COLOR_YELLOW "♀♀" ANSI_COLOR_RESET);
 					break;
 					case 'O' :
 						printf(ANSI_COLOR_GREEN "██" ANSI_COLOR_RESET);
