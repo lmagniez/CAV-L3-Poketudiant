@@ -3,7 +3,6 @@
 
 #include "joueur.h"
 
-#define FICHIER_MAP "./map/map1"
 #define TAILLE_MAX_CHAINE 19
 #define TAILLE_MAX_LIGNE 12
 

@@ -12,7 +12,7 @@ $(BINDIR)main.o: $(SRCDIR)*.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)main.c
 
 $(BINDIR)map.o: $(SRCDIR)map.c
-	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)map.c
+	@$(CC) -DFICHIER_MAP=\"./map/map1\" $(CFLAGS) -c  -o $@ $(SRCDIR)map.c
 
 $(BINDIR)commande.o : $(SRCDIR)commande.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)commande.c
