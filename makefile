@@ -54,5 +54,6 @@ $(BINDIR)variete.o : $(SRCDIR)variete.c
 	@$(CC) $(CFLAGS) -c  -o $@ $(SRCDIR)variete.c
 
 clean:
-	@rm -rf $(BINDIR)*.o 
+	@rm -rf $(BINDIR)*.o
+	@rm -rf ./jeux
 	@echo "Cleaning done :)"
