@@ -8,8 +8,8 @@
 #include "../lib/commande.h"
 
 
-CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle_move_table,handle_drop,handle_pick,handle_release,handle_catch,handle_switchP,handle_xp,handle_up,handle_bot,handle_rigth,handle_left};
-char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp","up","bot","rigth","left"};
+CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle_move_table,handle_drop,handle_pick,handle_release,handle_catch,handle_switchP,handle_xp,handle_up,handle_bot,handle_right,handle_left};
+char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp","up","bot","right","left"};
 
 CmdHandling get_CmdHandling(char * firstWord){
 	printf("firstWord %s", firstWord);
@@ -20,7 +20,7 @@ CmdHandling get_CmdHandling(char * firstWord){
 		return handle_bot;
 	}
 	if(strcmp(firstWord, "d") == 0) {
-		return handle_rigth;
+		return handle_right;
 	}
 	if(strcmp(firstWord, "a") == 0) {
 		return handle_left;

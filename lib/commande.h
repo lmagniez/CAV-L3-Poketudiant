@@ -27,7 +27,7 @@ void handle_up(char ** arguments,Joueur *j1,int taille_arg);
 
 void handle_bot(char ** arguments,Joueur *j1,int taille_arg);
 
-void handle_rigth(char ** arguments,Joueur *j1,int taille_arg);
+void handle_right(char ** arguments,Joueur *j1,int taille_arg);
 
 void handle_left(char ** arguments,Joueur *j1,int taille_arg);
 

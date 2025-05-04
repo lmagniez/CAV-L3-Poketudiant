@@ -229,7 +229,7 @@ void handle_bot(char ** arguments,Joueur *j1,int taille_arg){
 	gestionAction(j1);
 }
 
-void handle_rigth(char ** arguments,Joueur *j1,int taille_arg){
+void handle_right(char ** arguments,Joueur *j1,int taille_arg){
 	if(taille_arg!=0){printf(ERR_COMMANDE);return;}
 	if(position[0][0]==TAILLE_MAX_CHAINE-1){printf("Deplacement Impossible\n");return;}
 	if(position[0][0]== 0) {

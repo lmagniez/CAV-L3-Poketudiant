@@ -191,7 +191,7 @@ static void afficheMenu(int i){
 			printf("    ║                                ║");
 		break;
 		case 9 :
-			printf("    ║  ↑:up  ↓:bot  →:rigth  ←:left  ║");
+			printf("    ║  ↑:up  ↓:bot  →:right  ←:left  ║");
 		break;
 		case 10 :
 			printf("    ║  ↑:w   ↓:s →  →:a      ←:d     ║");
