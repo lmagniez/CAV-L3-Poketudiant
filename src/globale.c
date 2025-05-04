@@ -21,24 +21,24 @@ int lire(char *chaine, int longueur)
 {
     char *positionEntree = NULL;
  
-    if (fgets(chaine, longueur, stdin) != NULL)
+    if (!fgets(chaine, longueur, stdin)) {
+        vider_buffer();
+        return 0;
+    }
+    if (chaine == NULL || chaine[0] == '\0' || chaine[0] == '\n') {
+        vider_buffer();
+        return 0;
+    }
+    positionEntree = strchr(chaine, '\n');
+    if (positionEntree != NULL)
     {
-        positionEntree = strchr(chaine, '\n');
-        if (positionEntree != NULL)
-        {
-            *positionEntree = '\0';
-        }
-        else
-        {
-            vider_buffer();
-        }
-        return 1;
+        *positionEntree = '\0';
     }
     else
     {
         vider_buffer();
-        return 0;
     }
+    return 1;   
 }
 
 int lecture_entree(){
