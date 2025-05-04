@@ -12,6 +12,19 @@ CmdHandling cmdFuncs[]={handle_wild,handle_rival,handle_nurse,handle_show,handle
 char * cmdNames[]={"wild","rival","nurse","show","move-table","drop","pick","release","catch","switch","xp","up","bot","rigth","left"};
 
 CmdHandling get_CmdHandling(char * firstWord){
+	printf("firstWord %s", firstWord);
+	if(strcmp(firstWord, "w") == 0) {
+		return handle_up;
+	}
+	if(strcmp(firstWord, "s") == 0) {
+		return handle_bot;
+	}
+	if(strcmp(firstWord, "d") == 0) {
+		return handle_rigth;
+	}
+	if(strcmp(firstWord, "a") == 0) {
+		return handle_left;
+	}
 	int i=0;
 	for(i=0;i<NCMDS;++i){
 			if(strcmp(firstWord,cmdNames[i])==0){
